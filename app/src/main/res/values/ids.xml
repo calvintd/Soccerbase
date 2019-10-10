@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- league item -->
+    <item name="ivListLogo" type="id"/>
+    <item name="tvListName" type="id"/>
+
+    <!-- league details -->
+    <item name="ivDetailLogo" type="id"/>
+    <item name="tvDetailName" type="id"/>
+    <item name="tvDetailDescription" type="id"/>
+</resources>
