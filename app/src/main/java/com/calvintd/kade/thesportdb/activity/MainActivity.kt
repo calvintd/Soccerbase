@@ -9,16 +9,17 @@ import com.calvintd.kade.thesportdb.presenter.MainPresenter
 import com.calvintd.kade.thesportdb.view.MainView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
+import retrofit2.HttpException
 
 class MainActivity : AppCompatActivity(), MainView {
-    private var recyclerView: RecyclerView = RecyclerView(this)
+    private var recyclerView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.title = resources.getText(R.string.main_activity_title)
 
-        val presenter = MainPresenter(this, this.resources)
+        val presenter = MainPresenter(this)
 
         scrollView{
             verticalLayout{
@@ -35,6 +36,14 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun loadData() {
-        recyclerView.adapter?.notifyDataSetChanged()
+        recyclerView?.adapter?.notifyDataSetChanged()
+    }
+
+    override fun showResponseError(code: Int) {
+        toast("Error in fetching response through API; code: $code")
+    }
+
+    override fun showException(e: HttpException) {
+        toast("The following exception happened: ${e.message()}")
     }
 }

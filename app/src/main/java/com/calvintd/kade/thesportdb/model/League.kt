@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class League (var name: String, var logo: Int, var description: String): Parcelable
+class League (var leagueId: Int?, var name: String?, var badge: String?, var description: String?): Parcelable

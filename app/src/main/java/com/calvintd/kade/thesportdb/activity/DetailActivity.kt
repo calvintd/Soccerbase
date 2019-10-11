@@ -21,18 +21,19 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val bundle = intent.getParcelableExtra("league") as League
+        val leagueId = bundle.leagueId
         val leagueName = bundle.name
-        val leagueLogo = bundle.logo
+        val leagueLogo = bundle.badge
         val leagueDescription = bundle.description
 
-        supportActionBar?.title = resources.getText(R.string.detail_activity_title)
+        supportActionBar?.title = resources.getText(R.string.league_activity_title)
 
         scrollView {
             constraintLayout {
                 lparams(width = matchParent, height = matchParent)
 
-                val logo = imageView {
-                    id = R.id.ivDetailLogo
+                val badge = imageView {
+                    id = R.id.ivDetailBadge
                     image = resources.getDrawable(R.drawable.ic_placeholder_black_48dp, theme)
                 }.lparams(width = wrapContent, height = wrapContent)
 
@@ -59,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
                     val bottom = ConstraintSetBuilder.Side.BOTTOM
                     val margin = 16
 
-                    logo {
+                    badge {
                         connect (
                             start to start of parent margin dip(margin),
                             end to end of parent margin dip(margin),
@@ -71,7 +72,7 @@ class DetailActivity : AppCompatActivity() {
                         connect (
                             start to start of parent margin dip(margin),
                             end to end of parent margin dip(margin),
-                            top to bottom of logo margin dip(margin)
+                            top to bottom of badge margin dip(margin)
                         )
                     }
 
@@ -85,7 +86,7 @@ class DetailActivity : AppCompatActivity() {
                     }
                 }
 
-                logo.let {
+                badge.let {
                     Picasso.get()
                         .load(leagueLogo)
                         .fit()

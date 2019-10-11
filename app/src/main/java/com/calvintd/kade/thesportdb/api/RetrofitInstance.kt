@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitInstance {
+object RetrofitInstance {
     private val BASE_URL = BuildConfig.BASE_URL
 
     private var log = HttpLoggingInterceptor()
@@ -17,9 +17,10 @@ class RetrofitInstance {
 
     private val client = clientBuilder.build()
 
-    fun getInstance(): Retrofit = Retrofit.Builder()
+    fun getInstance(): RetrofitService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
+        .create(RetrofitService::class.java)
 }

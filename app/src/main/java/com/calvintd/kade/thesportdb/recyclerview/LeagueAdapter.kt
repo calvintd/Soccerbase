@@ -34,8 +34,8 @@ class LeagueAdapter(private val items: List<League>)
             constraintLayout {
                 lparams(width = matchParent, height = wrapContent)
 
-                val logo = imageView {
-                    id = R.id.ivListLogo
+                val badge = imageView {
+                    id = R.id.ivListBadge
                     image = resources.getDrawable(R.drawable.ic_placeholder_black_48dp, ctx.theme)
                 }.lparams(width = wrapContent, height = wrapContent)
 
@@ -55,7 +55,7 @@ class LeagueAdapter(private val items: List<League>)
                     val bottom = ConstraintSetBuilder.Side.BOTTOM
                     val margin = 16
 
-                    logo {
+                    badge {
                         connect (
                             start to start of parent margin dip(margin),
                             top to top of parent margin dip(margin),
@@ -64,7 +64,7 @@ class LeagueAdapter(private val items: List<League>)
                     }
                     name {
                         connect (
-                            start to end of logo margin dip(margin),
+                            start to end of badge margin dip(margin),
                             end to end of parent margin dip(margin),
                             top to top of parent margin dip(margin),
                             bottom to bottom of parent margin dip(margin)
@@ -76,17 +76,17 @@ class LeagueAdapter(private val items: List<League>)
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        private val logo = view.findViewById<ImageView>(R.id.ivListLogo)
+        private val badge = view.findViewById<ImageView>(R.id.ivListBadge)
         private val name = view.findViewById<TextView>(R.id.tvListName)
 
         fun bindItem(league: League) {
-            league.logo.let { Picasso.get()
+            league.badge.let { Picasso.get()
                 .load(it)
                 .fit()
                 .centerCrop()
                 .placeholder(R.drawable.ic_placeholder_black_48dp)
                 .error(R.drawable.ic_error_black_48dp)
-                .into(logo) }
+                .into(badge) }
             itemView.setOnClickListener {
                 itemView.context.startActivity<DetailActivity>(
                     "league" to league
