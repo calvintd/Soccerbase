@@ -1,11 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- league item -->
-    <item name="ivListBadge" type="id"/>
-    <item name="tvListName" type="id"/>
+    <!-- main activity -->
+    <item name="llAppLayout" type="id"/>
+    <item name="ivAppLogo" type="id"/>
+    <item name="tvAppName" type="id"/>
+    <item name="llListingLayout" type="id"/>
+    <item name="ivListingIcon" type="id"/>
+    <item name="tvListingName" type="id"/>
+    <item name="llSearchLayout" type="id"/>
+    <item name="ivSearchIcon" type="id"/>
+    <item name="tvSearchName" type="id"/>
 
-    <!-- league details -->
-    <item name="ivDetailBadge" type="id"/>
-    <item name="tvDetailName" type="id"/>
-    <item name="tvDetailDescription" type="id"/>
+    <!-- league listing -->
+    <item name="ivLeagueBadge" type="id"/>
+    <item name="tvLeagueName" type="id"/>
+    <item name="llListingDescriptionLayout" type="id"/>
+    <item name="ivListingDescriptionIcon" type="id"/>
+    <item name="tvListingDescriptionName" type="id"/>
+    <item name="llListingScheduleLayout" type="id"/>
+    <item name="ivListingScheduleIcon" type="id"/>
+    <item name="tvListingScheduleName" type="id"/>
+
+    <!-- match search -->
+    <item name="tvMatchDateTime" type="id"/>
+    <item name="tvMatchShowDetails" type="id"/>
+    <item name="llHomeLayout" type="id"/>
+    <item name="ivHomeBadge" type="id"/>
+    <item name="tvHomeName" type="id"/>
+    <item name="tvHomeScore" type="id"/>
+    <item name="llAwayLayout" type="id"/>
+    <item name="ivAwayBadge" type="id"/>
+    <item name="tvAwayName" type="id"/>
+    <item name="tvAwayScore" type="id"/>
+
+    <!-- league navigation -->
+    <item name="llNavigationHeaderLayout" type="id"/>
+    <item name="ivNavigationHeaderBadge" type="id"/>
+    <item name="tvNavigationHeaderName" type="id"/>
+    <item name="llNavigationDescriptionLayout" type="id"/>
+    <item name="ivNavigationDescriptionIcon" type="id"/>
+    <item name="tvNavigationDescriptionName" type="id"/>
+    <item name="llNavigationScheduleLayout" type="id"/>
+    <item name="ivNavigationScheduleIcon" type="id"/>
+    <item name="tvNavigationScheduleName" type="id"/>
+
+    <!-- league description -->
+    <item name="ivDescriptionBadge" type="id"/>
+    <item name="tvDescriptionName" type="id"/>
+    <item name="tvDescrriptionDesc" type="id"/>
 </resources>

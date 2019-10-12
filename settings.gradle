@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='TheSportDB'
+rootProject.name='Soccerbase'

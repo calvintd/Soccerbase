@@ -1,13 +1,36 @@
 <resources>
-    <string name="app_name">TheSportDB</string>
+    <string name="app_name">Soccerbase</string>
 
-    <!-- judul activity -->
-    <string name="main_activity_title">The Sport Database</string>
-    <string name="league_activity_title">League Details</string>
+    <!-- activity titles -->
+    <string name="main_activity_title">Soccerbase</string>
+    <string name="league_listing_activity_title">League Listing</string>
+    <string name="league_navigation_activity_title">League Navigation</string>
+    <string name="league_description_activity_title">League Description</string>
     <string name="match_schedule_activity_title">Match Schedule</string>
     <string name="match_details_activity_title">Match Details</string>
     <string name="match_search_activity_title">Match Search</string>
 
     <!-- placeholders -->
     <string name="item_league_name_placeholder">League Name</string>
+    <string name="item_event_date_time_placeholder">Sunday, 13 October 2019 (21:00 WIB)</string>
+    <string name="item_home_name_placeholder">Home Team</string>
+    <string name="item_away_name_placeholder">Away Team</string>
+    <string name="item_home_score_placeholder">1</string>
+    <string name="item_away_score_placeholder">0</string>
+
+    <!-- main activity -->
+    <string name="main_activity_league_listing_button">League Listing</string>
+    <string name="main_activity_match_search_button">Match Search</string>
+
+    <!-- match search -->
+    <string name="match_search_query_hint">Type in a team\'s name…</string>>
+    <string name="match_search_search_results_for_query">"Displaying search results for %s:"</string>
+
+    <!-- league listing -->
+    <string name="league_listing_description_button">Description</string>
+    <string name="league_listing_schedule_button">Schedule</string>
+
+    <!-- match listing -->
+    <string name="match_listing_date_time_format">%1$s (%2$s)</string>
+    <string name="match_listing_show_match_details">Show match details</string>
 </resources>
