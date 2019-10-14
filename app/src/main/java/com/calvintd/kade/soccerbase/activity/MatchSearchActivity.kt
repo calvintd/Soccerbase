@@ -1,6 +1,7 @@
 package com.calvintd.kade.soccerbase.activity
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.SearchView
@@ -53,6 +54,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                 padding = 32
                 textSize = 16f
                 visibility = View.GONE
+                gravity = Gravity.CENTER
             }.lparams(width = matchParent, height = wrapContent)
 
             progressBar = progressBar {
@@ -85,6 +87,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         textView?.text = String.format(
             resources.getString(R.string.match_search_no_search_results_found),
             query)
+        progressBar?.visibility = View.GONE
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {

@@ -6,7 +6,7 @@
     <string name="league_listing_activity_title">League Listing</string>
     <string name="league_navigation_activity_title">League Navigation</string>
     <string name="league_description_activity_title">League Description</string>
-    <string name="match_schedule_activity_title">Match Schedule</string>
+    <string name="league_schedule_activity_title">League Schedule</string>
     <string name="match_details_activity_title">Match Details</string>
     <string name="match_search_activity_title">Match Search</string>
 
@@ -35,4 +35,8 @@
     <!-- match listing -->
     <string name="match_listing_date_time_format">%1$s (%2$s WIB)</string>
     <string name="match_listing_show_match_details">Show match details…</string>
+
+    <!-- league schedule -->
+    <string name="league_schedule_nav_past">Past Matches</string>
+    <string name="league_schedule_nav_upcoming">Upcoming Matches</string>
 </resources>

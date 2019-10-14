@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.activity.LeagueDescriptionActivity
+import com.calvintd.kade.soccerbase.activity.LeagueScheduleActivity
 import com.calvintd.kade.soccerbase.model.League
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
@@ -27,30 +29,39 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
 
     class LeagueUI : AnkoComponent<ViewGroup> {
         companion object {
-            val iconSize = 48
-            val iconPadding = 6
-            val buttonTextSize = 12f
+            const val iconSize = 48
+            const val iconPadding = 6
+            const val buttonTextSize = 12f
         }
 
         override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
             constraintLayout {
                 lparams(width = matchParent, height = wrapContent)
 
-                val badge = imageView {
-                    id = R.id.ivLeagueBadge
-                    image = resources.getDrawable(R.drawable.ic_placeholder_black_48dp, ctx.theme)
-                }.lparams(width = wrapContent, height = wrapContent)
+                val leagueLayout = linearLayout {
+                    id = R.id.llLeagueLayout
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = Gravity.CENTER_VERTICAL
 
-                val name = textView {
-                    id = R.id.tvLeagueName
-                    text = resources.getText(R.string.item_league_name_placeholder)
-                    textSize = 18f
-                    typeface = Typeface.DEFAULT_BOLD
+                    imageView {
+                        id = R.id.ivLeagueBadge
+                        image = resources.getDrawable(R.drawable.ic_placeholder_black_48dp, ctx.theme)
+                        rightPadding = 32
+                    }.lparams(width = wrapContent, height = wrapContent)
+
+                    textView {
+                        id = R.id.tvLeagueName
+                        text = resources.getText(R.string.item_league_name_placeholder)
+                        textSize = 16f
+                        typeface = Typeface.DEFAULT_BOLD
+                    }.lparams(width = wrapContent, height = wrapContent)
                 }.lparams(width = matchConstraint, height = wrapContent)
 
                 val buttonGuideline = guideline {
                     id = R.id.glButtonGuideline
-                }.lparams(width = matchConstraint, height = 0)
+                }.lparams(width = matchConstraint, height = 0) {
+                    orientation = ConstraintLayout.LayoutParams.HORIZONTAL
+                }
 
                 val descriptionButton = linearLayout {
                     id = R.id.llListingDescriptionLayout
@@ -100,27 +111,17 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                     val bottom = ConstraintSetBuilder.Side.BOTTOM
                     val margin = 16
 
-                    badge {
+                    leagueLayout {
                         connect (
                             start to start of parent margin dip(margin),
-                            top to top of parent margin dip(margin),
-                            bottom to bottom of parent margin dip(margin)
-                        )
-                    }
-
-                    name {
-                        connect (
-                            start to end of badge margin dip(margin),
                             end to end of parent margin dip(margin),
-                            top to top of parent margin dip(margin),
-                            bottom to bottom of parent margin dip(margin)
+                            top to top of parent margin dip(margin)
                         )
                     }
 
                     buttonGuideline {
                         connect (
-                            top to bottom of badge margin dip(margin),
-                            top to bottom of name margin dip(margin)
+                            top to bottom of leagueLayout margin dip(margin)
                         )
                     }
 
@@ -169,7 +170,9 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
             }
 
             scheduleButton.onClick {
-                itemView.context.toast("To be implemented!")
+                itemView.context.startActivity<LeagueScheduleActivity>(
+                    "league" to league
+                )
             }
         }
     }

@@ -13,6 +13,7 @@
     <item name="tvSearchName" type="id"/>
 
     <!-- league listing -->
+    <item name="llLeagueLayout" type="id"/>
     <item name="ivLeagueBadge" type="id"/>
     <item name="tvLeagueName" type="id"/>
     <item name="glButtonGuideline" type="id"/>
@@ -53,4 +54,8 @@
     <item name="ivDescriptionBadge" type="id"/>
     <item name="tvDescriptionName" type="id"/>
     <item name="tvDescrriptionDesc" type="id"/>
+
+    <!-- league schedule -->
+    <item name="flScheduleFrame" type="id"/>
+    <item name="bnScheduleNav" type="id"/>
 </resources>

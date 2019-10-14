@@ -31,11 +31,11 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
 
     class MatchUI : AnkoComponent<ViewGroup> {
         companion object {
-            val teamNameSize = 12f
-            val scoreSize = 24f
-            val badgeSize = 96
-            val horizontal = ConstraintLayout.LayoutParams.HORIZONTAL
-            val vertical = ConstraintLayout.LayoutParams.VERTICAL
+            const val teamNameSize = 12f
+            const val scoreSize = 24f
+            const val badgeSize = 96
+            const val horizontal = ConstraintLayout.LayoutParams.HORIZONTAL
+            const val vertical = ConstraintLayout.LayoutParams.VERTICAL
         }
 
         override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {

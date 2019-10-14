@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_past"
+        android:icon="@drawable/ic_past_black_48dp"
+        android:title="@string/league_schedule_nav_past" />
+    <item
+        android:id="@+id/nav_upcoming"
+        android:icon="@drawable/ic_upcoming_black_48dp"
+        android:title="@string/league_schedule_nav_upcoming" />
+</menu>
