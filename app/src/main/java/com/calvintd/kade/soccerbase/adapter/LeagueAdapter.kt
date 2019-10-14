@@ -1,5 +1,6 @@
 package com.calvintd.kade.soccerbase.adapter
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
@@ -29,7 +30,8 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
 
     class LeagueUI : AnkoComponent<ViewGroup> {
         companion object {
-            const val iconSize = 48
+            const val iconSize = 40
+            const val badgeSize = 160
             const val iconPadding = 6
             const val buttonTextSize = 12f
         }
@@ -47,12 +49,12 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                         id = R.id.ivLeagueBadge
                         image = resources.getDrawable(R.drawable.ic_placeholder_black_48dp, ctx.theme)
                         rightPadding = 32
-                    }.lparams(width = wrapContent, height = wrapContent)
+                    }.lparams(width = badgeSize, height = badgeSize)
 
                     textView {
                         id = R.id.tvLeagueName
                         text = resources.getText(R.string.item_league_name_placeholder)
-                        textSize = 16f
+                        textSize = 18f
                         typeface = Typeface.DEFAULT_BOLD
                     }.lparams(width = wrapContent, height = wrapContent)
                 }.lparams(width = matchConstraint, height = wrapContent)
@@ -80,6 +82,7 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                         id = R.id.tvListingDescriptionName
                         text = resources.getString(R.string.league_listing_description_button)
                         textSize = buttonTextSize
+                        textColor = Color.MAGENTA
                     }.lparams(width = wrapContent, height = wrapContent)
                 }.lparams(width = wrapContent, height = wrapContent)
 
@@ -100,6 +103,7 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                         id = R.id.tvListingScheduleName
                         text = resources.getString(R.string.league_listing_schedule_button)
                         textSize = buttonTextSize
+                        textColor = Color.rgb(129,182,157)
                     }.lparams(width = wrapContent, height = wrapContent)
                 }.lparams(width = wrapContent, height = wrapContent)
 
@@ -114,8 +118,7 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                     leagueLayout {
                         connect (
                             start to start of parent margin dip(margin),
-                            end to end of parent margin dip(margin),
-                            top to top of parent margin dip(margin)
+                            end to end of parent margin dip(margin)
                         )
                     }
 

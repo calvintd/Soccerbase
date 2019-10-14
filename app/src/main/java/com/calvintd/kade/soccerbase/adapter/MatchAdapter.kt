@@ -82,6 +82,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                             id = R.id.tvHomeName
                             text = resources.getString(R.string.item_home_name_placeholder)
                             textSize = teamNameSize
+                            gravity = Gravity.CENTER
                         }.lparams(width = wrapContent, height = wrapContent)
                     }.lparams(width = matchConstraint, height = wrapContent)
 
@@ -106,6 +107,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                             id = R.id.tvAwayName
                             text = resources.getString(R.string.item_away_name_placeholder)
                             textSize = teamNameSize
+                            gravity = Gravity.CENTER
                         }.lparams(width = wrapContent, height = wrapContent)
                     }.lparams(width = matchConstraint, height = wrapContent)
 

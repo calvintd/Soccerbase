@@ -1,22 +1,18 @@
 package com.calvintd.kade.soccerbase.utils
 
-import com.calvintd.kade.soccerbase.model.Match
-import com.calvintd.kade.soccerbase.model.MatchResponse
-import com.calvintd.kade.soccerbase.model.TeamResponse
+import com.calvintd.kade.soccerbase.model.*
 
 object MatchDataProcessing {
     val splitter = MatchDetailsSplitter
     val formatter = MatchDateTimeFormatter
 
-    fun matchDataInit (matchResponseItem: MatchResponse.Matches) : Match {
+    fun matchDataInit (matchResponseItem: Matches) : Match {
         // general data
         val matchId = matchResponseItem.matchId
         val homeTeamId = matchResponseItem.homeTeamId
         val awayTeamId = matchResponseItem.awayTeamId
         val homeName = matchResponseItem.homeName
         val awayName = matchResponseItem.awayName
-        var homeBadge: String? = null
-        var awayBadge: String? = null
         val homeScore = matchResponseItem.homeSoore
         val awayScore = matchResponseItem.awayScore
 
@@ -75,7 +71,7 @@ object MatchDataProcessing {
         val awaySubstitutes = matchResponseItem.awaySubstitutes
         val awaySubstitutesDetails = splitter.split(awaySubstitutes)
 
-        val matchItem = Match(
+        return Match(
             // general data
             matchId = matchId,
             homeTeamId = homeTeamId?.toInt(),
@@ -115,8 +111,6 @@ object MatchDataProcessing {
             awayForward = awayForwardDetails,
             awaySubstitutes = awaySubstitutesDetails
         )
-
-        return matchItem
     }
 
     fun assignBadge (matchItem: Match, homeTeamResponseItem: List<TeamResponse.Teams>, awayTeamResponseItem: List<TeamResponse.Teams>) : Match {

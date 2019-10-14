@@ -1,6 +1,7 @@
 package com.calvintd.kade.soccerbase.api
 
 import com.calvintd.kade.soccerbase.model.LeagueResponse
+import com.calvintd.kade.soccerbase.model.MatchLeagueResponse
 import com.calvintd.kade.soccerbase.model.MatchResponse
 import com.calvintd.kade.soccerbase.model.TeamResponse
 import retrofit2.Response
@@ -15,10 +16,10 @@ interface RetrofitService {
     suspend fun getMatchesSearch(@Query("e") name: String): Response<MatchResponse>
 
     @GET("/api/v1/json/1/eventspastleague.php")
-    suspend fun getPastLeagueMatches(@Query("id") id: Int): Response<MatchResponse>
+    suspend fun getPastLeagueMatches(@Query("id") id: Int): Response<MatchLeagueResponse>
 
     @GET("/api/v1/json/1/eventsnextleague.php")
-    suspend fun getUpcomingLeagueMatches(@Query("id") id: Int): Response<MatchResponse>
+    suspend fun getUpcomingLeagueMatches(@Query("id") id: Int): Response<MatchLeagueResponse>
 
     @GET("/api/v1/json/1/lookupteam.php")
     suspend fun getTeamDetails(@Query("id") id: Int): Response<TeamResponse>

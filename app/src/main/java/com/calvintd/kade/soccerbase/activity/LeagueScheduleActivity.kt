@@ -8,8 +8,6 @@ import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.fragment.LeagueSchedulePastMatchesFragment
 import com.calvintd.kade.soccerbase.fragment.LeagueScheduleUpcomingMatchesFragment
 import com.calvintd.kade.soccerbase.model.League
-import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchPresenter
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.design.bottomNavigationView
@@ -25,9 +23,9 @@ class LeagueScheduleActivity : AppCompatActivity() {
         constraintLayout {
             lparams(width = matchParent, height = matchParent)
 
-            val scheduleFrame = frameLayout {
-                id = R.id.flScheduleFrame
-            }.lparams(width = matchConstraint, height = wrapContent)
+            val scheduleFrame = verticalLayout {
+                id = R.id.llScheduleLayout
+            }.lparams(width = matchConstraint, height = matchConstraint)
 
             val scheduleNav = bottomNavigationView {
                 id = R.id.bnScheduleNav
@@ -62,23 +60,32 @@ class LeagueScheduleActivity : AppCompatActivity() {
             scheduleNav.setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.nav_past -> {
-                        val fragment = LeagueSchedulePastMatchesFragment.newInstance()
-                        switchFragment(fragment)
+                        newPastMatchesFragmentInstance(league)
                     }
                     R.id.nav_upcoming -> {
-                        val fragment = LeagueScheduleUpcomingMatchesFragment.newInstance()
-                        switchFragment(fragment)
+                        newUpcomingMatchesFragmentInstance(league)
                     }
                 }
+                scheduleNav.menu.findItem(it.itemId).setChecked(true)
                 false
             }
+            newPastMatchesFragmentInstance(league)
         }
     }
 
     private fun switchFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.flScheduleFrame, fragment)
-        transaction.addToBackStack(null)
+        transaction.replace(R.id.llScheduleLayout, fragment)
         transaction.commit()
+    }
+
+    private fun newPastMatchesFragmentInstance(league: League) {
+        val fragment = LeagueSchedulePastMatchesFragment.newInstance(league)
+        switchFragment(fragment)
+    }
+
+    private fun newUpcomingMatchesFragmentInstance(league: League) {
+        val fragment = LeagueScheduleUpcomingMatchesFragment.newInstance(league)
+        switchFragment(fragment)
     }
 }

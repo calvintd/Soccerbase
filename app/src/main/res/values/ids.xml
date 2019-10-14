@@ -56,6 +56,6 @@
     <item name="tvDescrriptionDesc" type="id"/>
 
     <!-- league schedule -->
-    <item name="flScheduleFrame" type="id"/>
+    <item name="llScheduleLayout" type="id"/>
     <item name="bnScheduleNav" type="id"/>
 </resources>

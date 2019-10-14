@@ -5,21 +5,21 @@ import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.model.Match
 import com.calvintd.kade.soccerbase.utils.MatchDataProcessing
-import com.calvintd.kade.soccerbase.view.LeagueScheduleUpcomingMatchesView
+import com.calvintd.kade.soccerbase.view.LeagueSchedulePastMatchesView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
-class LeagueScheduleUpcomingMatchPresenter (private val view: LeagueScheduleUpcomingMatchesView) {
+class LeagueSchedulePastMatchesPresenter (private val view: LeagueSchedulePastMatchesView) {
     fun loadMatchesByLeague (recyclerView: RecyclerView?, leagueId: Int, leagueName: String) {
         val matches = ArrayList<Match>()
         val instance = RetrofitInstance.getInstance()
         val processor = MatchDataProcessing
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = instance.getUpcomingLeagueMatches(leagueId)
+            val response = instance.getPastLeagueMatches(leagueId)
             withContext(Dispatchers.Main) {
                 try {
                     if (response.isSuccessful) {
@@ -30,7 +30,7 @@ class LeagueScheduleUpcomingMatchPresenter (private val view: LeagueScheduleUpco
                             val matchResponseItems = matchResponse.matches
                             for (i in matchResponseItems.indices) {
                                 if (matchResponseItems[i].sport.equals("Soccer")) {
-                                    val match = matchResponseItems[i]
+                                    val match  = matchResponseItems[i]
 
                                     var matchItem = processor.matchDataInit(match)
                                     val homeTeamId = matchItem.homeTeamId
