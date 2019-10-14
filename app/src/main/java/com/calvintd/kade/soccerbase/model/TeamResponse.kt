@@ -9,8 +9,6 @@ class TeamResponse (
     class Teams (
         @SerializedName("idTeam")
         var teamId: Int?,
-        @SerializedName("strAlternate")
-        var teamName: String?,
         @SerializedName("strTeamBadge")
         var teamBadge: String?
     )

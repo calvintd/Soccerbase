@@ -14,11 +14,14 @@ import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.constraint.layout.*
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(MatchUI().createView(AnkoContext.Companion.create(parent.context, parent)))
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(matches[position])
 
@@ -26,10 +29,10 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
 
     class MatchUI : AnkoComponent<ViewGroup> {
         companion object {
-            val teamNameSize = 20f
-            val scoreSize = 32f
-            val teamPadding = 16
-            val badgeSize = 128
+            val teamNameSize = 12f
+            val scoreSize = 24f
+            val teamPadding = 8
+            val badgeSize = 96
         }
 
         override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
@@ -37,6 +40,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                 lparams(width = matchParent, height = wrapContent)
                 radius = 4f
                 elevation = 4f
+                padding = 8
 
                 constraintLayout {
                     lparams(width = matchParent, height = wrapContent)
@@ -47,13 +51,13 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                         text = resources.getString(R.string.item_event_date_time_placeholder)
                     }.lparams(width = matchConstraint, height = wrapContent)
 
-                    val matchShowDetails = textView {
-                        id = R.id.tvMatchShowDetails
-                        text = resources.getString(R.string.match_listing_show_match_details)
-                    }
+                    val dateGuideline = guideline {
+                        id = R.id.glDateTimeGuideline
+                    }.lparams(width = matchConstraint, height = 0)
 
                     // home
                     val homeTeam = verticalLayout {
+                        id = R.id.llHomeLayout
                         lparams(width = wrapContent, height = wrapContent)
                         gravity = Gravity.CENTER
 
@@ -79,6 +83,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
 
                     // away
                     val awayTeam = verticalLayout {
+                        id = R.id.llAwayLayout
                         lparams(width = wrapContent, height = wrapContent)
                         gravity = Gravity.CENTER
 
@@ -102,6 +107,16 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                         typeface = Typeface.DEFAULT_BOLD
                     }.lparams(width = wrapContent, height = wrapContent)
 
+                    val showDetailsGuideline = guideline {
+                        id = R.id.glShowDetailsGuideline
+//                    }.lparams(width = matchConstraint, height = 0)
+
+                    val matchShowDetails = textView {
+                        id = R.id.tvMatchShowDetails
+                        text = resources.getString(R.string.match_listing_show_match_details)
+                        textSize = 12f
+                    }.lparams(width = wrapContent, height = wrapContent)
+
                     applyConstraintSet {
                         val parent = ConstraintSet.PARENT_ID
                         val start = ConstraintSetBuilder.Side.START
@@ -118,35 +133,51 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                             )
                         }
 
+                        dateGuideline {
+                            connect (
+                                top to bottom of matchDateTime margin dip(margin)
+                            )
+                        }
+
                         homeTeam {
                             connect (
                                 start to start of parent margin dip(margin),
-                                top to bottom of matchDateTime margin dip(margin)
+                                top to bottom of dateGuideline margin dip(margin)
                             )
                         }
 
                         homeScore {
                             connect (
-                                start to end of homeTeam margin dip(margin)
+                                start to end of homeTeam margin dip(margin),
+                                top to bottom of dateGuideline margin dip(margin)
                             )
                         }
 
                         awayTeam {
                             connect (
                                 end to end of parent margin dip(margin),
-                                top to bottom of matchDateTime margin dip(margin)
+                                top to bottom of dateGuideline margin dip(margin)
                             )
                         }
 
                         awayScore {
                             connect (
-                                end to start of awayTeam margin dip(margin)
+                                end to start of awayTeam margin dip(margin),
+                                top to bottom of dateGuideline margin dip(margin)
+                            )
+                        }
+
+                        showDetailsGuideline {
+                            connect (
+                                top to bottom of homeTeam margin dip(margin),
+                                top to bottom of awayTeam margin dip(margin)
                             )
                         }
 
                         matchShowDetails {
                             connect (
                                 end to end of parent margin dip(margin),
+                                top to bottom of showDetailsGuideline margin dip(margin),
                                 bottom to bottom of parent margin dip(margin)
                             )
                         }
@@ -164,9 +195,14 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
         private val awayBadge = view.find<ImageView>(R.id.ivAwayBadge)
         private val awayName = view.find<TextView>(R.id.tvAwayName)
         private val awayScore = view.find<TextView>(R.id.tvAwayScore)
+        private val matchShowDetails = view.find<TextView>(R.id.tvMatchShowDetails)
         private val resources = itemView.context.resources
 
         fun bindItem (match: Match) {
+            val currentTime = LocalDateTime.now()
+            val matchFetchedDateTime = LocalDateTime.of(LocalDate.parse(match.matchDate),
+                LocalTime.parse(match.matchTime, DateTimeFormatter.ofPattern("HH:mm")))
+
             matchDateTime.text = String.format(resources.getString(R.string.match_listing_date_time_format), match.matchDate, match.matchTime)
 
             match.homeBadge.let {
@@ -180,7 +216,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
             }
 
             homeName.text = match.homeName
-            homeScore.text = match.homeScore.toString()
+            homeScore.text = (match.homeScore ?: "-").toString()
 
             match.awayBadge.let {
                 Picasso.get()
@@ -193,7 +229,13 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
             }
 
             awayName.text = match.awayName
-            awayScore.text = match.awayScore.toString()
+            awayScore.text = (match.awayScore ?: "-").toString()
+
+            if (currentTime < matchFetchedDateTime) {
+                 matchShowDetails.visibility = View.GONE
+            } else {
+                matchShowDetails.visibility = View.VISIBLE
+            }
         }
     }
 }

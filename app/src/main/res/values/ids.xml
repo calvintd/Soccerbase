@@ -14,6 +14,7 @@
     <!-- league listing -->
     <item name="ivLeagueBadge" type="id"/>
     <item name="tvLeagueName" type="id"/>
+    <item name="glButtonGuideline" type="id"/>
     <item name="llListingDescriptionLayout" type="id"/>
     <item name="ivListingDescriptionIcon" type="id"/>
     <item name="tvListingDescriptionName" type="id"/>
@@ -21,9 +22,9 @@
     <item name="ivListingScheduleIcon" type="id"/>
     <item name="tvListingScheduleName" type="id"/>
 
-    <!-- match search -->
+    <!-- match listing -->
     <item name="tvMatchDateTime" type="id"/>
-    <item name="tvMatchShowDetails" type="id"/>
+    <item name="glDateTimeGuideline" type="id"/>
     <item name="llHomeLayout" type="id"/>
     <item name="ivHomeBadge" type="id"/>
     <item name="tvHomeName" type="id"/>
@@ -32,6 +33,8 @@
     <item name="ivAwayBadge" type="id"/>
     <item name="tvAwayName" type="id"/>
     <item name="tvAwayScore" type="id"/>
+    <item name="glShowDetailsGuideline" type="id"/>
+    <item name="tvMatchShowDetails" type="id"/>
 
     <!-- league navigation -->
     <item name="llNavigationHeaderLayout" type="id"/>

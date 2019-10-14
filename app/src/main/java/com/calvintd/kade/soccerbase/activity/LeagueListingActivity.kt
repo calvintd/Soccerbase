@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.presenter.LeagueListingPresenter
 import com.calvintd.kade.soccerbase.view.LeagueListingView
+import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import retrofit2.HttpException
@@ -50,8 +51,8 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
 
     }
 
-    override fun showResponseError(code: Int) {
-        toast("Error in fetching response through API; code: $code")
+    override fun showResponseError(code: Int, responseBody: ResponseBody?) {
+        toast("Error in fetching response through API; code: $code $responseBody")
     }
 
     override fun showException(e: HttpException) {

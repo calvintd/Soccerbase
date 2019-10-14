@@ -11,10 +11,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
 import com.calvintd.kade.soccerbase.view.MatchSearchView
+import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
 import org.jetbrains.anko.sdk27.coroutines.onSearchClick
+import retrofit2.HttpException
 
 class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
     private var searchView: SearchView? = null
@@ -39,6 +41,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
 
                 onQueryTextListener {
                     onQueryTextSubmit {
+                        progressBar?.visibility = View.VISIBLE
                         val query = searchView?.query.toString()
                         presenter.loadMatchByQuery(recyclerView, query)
                         false
@@ -72,5 +75,23 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         textView?.text = String.format(
             resources.getString(R.string.match_search_search_results_for_query),
             query)
+        recyclerView?.adapter?.notifyDataSetChanged()
+        progressBar?.visibility = View.GONE
+        recyclerView?.visibility = View.VISIBLE
+    }
+
+    override fun showNoResultsFound(query: String) {
+        textView?.visibility = View.VISIBLE
+        textView?.text = String.format(
+            resources.getString(R.string.match_search_no_search_results_found),
+            query)
+    }
+
+    override fun showResponseError(code: Int, responseBody: ResponseBody?) {
+        toast("Error in fetching response through API: $code $responseBody")
+    }
+
+    override fun showException(e: HttpException) {
+        toast("The following exception happened: ${e.message()}")
     }
 }

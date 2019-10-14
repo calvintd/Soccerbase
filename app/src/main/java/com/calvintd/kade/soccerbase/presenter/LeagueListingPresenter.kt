@@ -38,7 +38,7 @@ class LeagueListingPresenter(private val view: LeagueListingView) {
                         view.loadData()
                     }
                     else {
-                        view.showResponseError(response.code())
+                        view.showResponseError(response.code(), response.errorBody())
                     }
                 } catch (e: HttpException) {
                     view.showException(e)

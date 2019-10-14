@@ -48,6 +48,10 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = matchConstraint, height = wrapContent)
 
+                val buttonGuideline = guideline {
+                    id = R.id.glButtonGuideline
+                }.lparams(width = matchConstraint, height = 0)
+
                 val descriptionButton = linearLayout {
                     id = R.id.llListingDescriptionLayout
                     lparams(width = wrapContent, height = wrapContent)
@@ -113,9 +117,17 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                         )
                     }
 
+                    buttonGuideline {
+                        connect (
+                            top to bottom of badge margin dip(margin),
+                            top to bottom of name margin dip(margin)
+                        )
+                    }
+
                     descriptionButton {
                         connect (
                             end to start of scheduleButton margin dip(margin),
+                            top to bottom of buttonGuideline,
                             bottom to bottom of parent
                         )
                     }
@@ -123,6 +135,7 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
                     scheduleButton {
                         connect (
                             end to end of parent margin dip(margin),
+                            top to bottom of buttonGuideline,
                             bottom to bottom of parent
                         )
                     }

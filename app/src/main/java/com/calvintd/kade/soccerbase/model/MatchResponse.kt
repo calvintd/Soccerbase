@@ -9,21 +9,25 @@ class MatchResponse (
     class Matches (
         // general data
         @SerializedName("idEvent")
-        var eventId: Int?,
+        var matchId: Int?,
         @SerializedName("strSport")
         var sport: String?,
         @SerializedName("idHomeTeam")
         var homeTeamId: String?,
         @SerializedName("idAwayTeam")
         var awayTeamId: String?,
+        @SerializedName("strHomeTeam")
+        var homeName: String?,
+        @SerializedName("strAwayTeam")
+        var awayName: String?,
         @SerializedName("intHomeScore")
         var homeSoore: Int?,
         @SerializedName("intAwayScore")
         var awayScore: Int?,
-        @SerializedName("strDate")
-        var eventDate: String?,
+        @SerializedName("dateEvent")
+        var matchDate: String?,
         @SerializedName("strTime")
-        var eventTime: String?,
+        var matchTime: String?,
 
         // home
         @SerializedName("strHomeGoalDetails")
