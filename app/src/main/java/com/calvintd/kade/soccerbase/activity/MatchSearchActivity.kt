@@ -16,7 +16,6 @@ import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
-import org.jetbrains.anko.sdk27.coroutines.onSearchClick
 import retrofit2.HttpException
 
 class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
@@ -44,7 +43,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                     onQueryTextSubmit {
                         progressBar?.visibility = View.VISIBLE
                         val query = searchView?.query.toString()
-                        presenter.loadMatchByQuery(recyclerView, query)
+                        presenter.loadMatchesByQuery(recyclerView, query)
                         false
                     }
                 }
@@ -72,7 +71,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         }
     }
 
-    override fun loadMatchByQuery(query: String) {
+    override fun loadMatchesByQuery(query: String) {
         textView?.visibility = View.VISIBLE
         textView?.text = String.format(
             resources.getString(R.string.match_search_search_results_for_query),
@@ -87,14 +86,15 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         textView?.text = String.format(
             resources.getString(R.string.match_search_no_search_results_found),
             query)
+        recyclerView?.adapter?.notifyDataSetChanged()
         progressBar?.visibility = View.GONE
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
-        toast("Error in fetching response through API: $code $responseBody")
+        toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
     }
 
     override fun showException(e: HttpException) {
-        toast("The following exception happened: ${e.message()}")
+        toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
     }
 }

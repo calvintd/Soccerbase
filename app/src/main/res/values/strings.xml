@@ -39,4 +39,12 @@
     <!-- league schedule -->
     <string name="league_schedule_nav_past">Past Matches</string>
     <string name="league_schedule_nav_upcoming">Upcoming Matches</string>
+    <string name="league_schedule_display_past_matches">Displaying past matches for %s:</string>
+    <string name="league_schedule_no_past_matches">No past matches found for %s.</string>
+    <string name="league_schedule_display_upcoming_matches">Displaying upcoming matches for %s:</string>
+    <string name="league_schedule_no_upcoming_matches">No upcoming matches found for %s.</string>
+
+    <!-- error messages -->
+    <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>
+    <string name="error_messages_http_exception">The following exception happened: %s</string>
 </resources>

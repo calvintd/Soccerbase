@@ -5,8 +5,6 @@ import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.model.Match
 import com.calvintd.kade.soccerbase.utils.MatchDataProcessing
-import com.calvintd.kade.soccerbase.utils.MatchDateTimeFormatter
-import com.calvintd.kade.soccerbase.utils.MatchDetailsSplitter
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +13,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class MatchSearchPresenter(private val view: MatchSearchView) {
-    fun loadMatchByQuery(recyclerView: RecyclerView?, query: String) {
+    fun loadMatchesByQuery(recyclerView: RecyclerView?, query: String) {
         val matches = ArrayList<Match>()
         val instance = RetrofitInstance.getInstance()
         val processor = MatchDataProcessing
@@ -57,7 +55,7 @@ class MatchSearchPresenter(private val view: MatchSearchView) {
 
                                                     if (i == matchResponseItems.lastIndex) {
                                                         recyclerView?.adapter = MatchAdapter(matches)
-                                                        view.loadMatchByQuery(query)
+                                                        view.loadMatchesByQuery(query)
                                                     }
                                                 } else {
                                                     view.showResponseError(hResponse.code(), hResponse.errorBody())

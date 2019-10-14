@@ -52,10 +52,10 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
-        toast("Error in fetching response through API; code: $code $responseBody")
+        toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
     }
 
     override fun showException(e: HttpException) {
-        toast("The following exception happened: ${e.message()}")
+        toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
     }
 }
