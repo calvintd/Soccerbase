@@ -4,6 +4,7 @@
     <item name="llAppLayout" type="id"/>
     <item name="ivAppLogo" type="id"/>
     <item name="tvAppName" type="id"/>
+    <item name="tvTagline" type="id"/>
     <item name="llListingLayout" type="id"/>
     <item name="ivListingIcon" type="id"/>
     <item name="tvListingName" type="id"/>
@@ -23,6 +24,7 @@
     <item name="tvListingScheduleName" type="id"/>
 
     <!-- match listing -->
+    <item name="glMatchCenterGuideline" type="id"/>
     <item name="tvMatchDateTime" type="id"/>
     <item name="glDateTimeGuideline" type="id"/>
     <item name="llHomeLayout" type="id"/>

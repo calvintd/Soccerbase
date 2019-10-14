@@ -19,13 +19,14 @@
     <string name="item_away_score_placeholder">0</string>
 
     <!-- main activity -->
+    <string name="main_activity_tagline">Your soccer info companion!</string>
     <string name="main_activity_league_listing_button">League Listing</string>
     <string name="main_activity_match_search_button">Match Search</string>
 
     <!-- match search -->
     <string name="match_search_query_hint">Type in a team\'s name…</string>>
-    <string name="match_search_search_results_for_query">"Displaying search results for %s:"</string>
-    <string name="match_search_no_search_results_found">"No search results found for %s.</string>
+    <string name="match_search_search_results_for_query">"Displaying search results for \"%s\":"</string>
+    <string name="match_search_no_search_results_found">"No search results found for \"%s\".</string>
 
     <!-- league listing -->
     <string name="league_listing_description_button">Description</string>
@@ -33,5 +34,5 @@
 
     <!-- match listing -->
     <string name="match_listing_date_time_format">%1$s (%2$s WIB)</string>
-    <string name="match_listing_show_match_details">Show match details</string>
+    <string name="match_listing_show_match_details">Show match details…</string>
 </resources>

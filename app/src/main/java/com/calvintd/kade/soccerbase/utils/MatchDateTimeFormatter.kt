@@ -19,10 +19,10 @@ object MatchDateTimeFormatter {
         }
         val matchDateTime = LocalDateTime.of(matchDate, matchTime).plusHours(gmt)
 
-        val matchLocalDate = matchDateTime.toLocalDate().toString()
-        val matchLocalTime = matchDateTime.toLocalTime().toString()
+        val matchLocalDate = matchDateTime.toLocalDate()
+        val matchLocalTime = matchDateTime.toLocalTime()
 
-        val dateFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+        val dateFormatter = DateTimeFormatter.ofPattern("d MMMM u")
         val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
         val parsedDate = matchLocalDate.format(dateFormatter)

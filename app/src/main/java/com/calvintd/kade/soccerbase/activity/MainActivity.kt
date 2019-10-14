@@ -15,6 +15,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val buttonIconPadding = 16
+        val buttonTextSize = 24f
+
         supportActionBar?.title = resources.getString(R.string.main_activity_title)
 
         constraintLayout {
@@ -39,6 +42,13 @@ class MainActivity : AppCompatActivity() {
                 }.lparams(width = wrapContent, height = wrapContent)
             }.lparams(width = matchConstraint, height = wrapContent)
 
+            val tagline = textView {
+                id = R.id.tvTagline
+                text = resources.getString(R.string.main_activity_tagline)
+                textSize = 16f
+                gravity = Gravity.CENTER
+            }.lparams(width = wrapContent, height = wrapContent)
+
             val listingButton = linearLayout {
                 id = R.id.llListingLayout
                 lparams(width = wrapContent, height = wrapContent)
@@ -48,14 +58,14 @@ class MainActivity : AppCompatActivity() {
 
                 imageView {
                     id = R.id.ivListingIcon
-                    padding = 16
+                    padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.ic_list_black_48dp, theme)
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 textView {
                     id = R.id.tvListingName
                     text = resources.getString(R.string.main_activity_league_listing_button)
-                    textSize = 24f
+                    textSize = buttonTextSize
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = wrapContent, height = wrapContent)
 
@@ -73,14 +83,14 @@ class MainActivity : AppCompatActivity() {
 
                 imageView {
                     id = R.id.ivSearchIcon
-                    padding = 16
+                    padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.ic_search_black_48dp, theme)
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 textView {
                     id = R.id.tvSearchName
                     text = resources.getString(R.string.main_activity_match_search_button)
-                    textSize = 24f
+                    textSize = buttonTextSize
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = wrapContent, height = wrapContent)
 
@@ -107,11 +117,19 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
 
+                tagline {
+                    connect (
+                        start to start of parent margin dip(marginHeader),
+                        end to end of parent margin dip(marginHeader),
+                        top to bottom of header
+                    )
+                }
+
                 listingButton {
                     connect (
                         start to start of parent margin dip(marginButton),
                         end to end of parent margin dip(marginButton),
-                        top to bottom of header margin dip(marginHeader)
+                        top to bottom of tagline margin dip(marginHeader)
                     )
                 }
 

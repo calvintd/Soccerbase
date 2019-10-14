@@ -1,11 +1,13 @@
 package com.calvintd.kade.soccerbase.adapter
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
@@ -31,8 +33,9 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
         companion object {
             val teamNameSize = 12f
             val scoreSize = 24f
-            val teamPadding = 8
             val badgeSize = 96
+            val horizontal = ConstraintLayout.LayoutParams.HORIZONTAL
+            val vertical = ConstraintLayout.LayoutParams.VERTICAL
         }
 
         override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
@@ -40,31 +43,39 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                 lparams(width = matchParent, height = wrapContent)
                 radius = 4f
                 elevation = 4f
-                padding = 8
 
                 constraintLayout {
                     lparams(width = matchParent, height = wrapContent)
+
+                    val centerGuideline = guideline {
+                        id = R.id.glMatchCenterGuideline
+                    }.lparams (width = 0, height = matchConstraint) {
+                        orientation = vertical
+                        guidePercent = 0.5f
+                    }
 
                     // general
                     val matchDateTime = textView {
                         id = R.id.tvMatchDateTime
                         text = resources.getString(R.string.item_event_date_time_placeholder)
-                    }.lparams(width = matchConstraint, height = wrapContent)
+                    }.lparams(width = wrapContent, height = wrapContent) {
+                        horizontalBias = 0.5f
+                    }
 
                     val dateGuideline = guideline {
                         id = R.id.glDateTimeGuideline
-                    }.lparams(width = matchConstraint, height = 0)
+                    }.lparams(width = matchConstraint, height = 0) {
+                        orientation = horizontal
+                    }
 
                     // home
                     val homeTeam = verticalLayout {
                         id = R.id.llHomeLayout
-                        lparams(width = wrapContent, height = wrapContent)
                         gravity = Gravity.CENTER
 
                         imageView {
                             id = R.id.ivHomeBadge
                             image = resources.getDrawable(R.drawable.soccer, context.theme)
-                            padding = teamPadding
                         }.lparams(width = badgeSize, height = badgeSize)
 
                         textView {
@@ -72,7 +83,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                             text = resources.getString(R.string.item_home_name_placeholder)
                             textSize = teamNameSize
                         }.lparams(width = wrapContent, height = wrapContent)
-                    }
+                    }.lparams(width = matchConstraint, height = wrapContent)
 
                     val homeScore = textView {
                         id = R.id.tvHomeScore
@@ -84,13 +95,11 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                     // away
                     val awayTeam = verticalLayout {
                         id = R.id.llAwayLayout
-                        lparams(width = wrapContent, height = wrapContent)
                         gravity = Gravity.CENTER
 
                         imageView {
                             id = R.id.ivAwayBadge
                             image = resources.getDrawable(R.drawable.soccer, context.theme)
-                            padding = teamPadding
                         }.lparams(width = badgeSize, height = badgeSize)
 
                         textView {
@@ -98,7 +107,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                             text = resources.getString(R.string.item_away_name_placeholder)
                             textSize = teamNameSize
                         }.lparams(width = wrapContent, height = wrapContent)
-                    }
+                    }.lparams(width = matchConstraint, height = wrapContent)
 
                     val awayScore = textView {
                         id = R.id.tvAwayScore
@@ -109,12 +118,15 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
 
                     val showDetailsGuideline = guideline {
                         id = R.id.glShowDetailsGuideline
-//                    }.lparams(width = matchConstraint, height = 0)
+                    }.lparams(width = matchConstraint, height = 0) {
+                        orientation = horizontal
+                    }
 
                     val matchShowDetails = textView {
                         id = R.id.tvMatchShowDetails
                         text = resources.getString(R.string.match_listing_show_match_details)
                         textSize = 12f
+                        textColor = Color.BLUE
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     applyConstraintSet {
@@ -124,6 +136,14 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                         val top = ConstraintSetBuilder.Side.TOP
                         val bottom = ConstraintSetBuilder.Side.BOTTOM
                         val margin = 16
+                        val halfMargin = margin / 2
+
+                        centerGuideline {
+                            connect (
+                                start to start of parent,
+                                end to end of parent
+                            )
+                        }
 
                         matchDateTime {
                             connect (
@@ -142,19 +162,21 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                         homeTeam {
                             connect (
                                 start to start of parent margin dip(margin),
+                                end to start of homeScore margin dip(margin),
                                 top to bottom of dateGuideline margin dip(margin)
                             )
                         }
 
                         homeScore {
                             connect (
-                                start to end of homeTeam margin dip(margin),
+                                end to start of centerGuideline margin dip(margin),
                                 top to bottom of dateGuideline margin dip(margin)
                             )
                         }
 
                         awayTeam {
                             connect (
+                                start to end of awayScore margin dip(margin),
                                 end to end of parent margin dip(margin),
                                 top to bottom of dateGuideline margin dip(margin)
                             )
@@ -162,7 +184,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
 
                         awayScore {
                             connect (
-                                end to start of awayTeam margin dip(margin),
+                                start to end of centerGuideline margin dip(margin),
                                 top to bottom of dateGuideline margin dip(margin)
                             )
                         }
@@ -177,8 +199,8 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                         matchShowDetails {
                             connect (
                                 end to end of parent margin dip(margin),
-                                top to bottom of showDetailsGuideline margin dip(margin),
-                                bottom to bottom of parent margin dip(margin)
+                                top to bottom of showDetailsGuideline margin dip(halfMargin),
+                                bottom to bottom of parent
                             )
                         }
                     }
@@ -200,7 +222,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
 
         fun bindItem (match: Match) {
             val currentTime = LocalDateTime.now()
-            val matchFetchedDateTime = LocalDateTime.of(LocalDate.parse(match.matchDate),
+            val matchFetchedDateTime = LocalDateTime.of(LocalDate.parse(match.matchDate, DateTimeFormatter.ofPattern("d MMMM u")),
                 LocalTime.parse(match.matchTime, DateTimeFormatter.ofPattern("HH:mm")))
 
             matchDateTime.text = String.format(resources.getString(R.string.match_listing_date_time_format), match.matchDate, match.matchTime)
@@ -216,7 +238,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
             }
 
             homeName.text = match.homeName
-            homeScore.text = (match.homeScore ?: "-").toString()
+            homeScore.text = (match.homeScore ?: "?").toString()
 
             match.awayBadge.let {
                 Picasso.get()
@@ -229,7 +251,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
             }
 
             awayName.text = match.awayName
-            awayScore.text = (match.awayScore ?: "-").toString()
+            awayScore.text = (match.awayScore ?: "?").toString()
 
             if (currentTime < matchFetchedDateTime) {
                  matchShowDetails.visibility = View.GONE
