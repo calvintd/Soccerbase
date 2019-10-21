@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.model.LeagueAdapterModel
 import com.calvintd.kade.soccerbase.presenter.LeagueListingPresenter
 import com.calvintd.kade.soccerbase.view.LeagueListingView
 import okhttp3.ResponseBody
@@ -44,8 +45,9 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
         presenter.loadData(recyclerView)
     }
 
-    override fun loadData() {
-        recyclerView.adapter?.notifyDataSetChanged()
+    override fun loadData(model: LeagueAdapterModel) {
+        recyclerView.adapter = model.getLeagueAdapter()
+        recyclerView.adapter!!.notifyDataSetChanged()
         progressBar.visibility = View.GONE
         recyclerView.visibility = View.VISIBLE
 

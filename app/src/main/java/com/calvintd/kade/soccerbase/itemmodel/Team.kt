@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.model
+package com.calvintd.kade.soccerbase.itemmodel
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

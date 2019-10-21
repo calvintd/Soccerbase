@@ -2,8 +2,9 @@ package com.calvintd.kade.soccerbase.presenter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
-import com.calvintd.kade.soccerbase.model.League
+import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.adapter.LeagueAdapter
+import com.calvintd.kade.soccerbase.model.LeagueAdapterModel
 import com.calvintd.kade.soccerbase.view.LeagueListingView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,8 +35,9 @@ class LeagueListingPresenter(private val view: LeagueListingView) {
                             leagues.add(league)
                         }
 
-                        recyclerView.adapter = LeagueAdapter(leagues)
-                        view.loadData()
+                        val leagueAdapter = LeagueAdapter(leagues)
+                        val leagueAdapterModel = LeagueAdapterModel(leagueAdapter)
+                        view.loadData(leagueAdapterModel)
                     }
                     else {
                         view.showResponseError(response.code(), response.errorBody())

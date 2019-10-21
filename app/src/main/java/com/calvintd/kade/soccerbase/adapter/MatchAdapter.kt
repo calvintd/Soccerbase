@@ -12,7 +12,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.activity.MatchDetailsActivity
-import com.calvintd.kade.soccerbase.model.Match
+import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView

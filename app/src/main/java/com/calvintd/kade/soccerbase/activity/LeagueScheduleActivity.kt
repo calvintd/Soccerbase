@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.fragment.LeagueSchedulePastMatchesFragment
 import com.calvintd.kade.soccerbase.fragment.LeagueScheduleUpcomingMatchesFragment
-import com.calvintd.kade.soccerbase.model.League
+import com.calvintd.kade.soccerbase.itemmodel.League
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.design.bottomNavigationView

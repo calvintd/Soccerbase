@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.model.Match
+import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*

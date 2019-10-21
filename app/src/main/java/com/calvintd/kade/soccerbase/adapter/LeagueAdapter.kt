@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.activity.LeagueDescriptionActivity
 import com.calvintd.kade.soccerbase.activity.LeagueScheduleActivity
-import com.calvintd.kade.soccerbase.model.League
+import com.calvintd.kade.soccerbase.itemmodel.League
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*

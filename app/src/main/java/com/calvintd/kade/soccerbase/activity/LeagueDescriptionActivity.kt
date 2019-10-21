@@ -8,7 +8,7 @@ import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
 import android.view.Gravity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.model.League
+import com.calvintd.kade.soccerbase.itemmodel.League
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*

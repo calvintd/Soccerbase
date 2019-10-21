@@ -1,9 +1,9 @@
 package com.calvintd.kade.soccerbase.api
 
-import com.calvintd.kade.soccerbase.model.LeagueResponse
-import com.calvintd.kade.soccerbase.model.MatchLeagueResponse
-import com.calvintd.kade.soccerbase.model.MatchResponse
-import com.calvintd.kade.soccerbase.model.TeamResponse
+import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
+import com.calvintd.kade.soccerbase.itemmodel.MatchLeagueResponse
+import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
+import com.calvintd.kade.soccerbase.itemmodel.TeamResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
