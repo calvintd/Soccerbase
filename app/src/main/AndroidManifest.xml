@@ -19,11 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueListingActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueDescriptionActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueScheduleActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.MatchDetailsActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.MatchSearchActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.FavoriteMatchesActivity"/>
     </application>
 
 </manifest>

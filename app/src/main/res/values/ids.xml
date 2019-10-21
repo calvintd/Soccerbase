@@ -11,6 +11,9 @@
     <item name="llSearchLayout" type="id"/>
     <item name="ivSearchIcon" type="id"/>
     <item name="tvSearchName" type="id"/>
+    <item name="llFavoriteLayout" type="id"/>
+    <item name="ivFavoriteIcon" type="id"/>
+    <item name="tvFavoriteName" type="id"/>
 
     <!-- league listing -->
     <item name="llLeagueLayout" type="id"/>
@@ -58,4 +61,53 @@
     <!-- league schedule -->
     <item name="llScheduleLayout" type="id"/>
     <item name="bnScheduleNav" type="id"/>
+
+    <!-- match details -->
+    <item name="glMatchDetailsHeaderCenterGuideline" type="id"/>
+
+    <item name="glMatchDetailsFavoriteGuideline" type="id"/>
+    <item name="glMatchDetailsDateGuideline" type="id"/>
+    <item name="glMatchDetailsHomeGuideline" type="id"/>
+    <item name="glMatchDetailsAwayGuideline" type="id"/>
+
+    <item name="llMatchDetailsFavoriteLayout" type="id"/>
+    <item name="ivMatchDetailsFavoriteIcon" type="id"/>
+    <item name="tvMatchDetailsFavoriteName" type="id"/>
+
+    <item name="clMatchDetailsHeader" type="id"/>
+    <item name="tvMatchDetailsDateTime" type="id"/>
+    <item name="llMatchDetailsHomeTeam" type="id"/>
+    <item name="ivMatchDetailsHomeBadge" type="id"/>
+    <item name="tvMatchDetailsHomeName" type="id"/>
+    <item name="tvMatchDetailsHomeScore" type="id"/>
+    <item name="llMatchDetailsAwayTeam" type="id"/>
+    <item name="ivMatchDetailsAwayBadge" type="id"/>
+    <item name="tvMatchDetailsAwayName" type="id"/>
+    <item name="tvMatchDetailsAwayScore" type="id"/>
+
+    <item name="clMatchDetailsHome" type="id"/>
+    <item name="llMatchDetailsHomeTeamDetails" type="id"/>
+    <item name="ivMatchDetailsHomeBadgeDetails" type="id"/>
+    <item name="tvMatchDetailsHomeNameDetails" type="id"/>
+    <item name="tvMatchDetailsHomeGoals" type="id"/>
+    <item name="tvMatchDetailsHomeRedCards" type="id"/>
+    <item name="tvMatchDetailsHomeYellowCards" type="id"/>
+    <item name="tvMatchDetailsHomeGoalkeeper" type="id"/>
+    <item name="tvMatchDetailsHomeDefenders" type="id"/>
+    <item name="tvMatchDetailsHomeMidfielders" type="id"/>
+    <item name="tvMatchDetailsHomeForwards" type="id"/>
+    <item name="tvMatchDetailsHomeSubstitutes" type="id"/>
+
+    <item name="clMatchDetailsAway" type="id"/>
+    <item name="llMatchDetailsAwayTeamDetails" type="id"/>
+    <item name="ivMatchDetailsAwayBadgeDetails" type="id"/>
+    <item name="tvMatchDetailsAwayNameDetails" type="id"/>
+    <item name="tvMatchDetailsAwayGoals" type="id"/>
+    <item name="tvMatchDetailsAwayRedCards" type="id"/>
+    <item name="tvMatchDetailsAwayYellowCards" type="id"/>
+    <item name="tvMatchDetailsAwayGoalkeeper" type="id"/>
+    <item name="tvMatchDetailsAwayDefenders" type="id"/>
+    <item name="tvMatchDetailsAwayMidfielders" type="id"/>
+    <item name="tvMatchDetailsAwayForwards" type="id"/>
+    <item name="tvMatchDetailsAwaySubstitutes" type="id"/>
 </resources>

@@ -15,8 +15,8 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 import retrofit2.HttpException
 
 class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,9 +45,9 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
     }
 
     override fun loadData() {
-        recyclerView?.adapter?.notifyDataSetChanged()
-        progressBar?.visibility = View.GONE
-        recyclerView?.visibility = View.VISIBLE
+        recyclerView.adapter?.notifyDataSetChanged()
+        progressBar.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
 
     }
 

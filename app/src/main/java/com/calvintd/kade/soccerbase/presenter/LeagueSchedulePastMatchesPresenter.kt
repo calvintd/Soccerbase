@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.model.Match
-import com.calvintd.kade.soccerbase.utils.MatchDataProcessing
+import com.calvintd.kade.soccerbase.utils.MatchDataProcessor
 import com.calvintd.kade.soccerbase.view.LeagueSchedulePastMatchesView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,10 +13,10 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class LeagueSchedulePastMatchesPresenter (private val view: LeagueSchedulePastMatchesView) {
-    fun loadMatchesByLeague (recyclerView: RecyclerView?, leagueId: Int, leagueName: String) {
+    fun loadMatchesByLeague (recyclerView: RecyclerView, leagueId: Int, leagueName: String) {
         val matches = ArrayList<Match>()
         val instance = RetrofitInstance.getInstance()
-        val processor = MatchDataProcessing
+        val processor = MatchDataProcessor
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = instance.getPastLeagueMatches(leagueId)
@@ -54,7 +54,7 @@ class LeagueSchedulePastMatchesPresenter (private val view: LeagueSchedulePastMa
                                                     matches.add(matchItem)
 
                                                     if (i == matchResponseItems.lastIndex) {
-                                                        recyclerView?.adapter = MatchAdapter(matches)
+                                                        recyclerView.adapter = MatchAdapter(matches)
                                                         view.loadMatchesByLeague(leagueName)
                                                     }
                                                 } else {

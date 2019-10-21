@@ -66,7 +66,7 @@ class LeagueScheduleActivity : AppCompatActivity() {
                         newUpcomingMatchesFragmentInstance(league)
                     }
                 }
-                scheduleNav.menu.findItem(it.itemId).setChecked(true)
+                scheduleNav.menu.findItem(it.itemId).isChecked = true
                 false
             }
             newPastMatchesFragmentInstance(league)

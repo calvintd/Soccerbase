@@ -26,9 +26,9 @@ import retrofit2.HttpException
  * A simple [Fragment] subclass.
  */
 class LeagueSchedulePastMatchesFragment : Fragment(), LeagueSchedulePastMatchesView {
-    private var textView: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var textView: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
     private val presenter = LeagueSchedulePastMatchesPresenter(this)
 
     companion object {
@@ -79,24 +79,24 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueSchedulePastMatchesV
 
     override fun loadMatchesByLeague(league: String) {
         if (context != null) {
-            textView?.visibility = View.VISIBLE
-            textView?.text = String.format(
+            textView.visibility = View.VISIBLE
+            textView.text = String.format(
                 resources.getString(R.string.league_schedule_display_past_matches),
                 league)
-            recyclerView?.adapter?.notifyDataSetChanged()
-            progressBar?.visibility = View.GONE
-            recyclerView?.visibility = View.VISIBLE
+            recyclerView.adapter?.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
         }
     }
 
     override fun showNoResultsFound(league: String) {
         if (context != null) {
-            textView?.visibility = View.VISIBLE
-            textView?.text = String.format(
+            textView.visibility = View.VISIBLE
+            textView.text = String.format(
                 resources.getString(R.string.league_schedule_no_past_matches),
                 league)
-            recyclerView?.adapter?.notifyDataSetChanged()
-            progressBar?.visibility = View.GONE
+            recyclerView.adapter?.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
         }
     }
 

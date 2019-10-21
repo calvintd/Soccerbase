@@ -2,9 +2,9 @@ package com.calvintd.kade.soccerbase.utils
 
 import com.calvintd.kade.soccerbase.model.*
 
-object MatchDataProcessing {
-    val splitter = MatchDetailsSplitter
-    val formatter = MatchDateTimeFormatter
+object MatchDataProcessor {
+    private val splitter = MatchDetailsSplitter
+    private val formatter = MatchDateTimeFormatter
 
     fun matchDataInit (matchResponseItem: Matches) : Match {
         // general data
@@ -86,7 +86,6 @@ object MatchDataProcessing {
             matchTime = matchTime,
 
             // home
-            homeGoalsCount = homeGoalDetails.size,
             homeGoalDetails = homeGoalDetails,
             homeRedCardsCount = homeRedCardDetails.size,
             homeRedCardDetails = homeRedCardDetails,
@@ -99,7 +98,6 @@ object MatchDataProcessing {
             homeSubstitutes = homeSubstitutesDetails,
 
             // away
-            awayGoalsCount = awayGoalDetails.size,
             awayGoalDetails = awayGoalDetails,
             awayRedCardsCount = awayRedCardDetails.size,
             awayRedCardDetails = awayRedCardDetails,

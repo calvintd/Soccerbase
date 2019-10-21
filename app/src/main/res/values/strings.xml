@@ -9,6 +9,7 @@
     <string name="league_schedule_activity_title">League Schedule</string>
     <string name="match_details_activity_title">Match Details</string>
     <string name="match_search_activity_title">Match Search</string>
+    <string name="favorite_matches_activity_title">Favorite Matches</string>
 
     <!-- placeholders -->
     <string name="item_league_name_placeholder">League Name</string>
@@ -22,6 +23,7 @@
     <string name="main_activity_tagline">Your soccer info companion!</string>
     <string name="main_activity_league_listing_button">League Listing</string>
     <string name="main_activity_match_search_button">Match Search</string>
+    <string name="main_activity_favorite_matches_button">Favorite Matches</string>
 
     <!-- match search -->
     <string name="match_search_query_hint">Type in a team\'s name…</string>>
@@ -43,6 +45,18 @@
     <string name="league_schedule_no_past_matches">No past matches found for %s.</string>
     <string name="league_schedule_display_upcoming_matches">Displaying upcoming matches for %s:</string>
     <string name="league_schedule_no_upcoming_matches">No upcoming matches found for %s.</string>
+
+    <!-- match details -->
+    <string name="match_details_favorite_match">Favorite</string>
+    <string name="match_details_unfavorite_match">Unfavorite</string>
+    <string name="match_details_goals">Goal(s): %s</string>
+    <string name="match_details_red_cards">Red card(s): %s</string>
+    <string name="match_details_yellow_cards">Yellow card(s): %s</string>
+    <string name="match_details_goalkeeper">Goalkeeper: %s</string>
+    <string name="match_details_defenders">Defender(s): %s</string>
+    <string name="match_details_midfielders">Midfielder(s): %s</string>
+    <string name="match_details_forwards">Forward(s): %s</string>
+    <string name="match_details_substitutes">Substitute(s): %s</string>
 
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>

@@ -11,11 +11,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.activity.MatchDetailsActivity
 import com.calvintd.kade.soccerbase.model.Match
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.cardview.v7.cardView
 import org.jetbrains.anko.constraint.layout.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -255,10 +257,18 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
             awayName.text = match.awayName
             awayScore.text = (match.awayScore ?: "?").toString()
 
-            if (currentTime < matchFetchedDateTime) {
+            val blankScore = match.homeScore == null || match.awayScore == null
+
+            if (currentTime < matchFetchedDateTime || blankScore) {
                  matchShowDetails.visibility = View.GONE
             } else {
                 matchShowDetails.visibility = View.VISIBLE
+            }
+
+            matchShowDetails.onClick {
+                itemView.context.startActivity<MatchDetailsActivity>(
+                    "match" to match
+                )
             }
         }
     }

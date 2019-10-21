@@ -99,6 +99,31 @@ class MainActivity : AppCompatActivity() {
                 }
             }.lparams(width = matchConstraint, height = wrapContent)
 
+            val favoriteButton = linearLayout {
+                id = R.id.llFavoriteLayout
+                lparams(width = wrapContent, height = wrapContent)
+                isClickable = true
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER
+
+                imageView {
+                    id = R.id.ivFavoriteIcon
+                    padding = buttonIconPadding
+                    image = resources.getDrawable(R.drawable.ic_favorite_black_48dp, theme)
+                }.lparams(width = wrapContent, height = wrapContent)
+
+                textView {
+                    id = R.id.tvFavoriteName
+                    text = resources.getString(R.string.main_activity_favorite_matches_button)
+                    textSize = buttonTextSize
+                    typeface = Typeface.DEFAULT_BOLD
+                }.lparams(width = wrapContent, height = wrapContent)
+
+                onClick {
+                    startActivity<FavoriteMatchesActivity>()
+                }
+            }.lparams(width = matchConstraint, height = wrapContent)
+
             applyConstraintSet {
                 val parent = ConstraintSet.PARENT_ID
                 val start = ConstraintSetBuilder.Side.START
@@ -138,6 +163,14 @@ class MainActivity : AppCompatActivity() {
                         start to start of parent margin dip(marginButton),
                         end to end of parent margin dip(marginButton),
                         top to bottom of listingButton margin dip(marginButtonSeparator)
+                    )
+                }
+
+                favoriteButton {
+                    connect (
+                        start to start of parent margin dip(marginButton),
+                        end to end of parent margin dip(marginButton),
+                        top to bottom of searchButton margin dip(marginButtonSeparator)
                     )
                 }
             }

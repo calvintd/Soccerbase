@@ -19,10 +19,10 @@ import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
 import retrofit2.HttpException
 
 class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
-    private var searchView: SearchView? = null
-    private var textView: TextView? = null
-    private var progressBar: ProgressBar? = null
-    private var recyclerView: RecyclerView? = null
+    private lateinit var searchView: SearchView
+    private lateinit var textView: TextView
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,22 +72,22 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
     }
 
     override fun loadMatchesByQuery(query: String) {
-        textView?.visibility = View.VISIBLE
-        textView?.text = String.format(
+        textView.visibility = View.VISIBLE
+        textView.text = String.format(
             resources.getString(R.string.match_search_search_results_for_query),
             query)
-        recyclerView?.adapter?.notifyDataSetChanged()
-        progressBar?.visibility = View.GONE
-        recyclerView?.visibility = View.VISIBLE
+        recyclerView.adapter?.notifyDataSetChanged()
+        progressBar.visibility = View.GONE
+        recyclerView.visibility = View.VISIBLE
     }
 
     override fun showNoResultsFound(query: String) {
-        textView?.visibility = View.VISIBLE
-        textView?.text = String.format(
+        textView.visibility = View.VISIBLE
+        textView.text = String.format(
             resources.getString(R.string.match_search_no_search_results_found),
             query)
-        recyclerView?.adapter?.notifyDataSetChanged()
-        progressBar?.visibility = View.GONE
+        recyclerView.adapter?.notifyDataSetChanged()
+        progressBar.visibility = View.GONE
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {

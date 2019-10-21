@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class LeagueListingPresenter(private val view: LeagueListingView) {
-    fun loadData(recyclerView: RecyclerView?) {
+    fun loadData(recyclerView: RecyclerView) {
         val leagues = ArrayList<League>()
         val instance = RetrofitInstance.getInstance()
 
@@ -34,7 +34,7 @@ class LeagueListingPresenter(private val view: LeagueListingView) {
                             leagues.add(league)
                         }
 
-                        recyclerView?.adapter = LeagueAdapter(leagues)
+                        recyclerView.adapter = LeagueAdapter(leagues)
                         view.loadData()
                     }
                     else {

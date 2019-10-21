@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.model.Match
-import com.calvintd.kade.soccerbase.utils.MatchDataProcessing
+import com.calvintd.kade.soccerbase.utils.MatchDataProcessor
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +16,7 @@ class MatchSearchPresenter(private val view: MatchSearchView) {
     fun loadMatchesByQuery(recyclerView: RecyclerView?, query: String) {
         val matches = ArrayList<Match>()
         val instance = RetrofitInstance.getInstance()
-        val processor = MatchDataProcessing
+        val processor = MatchDataProcessor
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = instance.getMatchesSearch(query)
