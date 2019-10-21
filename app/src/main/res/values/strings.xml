@@ -61,4 +61,7 @@
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>
     <string name="error_messages_http_exception">The following exception happened: %s</string>
+
+    <!-- database helper -->
+    <string name="database_helper_db_name">Soccerbase.db</string>
 </resources>

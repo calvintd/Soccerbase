@@ -87,9 +87,7 @@ object MatchDataProcessor {
 
             // home
             homeGoalDetails = homeGoalDetails,
-            homeRedCardsCount = homeRedCardDetails.size,
             homeRedCardDetails = homeRedCardDetails,
-            homeYellowCardsCount = homeYellowCardDetails.size,
             homeYellowCardDetails = homeYellowCardDetails,
             homeGoalkeeper = homeGoalkeeperDetails,
             homeDefense = homeDefenseDetails,
@@ -99,9 +97,7 @@ object MatchDataProcessor {
 
             // away
             awayGoalDetails = awayGoalDetails,
-            awayRedCardsCount = awayRedCardDetails.size,
             awayRedCardDetails = awayRedCardDetails,
-            awayYellowCardsCount = awayYellowCardDetails.size,
             awayYellowCardDetails = awayYellowCardDetails,
             awayGoalkeeper = awayGoalkeeperDetails,
             awayDefense = awayDefenseDetails,

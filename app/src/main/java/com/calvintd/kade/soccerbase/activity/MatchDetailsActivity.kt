@@ -44,7 +44,7 @@ class MatchDetailsActivity : AppCompatActivity() {
 
                     imageView {
                         id = R.id.ivMatchDetailsFavoriteIcon
-                        image = resources.getDrawable(R.drawable.ic_favorite_black_48dp, context.theme)
+                        image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, context.theme)
                         padding = 8
                     }.lparams(width = favoriteIconSize, height = favoriteIconSize) {
                     }

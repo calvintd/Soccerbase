@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
                 imageView {
                     id = R.id.ivFavoriteIcon
                     padding = buttonIconPadding
-                    image = resources.getDrawable(R.drawable.ic_favorite_black_48dp, theme)
+                    image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, theme)
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 textView {
