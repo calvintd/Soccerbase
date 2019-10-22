@@ -13,14 +13,20 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.itemmodel.Match
+import com.calvintd.kade.soccerbase.presenter.MatchDetailsPresenter
+import com.calvintd.kade.soccerbase.view.MatchDetailsView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
-import org.jetbrains.anko.db.*
+import org.jetbrains.anko.design.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class MatchDetailsActivity : AppCompatActivity() {
+class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
     private lateinit var favoriteIcon: ImageView
     private lateinit var favoriteName: TextView
+    private lateinit var alertTitle: String
+    private lateinit var alertMessage: String
+    private var isFavorited: Boolean = false
 
     private val teamNameSize = 12f
     private val scoreSize = 24f
@@ -35,7 +41,12 @@ class MatchDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val match = intent.getParcelableExtra("match") as Match
+        val matchId = match.matchId!!
         val favoriteIconSize = 96
+
+        val presenter = MatchDetailsPresenter(this)
+
+        isFavorited = presenter.returnFavorite(matchId, database)
 
         scrollView {
             constraintLayout {
@@ -54,16 +65,30 @@ class MatchDetailsActivity : AppCompatActivity() {
                         id = R.id.ivMatchDetailsFavoriteIcon
                         image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, context.theme)
                         padding = 8
-                    }.lparams(width = favoriteIconSize, height = favoriteIconSize) {
-                    }
+                    }.lparams(width = favoriteIconSize, height = favoriteIconSize)
 
                     favoriteName = textView {
                         id = R.id.tvMatchDetailsFavoriteName
-                        text = resources.getString(R.string.match_details_favorite_match)
+                        text = resources.getString(R.string.favorite_matches_favorite_match)
                         typeface = Typeface.DEFAULT_BOLD
-                    }
+                    }.lparams(width = wrapContent, height = wrapContent)
 
-                    checkFavorite(match.matchId!!)
+                    presenter.checkFavorite(isFavorited)
+
+                    onClick {
+                        alert(alertTitle, alertMessage) {
+                            yesButton {
+                                if(!isFavorited) {
+                                    presenter.addToFavorites(match, database)
+                                } else {
+                                    presenter.removeFromFavorites(matchId, database)
+                                }
+                            }
+                            noButton {
+
+                            }
+                        }.show()
+                    }
                 }
 
                 val header = constraintLayout {
@@ -603,33 +628,40 @@ class MatchDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkFavorite(matchId: Int) {
-        try {
-            database.use {
-                select(Match.TABLE_FAVORITE)
-                    .whereArgs("(${Match.MATCH_ID} = {matchId})",
-                        "matchId" to matchId)
-                    .exec {
-                        if (count == 0) {
-                            favoriteIcon.image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, theme)
-                            favoriteName.text = resources.getText(R.string.match_details_favorite_match)
-                        }
-                        else {
-                            favoriteIcon.image = resources.getDrawable(R.drawable.ic_favorited_black_48dp, theme)
-                            favoriteName.text = resources.getText(R.string.match_details_unfavorite_match)
-                        }
-                    }
-            }
-        } catch (e: SQLiteConstraintException) {
-            toast(e.localizedMessage)
+    override fun checkedFavorite(isFavorited: Boolean) {
+
+        changeFavoriteUI(isFavorited)
+    }
+
+    override fun addedToFavorites() {
+
+        changeFavoriteUI(true)
+    }
+
+    override fun removedFromFavorites() {
+
+        changeFavoriteUI(false)
+    }
+
+    override fun showError(e: SQLiteConstraintException) {
+        toast(e.localizedMessage)
+    }
+
+    private fun changeFavoriteUI(isFavorited: Boolean) {
+        if (!isFavorited) {
+            favoriteIcon.image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, theme)
+            favoriteName.text = resources.getString(R.string.favorite_matches_favorite_match)
+            alertTitle = resources.getString(R.string.favorite_matches_add_confirmation_title)
+            alertMessage = resources.getString(R.string.favorite_matches_add_confirmation_message)
+            toast(resources.getString(R.string.favorite_matches_added_to_favorites))
         }
-    }
-
-    private fun addToFavorites() {
-
-    }
-
-    private fun removeFromFavorites() {
-
+        else {
+            favoriteIcon.image = resources.getDrawable(R.drawable.ic_favorited_black_48dp, theme)
+            favoriteName.text = resources.getString(R.string.favorite_matches_unfavorite_match)
+            alertTitle = resources.getString(R.string.favorite_matches_remove_confirmation_title)
+            alertMessage = resources.getString(R.string.favorite_matches_remove_confirmation_message)
+            toast(resources.getString(R.string.favorite_matches_removed_from_favorites))
+        }
+        this.isFavorited = isFavorited
     }
 }

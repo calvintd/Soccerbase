@@ -1,5 +1,6 @@
 package com.calvintd.kade.soccerbase.activity
 
+import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.model.MatchAdapterModel
 import com.calvintd.kade.soccerbase.presenter.FavoriteMatchesPresenter
 import com.calvintd.kade.soccerbase.view.FavoriteMatchesView
@@ -44,6 +46,8 @@ class FavoriteMatchesActivity : AppCompatActivity(), FavoriteMatchesView {
                 }
             }
         }
+
+        presenter.loadFavorites(database)
     }
 
     override fun loadFavoriteMatches(model: MatchAdapterModel) {
@@ -54,5 +58,9 @@ class FavoriteMatchesActivity : AppCompatActivity(), FavoriteMatchesView {
 
     override fun showNoFavoriteMatches() {
         textView.visibility = View.VISIBLE
+    }
+
+    override fun showError(e: SQLiteConstraintException) {
+        toast(e.localizedMessage)
     }
 }

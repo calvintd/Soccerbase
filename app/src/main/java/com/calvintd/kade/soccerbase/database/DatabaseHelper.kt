@@ -23,158 +23,136 @@ class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
     override fun onCreate(db: SQLiteDatabase) {
         db.createTable(Match.TABLE_FAVORITE,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
 
             // general data
-            Match.MATCH_ID to INTEGER,
+            Match.MATCH_ID to INTEGER + UNIQUE,
             Match.HOME_TEAM_ID to INTEGER,
             Match.AWAY_TEAM_ID to INTEGER,
             Match.HOME_NAME to TEXT,
             Match.AWAY_NAME to TEXT,
-            Match.HOME_BADGE to BLOB,
-            Match.AWAY_BADGE to BLOB,
+            Match.HOME_BADGE to TEXT,
+            Match.AWAY_BADGE to TEXT,
             Match.HOME_SCORE to INTEGER,
             Match.AWAY_SCORE to INTEGER,
             Match.MATCH_DATE to TEXT,
-            Match.MATCH_TIME to TEXT,
-
-            // home
-            Match.HOME_GOAL_DETAILS to INTEGER,
-            Match.HOME_RED_CARD_DETAILS to INTEGER,
-            Match.HOME_YELLOW_CARD_DETAILS to INTEGER,
-            Match.HOME_GOALKEEPER to INTEGER,
-            Match.HOME_DEFENSE to INTEGER,
-            Match.HOME_MIDFIELD to INTEGER,
-            Match.HOME_FORWARD to INTEGER,
-            Match.HOME_SUBSTITUTES to INTEGER,
-
-            // away
-            Match.AWAY_GOAL_DETAILS to INTEGER,
-            Match.AWAY_RED_CARD_DETAILS to INTEGER,
-            Match.AWAY_YELLOW_CARD_DETAILS to INTEGER,
-            Match.AWAY_GOALKEEPER to INTEGER,
-            Match.AWAY_DEFENSE to INTEGER,
-            Match.AWAY_MIDFIELD to INTEGER,
-            Match.AWAY_FORWARD to INTEGER,
-            Match.AWAY_SUBSTITUTES to INTEGER,
-
-            // foreign keys
-            FOREIGN_KEY(Match.HOME_GOAL_DETAILS, Match.TABLE_HOME_GOALS, Match.ID),
-            FOREIGN_KEY(Match.HOME_RED_CARD_DETAILS, Match.TABLE_HOME_RED_CARDS, Match.ID),
-            FOREIGN_KEY(Match.HOME_YELLOW_CARD_DETAILS, Match.TABLE_HOME_YELLOW_CARDS, Match.ID),
-            FOREIGN_KEY(Match.HOME_GOALKEEPER, Match.TABLE_HOME_GOALKEEPER, Match.ID),
-            FOREIGN_KEY(Match.HOME_DEFENSE, Match.TABLE_HOME_DEFENSE, Match.ID),
-            FOREIGN_KEY(Match.HOME_MIDFIELD, Match.TABLE_HOME_MIDFIELD, Match.ID),
-            FOREIGN_KEY(Match.HOME_FORWARD, Match.TABLE_HOME_FORWARD, Match.ID),
-            FOREIGN_KEY(Match.HOME_SUBSTITUTES, Match.TABLE_HOME_SUBSTITUTES, Match.ID),
-            FOREIGN_KEY(Match.AWAY_GOAL_DETAILS, Match.TABLE_AWAY_GOALS, Match.ID),
-            FOREIGN_KEY(Match.AWAY_RED_CARD_DETAILS, Match.TABLE_AWAY_RED_CARDS, Match.ID),
-            FOREIGN_KEY(Match.AWAY_YELLOW_CARD_DETAILS, Match.TABLE_AWAY_YELLOW_CARDS, Match.ID),
-            FOREIGN_KEY(Match.AWAY_GOALKEEPER, Match.TABLE_AWAY_GOALKEEPER, Match.ID),
-            FOREIGN_KEY(Match.AWAY_DEFENSE, Match.TABLE_AWAY_DEFENSE, Match.ID),
-            FOREIGN_KEY(Match.AWAY_MIDFIELD, Match.TABLE_AWAY_MIDFIELD, Match.ID),
-            FOREIGN_KEY(Match.AWAY_FORWARD, Match.TABLE_AWAY_FORWARD, Match.ID),
-            FOREIGN_KEY(Match.AWAY_SUBSTITUTES, Match.TABLE_AWAY_SUBSTITUTES, Match.ID)            
+            Match.MATCH_TIME to TEXT
         )
 
         // home details
         db.createTable(Match.TABLE_HOME_GOALS,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_RED_CARDS,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_YELLOW_CARDS,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_GOALKEEPER,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_DEFENSE,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_MIDFIELD,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_FORWARD,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_HOME_SUBSTITUTES,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
 
         // away details
         db.createTable(Match.TABLE_AWAY_GOALS,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_RED_CARDS,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_YELLOW_CARDS,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_GOALKEEPER,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_DEFENSE,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_MIDFIELD,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_FORWARD,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
         db.createTable(Match.TABLE_AWAY_SUBSTITUTES,
             true,
-            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT,
+            Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
             Match.MATCH_ID to INTEGER,
-            Match.PLAYER_NAME to TEXT
+            Match.PLAYER_NAME to TEXT,
+            FOREIGN_KEY(Match.MATCH_ID, Match.TABLE_FAVORITE, Match.MATCH_ID)
         )
     }
 

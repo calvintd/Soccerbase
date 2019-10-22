@@ -47,8 +47,6 @@
     <string name="league_schedule_no_upcoming_matches">No upcoming matches found for %s.</string>
 
     <!-- match details -->
-    <string name="match_details_favorite_match">Favorite</string>
-    <string name="match_details_unfavorite_match">Unfavorite</string>
     <string name="match_details_goals">Goal(s): %s</string>
     <string name="match_details_red_cards">Red card(s): %s</string>
     <string name="match_details_yellow_cards">Yellow card(s): %s</string>
@@ -58,8 +56,16 @@
     <string name="match_details_forwards">Forward(s): %s</string>
     <string name="match_details_substitutes">Substitute(s): %s</string>
 
-    <!-- favorite matches -->
+    <!-- favorite matches (in match details) -->
+    <string name="favorite_matches_favorite_match">Favorite</string>
+    <string name="favorite_matches_unfavorite_match">Unfavorite</string>
     <string name="favorite_matches_no_favorites_yet">You don\'t have any favorite matches added yet!</string>
+    <string name="favorite_matches_add_confirmation_title">Add to Favorites</string>
+    <string name="favorite_matches_add_confirmation_message">Are you sure you want to add this match to your favorite matches?</string>
+    <string name="favorite_matches_added_to_favorites">Added to favorites!</string>
+    <string name="favorite_matches_remove_confirmation_title">Remove from Favorites</string>
+    <string name="favorite_matches_remove_confirmation_message">Are you sure you want to remove this match from your favorite matches?</string>
+    <string name="favorite_matches_removed_from_favorites">Removed from favorites!</string>
 
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>
