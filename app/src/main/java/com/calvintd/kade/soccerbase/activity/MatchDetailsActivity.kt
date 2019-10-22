@@ -1,19 +1,27 @@
 package com.calvintd.kade.soccerbase.activity
 
+import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
+import org.jetbrains.anko.db.*
 
 class MatchDetailsActivity : AppCompatActivity() {
+    private lateinit var favoriteIcon: ImageView
+    private lateinit var favoriteName: TextView
+
     private val teamNameSize = 12f
     private val scoreSize = 24f
     private val badgeSize = 96
@@ -42,18 +50,20 @@ class MatchDetailsActivity : AppCompatActivity() {
                     rightPadding = 16
                     topPadding = 16
 
-                    imageView {
+                    favoriteIcon = imageView {
                         id = R.id.ivMatchDetailsFavoriteIcon
                         image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, context.theme)
                         padding = 8
                     }.lparams(width = favoriteIconSize, height = favoriteIconSize) {
                     }
 
-                    textView {
+                    favoriteName = textView {
                         id = R.id.tvMatchDetailsFavoriteName
                         text = resources.getString(R.string.match_details_favorite_match)
                         typeface = Typeface.DEFAULT_BOLD
                     }
+
+                    checkFavorite(match.matchId!!)
                 }
 
                 val header = constraintLayout {
@@ -591,5 +601,35 @@ class MatchDetailsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun checkFavorite(matchId: Int) {
+        try {
+            database.use {
+                select(Match.TABLE_FAVORITE)
+                    .whereArgs("(${Match.MATCH_ID} = {matchId})",
+                        "matchId" to matchId)
+                    .exec {
+                        if (count == 0) {
+                            favoriteIcon.image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, theme)
+                            favoriteName.text = resources.getText(R.string.match_details_favorite_match)
+                        }
+                        else {
+                            favoriteIcon.image = resources.getDrawable(R.drawable.ic_favorited_black_48dp, theme)
+                            favoriteName.text = resources.getText(R.string.match_details_unfavorite_match)
+                        }
+                    }
+            }
+        } catch (e: SQLiteConstraintException) {
+            toast(e.localizedMessage)
+        }
+    }
+
+    private fun addToFavorites() {
+
+    }
+
+    private fun removeFromFavorites() {
+
     }
 }

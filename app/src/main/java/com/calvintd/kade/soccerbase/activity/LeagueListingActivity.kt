@@ -42,7 +42,7 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
             }
         }
 
-        presenter.loadData(recyclerView)
+        presenter.loadData()
     }
 
     override fun loadData(model: LeagueAdapterModel) {

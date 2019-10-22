@@ -74,7 +74,7 @@ class LeagueScheduleUpcomingMatchesFragment : Fragment(), LeagueScheduleUpcoming
                 }
             }
 
-            presenter.loadMatchesByLeague(recyclerView, leagueId!!, leagueName!!)
+            presenter.loadMatchesByLeague(leagueId!!, leagueName!!)
         }.view
     }
 

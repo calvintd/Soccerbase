@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class LeagueListingPresenter(private val view: LeagueListingView) {
-    fun loadData(recyclerView: RecyclerView) {
+    fun loadData() {
         val leagues = ArrayList<League>()
         val instance = RetrofitInstance.getInstance()
 

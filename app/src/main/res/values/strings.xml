@@ -58,6 +58,9 @@
     <string name="match_details_forwards">Forward(s): %s</string>
     <string name="match_details_substitutes">Substitute(s): %s</string>
 
+    <!-- favorite matches -->
+    <string name="favorite_matches_no_favorites_yet">You don\'t have any favorite matches added yet!</string>
+
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>
     <string name="error_messages_http_exception">The following exception happened: %s</string>

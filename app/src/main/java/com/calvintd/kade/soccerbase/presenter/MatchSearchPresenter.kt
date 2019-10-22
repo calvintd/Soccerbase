@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class MatchSearchPresenter(private val view: MatchSearchView) {
-    fun loadMatchesByQuery(recyclerView: RecyclerView?, query: String) {
+    fun loadMatchesByQuery(query: String) {
         val matches = ArrayList<Match>()
         val instance = RetrofitInstance.getInstance()
         val processor = MatchDataProcessor

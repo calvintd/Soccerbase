@@ -74,7 +74,7 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueSchedulePastMatchesV
                 }
             }
 
-            presenter.loadMatchesByLeague(recyclerView, leagueId!!, leagueName!!)
+            presenter.loadMatchesByLeague(leagueId!!, leagueName!!)
         }.view
     }
 

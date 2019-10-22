@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 class LeagueScheduleUpcomingMatchesPresenter (private val view: LeagueScheduleUpcomingMatchesView) {
-    fun loadMatchesByLeague (recyclerView: RecyclerView, leagueId: Int, leagueName: String) {
+    fun loadMatchesByLeague (leagueId: Int, leagueName: String) {
         val matches = ArrayList<Match>()
         val instance = RetrofitInstance.getInstance()
         val processor = MatchDataProcessor
