@@ -89,6 +89,7 @@ class Match (
         
         // list of details tables
         val DETAILS_TABLES = listOf(
+            // home
             TABLE_HOME_GOALS,
             TABLE_HOME_RED_CARDS,
             TABLE_HOME_YELLOW_CARDS,
@@ -97,6 +98,8 @@ class Match (
             TABLE_HOME_MIDFIELD,
             TABLE_HOME_FORWARD,
             TABLE_HOME_SUBSTITUTES,
+
+            // away
             TABLE_AWAY_GOALS,
             TABLE_AWAY_RED_CARDS,
             TABLE_AWAY_YELLOW_CARDS,

@@ -3,6 +3,7 @@ package com.calvintd.kade.soccerbase.presenter
 import android.database.sqlite.SQLiteConstraintException
 import com.calvintd.kade.soccerbase.database.DatabaseHelper
 import com.calvintd.kade.soccerbase.itemmodel.Match
+import com.calvintd.kade.soccerbase.model.MatchAdapterModel
 import com.calvintd.kade.soccerbase.view.FavoriteMatchesView
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.parseList

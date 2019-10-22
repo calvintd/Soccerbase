@@ -34,6 +34,30 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
     fun addToFavorites (match: Match, helper: DatabaseHelper) {
         try {
             helper.use {
+                val organizer = MatchDatabaseDetailsOrganizer(helper)
+
+                val detailsLists = listOf(
+                    // home
+                    match.homeGoalDetails,
+                    match.homeRedCardDetails,
+                    match.homeYellowCardDetails,
+                    match.homeGoalkeeper,
+                    match.homeDefense,
+                    match.homeMidfield,
+                    match.homeForward,
+                    match.homeSubstitutes,
+                    
+                    // away
+                    match.awayGoalDetails,
+                    match.awayRedCardDetails,
+                    match.awayYellowCardDetails,
+                    match.awayGoalkeeper,
+                    match.awayDefense,
+                    match.awayMidfield,
+                    match.awayForward,
+                    match.awaySubstitutes
+                )
+                
                 val matchId = match.matchId
 
                 // general data
@@ -51,166 +75,8 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
                     Match.MATCH_TIME to match.matchTime
                 )
 
-                // home
-                if (match.homeGoalDetails.isNotEmpty()) {
-                    for (i in match.homeGoalDetails.indices) {
-                        insert(
-                            Match.TABLE_HOME_GOALS,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeGoalDetails[i]
-                        )
-                    }
-                }
-
-                if (match.homeRedCardDetails.isNotEmpty()) {
-                    for (i in match.homeRedCardDetails.indices) {
-                        insert(
-                            Match.TABLE_HOME_RED_CARDS,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeRedCardDetails[i]
-                        )
-                    }
-                }
-
-                if (match.homeYellowCardDetails.isNotEmpty()) {
-                    for (i in match.homeYellowCardDetails.indices) {
-                        insert(
-                            Match.TABLE_HOME_YELLOW_CARDS,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeYellowCardDetails[i]
-                        )
-                    }
-                }
-
-                if (match.homeGoalkeeper.isNotEmpty()) {
-                    for (i in match.homeGoalkeeper.indices) {
-                        insert(
-                            Match.TABLE_HOME_GOALKEEPER,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeGoalkeeper[i]
-                        )
-                    }
-                }
-
-                if (match.homeDefense.isNotEmpty()) {
-                    for (i in match.homeDefense.indices) {
-                        insert(
-                            Match.TABLE_HOME_DEFENSE,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeDefense[i]
-                        )
-                    }
-                }
-
-                if (match.homeMidfield.isNotEmpty()) {
-                    for (i in match.homeMidfield.indices) {
-                        insert(
-                            Match.TABLE_HOME_MIDFIELD,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeMidfield[i]
-                        )
-                    }
-                }
-
-                if (match.homeForward.isNotEmpty()) {
-                    for (i in match.homeForward.indices) {
-                        insert(
-                            Match.TABLE_HOME_FORWARD,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeForward[i]
-                        )
-                    }
-                }
-
-                if (match.homeSubstitutes.isNotEmpty()) {
-                    for (i in match.homeSubstitutes.indices) {
-                        insert(
-                            Match.TABLE_HOME_SUBSTITUTES,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.homeSubstitutes[i]
-                        )
-                    }
-                }
-
-                // away
-                if (match.awayGoalDetails.isNotEmpty()) {
-                    for (i in match.awayGoalDetails.indices) {
-                        insert(
-                            Match.TABLE_AWAY_GOALS,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayGoalDetails[i]
-                        )
-                    }
-                }
-
-                if (match.awayRedCardDetails.isNotEmpty()) {
-                    for (i in match.awayRedCardDetails.indices) {
-                        insert(
-                            Match.TABLE_AWAY_RED_CARDS,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayRedCardDetails[i]
-                        )
-                    }
-                }
-
-                if (match.awayYellowCardDetails.isNotEmpty()) {
-                    for (i in match.awayYellowCardDetails.indices) {
-                        insert(
-                            Match.TABLE_AWAY_YELLOW_CARDS,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayYellowCardDetails[i]
-                        )
-                    }
-                }
-
-                if (match.awayGoalkeeper.isNotEmpty()) {
-                    for (i in match.awayGoalkeeper.indices) {
-                        insert(
-                            Match.TABLE_AWAY_GOALKEEPER,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayGoalkeeper[i]
-                        )
-                    }
-                }
-
-                if (match.awayDefense.isNotEmpty()) {
-                    for (i in match.awayDefense.indices) {
-                        insert(
-                            Match.TABLE_AWAY_DEFENSE,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayDefense[i]
-                        )
-                    }
-                }
-
-                if (match.awayMidfield.isNotEmpty()) {
-                    for (i in match.awayMidfield.indices) {
-                        insert(
-                            Match.TABLE_AWAY_MIDFIELD,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayMidfield[i]
-                        )
-                    }
-                }
-
-                if (match.awayForward.isNotEmpty()) {
-                    for (i in match.awayForward.indices) {
-                        insert(
-                            Match.TABLE_AWAY_FORWARD,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awayForward[i]
-                        )
-                    }
-                }
-
-                if (match.awaySubstitutes.isNotEmpty()) {
-                    for (i in match.awaySubstitutes.indices) {
-                        insert(
-                            Match.TABLE_AWAY_SUBSTITUTES,
-                            Match.MATCH_ID to matchId,
-                            Match.PLAYER_NAME to match.awaySubstitutes[i]
-                        )
-                    }
+                for (i in Match.DETAILS_TABLES.indices) {
+                    organizer.insertDetails(detailsLists[i], Match.DETAILS_TABLES[i], matchId!!)
                 }
 
                 view.addedToFavorites()
