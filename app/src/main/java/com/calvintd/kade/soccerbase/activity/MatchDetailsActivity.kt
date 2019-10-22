@@ -76,7 +76,7 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
                     presenter.checkFavorite(isFavorited)
 
                     onClick {
-                        alert(alertTitle, alertMessage) {
+                        alert(alertMessage, alertTitle) {
                             yesButton {
                                 if(!isFavorited) {
                                     presenter.addToFavorites(match, database)
@@ -636,11 +636,13 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
     override fun addedToFavorites() {
 
         changeFavoriteUI(true)
+        toast(resources.getString(R.string.favorite_matches_added_to_favorites))
     }
 
     override fun removedFromFavorites() {
 
         changeFavoriteUI(false)
+        toast(resources.getString(R.string.favorite_matches_removed_from_favorites))
     }
 
     override fun showError(e: SQLiteConstraintException) {
@@ -653,14 +655,12 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
             favoriteName.text = resources.getString(R.string.favorite_matches_favorite_match)
             alertTitle = resources.getString(R.string.favorite_matches_add_confirmation_title)
             alertMessage = resources.getString(R.string.favorite_matches_add_confirmation_message)
-            toast(resources.getString(R.string.favorite_matches_added_to_favorites))
         }
         else {
             favoriteIcon.image = resources.getDrawable(R.drawable.ic_favorited_black_48dp, theme)
             favoriteName.text = resources.getString(R.string.favorite_matches_unfavorite_match)
             alertTitle = resources.getString(R.string.favorite_matches_remove_confirmation_title)
             alertMessage = resources.getString(R.string.favorite_matches_remove_confirmation_message)
-            toast(resources.getString(R.string.favorite_matches_removed_from_favorites))
         }
         this.isFavorited = isFavorited
     }
