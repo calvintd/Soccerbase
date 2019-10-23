@@ -292,49 +292,49 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
                     val homeGoals = textView {
                         id = R.id.tvMatchDetailsHomeGoals
                         text = String.format(resources.getString(R.string.match_details_goals),
-                            match.homeGoalDetails.joinToString(separator = ", ").trim())
+                            match.homeGoalDetails.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeRedCards =  textView {
                         id = R.id.tvMatchDetailsHomeRedCards
                         text = String.format(resources.getString(R.string.match_details_red_cards),
-                            match.homeRedCardDetails.joinToString(separator = ", "))
+                            match.homeRedCardDetails.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeYellowCards = textView {
                         id = R.id.tvMatchDetailsHomeYellowCards
                         text = String.format(resources.getString(R.string.match_details_yellow_cards),
-                            match.homeYellowCardDetails.joinToString(separator = ", "))
+                            match.homeYellowCardDetails.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeGoalkeeper = textView {
                         id = R.id.tvMatchDetailsHomeGoalkeeper
                         text = String.format(resources.getString(R.string.match_details_goalkeeper),
-                            match.homeGoalkeeper.joinToString(separator = ", "))
+                            match.homeGoalkeeper.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeDefenders = textView {
                         id = R.id.tvMatchDetailsHomeDefenders
                         text = String.format(resources.getString(R.string.match_details_defenders),
-                            match.homeDefense.joinToString(separator = ", "))
+                            match.homeDefense.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeMidfielders = textView {
                         id = R.id.tvMatchDetailsHomeMidfielders
                         text = String.format(resources.getString(R.string.match_details_midfielders),
-                            match.homeMidfield.joinToString(separator = ", "))
+                            match.homeMidfield.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeForwards = textView {
                         id = R.id.tvMatchDetailsHomeForwards
                         text = String.format(resources.getString(R.string.match_details_forwards),
-                            match.homeForward.joinToString(separator = ", "))
+                            match.homeForward.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
                     
                     val homeSubstitutes = textView {
                         id = R.id.tvMatchDetailsHomeSubstitutes
                         text = String.format(resources.getString(R.string.match_details_substitutes),
-                            match.homeSubstitutes.joinToString(separator = ", "))
+                            match.homeSubstitutes.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     applyConstraintSet {
@@ -454,49 +454,49 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
                     val awayGoals = textView {
                         id = R.id.tvMatchDetailsAwayGoals
                         text = String.format(resources.getString(R.string.match_details_goals),
-                            match.awayGoalDetails.joinToString(separator = ", "))
+                            match.awayGoalDetails.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awayRedCards =  textView {
                         id = R.id.tvMatchDetailsAwayRedCards
                         text = String.format(resources.getString(R.string.match_details_red_cards),
-                            match.awayRedCardDetails.joinToString(separator = ", "))
+                            match.awayRedCardDetails.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awayYellowCards = textView {
                         id = R.id.tvMatchDetailsAwayYellowCards
                         text = String.format(resources.getString(R.string.match_details_yellow_cards),
-                            match.awayYellowCardDetails.joinToString(separator = ", "))
+                            match.awayYellowCardDetails.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awayGoalkeeper = textView {
                         id = R.id.tvMatchDetailsAwayGoalkeeper
                         text = String.format(resources.getString(R.string.match_details_goalkeeper),
-                            match.awayGoalkeeper.joinToString(separator = ", "))
+                            match.awayGoalkeeper.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awayDefenders = textView {
                         id = R.id.tvMatchDetailsAwayDefenders
                         text = String.format(resources.getString(R.string.match_details_defenders),
-                            match.awayDefense.joinToString(separator = ", "))
+                            match.awayDefense.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awayMidfielders = textView {
                         id = R.id.tvMatchDetailsAwayMidfielders
                         text = String.format(resources.getString(R.string.match_details_midfielders),
-                            match.awayMidfield.joinToString(separator = ", "))
+                            match.awayMidfield.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awayForwards = textView {
                         id = R.id.tvMatchDetailsAwayForwards
                         text = String.format(resources.getString(R.string.match_details_forwards),
-                            match.awayForward.joinToString(separator = ", "))
+                            match.awayForward.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     val awaySubstitutes = textView {
                         id = R.id.tvMatchDetailsAwaySubstitutes
                         text = String.format(resources.getString(R.string.match_details_substitutes),
-                            match.awaySubstitutes.joinToString(separator = ", "))
+                            match.awaySubstitutes.joinToString())
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     applyConstraintSet {
@@ -660,5 +660,8 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
             alertMessage = resources.getString(R.string.favorite_matches_remove_confirmation_message)
         }
         this.isFavorited = isFavorited
+    }
+
+    private fun dropComma(textView: TextView) {
     }
 }
