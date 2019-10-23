@@ -15,6 +15,8 @@ class FavoriteMatchesPresenter(private val view: FavoriteMatchesView) {
     val matches = ArrayList<Match>()
 
     fun loadFavorites(helper: DatabaseHelper) {
+        matches.clear()
+
         val organizer = MatchDatabaseDetailsOrganizer(helper)
 
         try {
@@ -25,9 +27,7 @@ class FavoriteMatchesPresenter(private val view: FavoriteMatchesView) {
                             view.showNoFavoriteMatches()
                         } else {
                             val parsedMatchesList = parseList(classParser<Match>())
-                            for (i in parsedMatchesList.indices) {
-                                matches.add(parsedMatchesList[i])
-                            }
+                            matches.addAll(parsedMatchesList)
                         }
                     }
                 for (i in matches.indices) {

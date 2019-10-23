@@ -204,7 +204,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
                             connect (
                                 end to end of parent margin dip(margin),
                                 top to bottom of showDetailsGuideline margin dip(halfMargin),
-                                bottom to bottom of parent
+                                bottom to bottom of parent margin dip(margin)
                             )
                         }
                     }

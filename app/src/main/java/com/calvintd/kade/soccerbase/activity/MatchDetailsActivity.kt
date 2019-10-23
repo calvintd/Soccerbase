@@ -629,18 +629,15 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
     }
 
     override fun checkedFavorite(isFavorited: Boolean) {
-
         changeFavoriteUI(isFavorited)
     }
 
     override fun addedToFavorites() {
-
         changeFavoriteUI(true)
         toast(resources.getString(R.string.favorite_matches_added_to_favorites))
     }
 
     override fun removedFromFavorites() {
-
         changeFavoriteUI(false)
         toast(resources.getString(R.string.favorite_matches_removed_from_favorites))
     }

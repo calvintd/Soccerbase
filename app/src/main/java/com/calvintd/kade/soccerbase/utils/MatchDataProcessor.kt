@@ -78,8 +78,6 @@ object MatchDataProcessor {
             awayTeamId = awayTeamId?.toInt(),
             homeName = homeName,
             awayName = awayName,
-            homeBadge = null,
-            awayBadge = null,
             homeScore = homeScore,
             awayScore = awayScore,
             matchDate = matchDate,

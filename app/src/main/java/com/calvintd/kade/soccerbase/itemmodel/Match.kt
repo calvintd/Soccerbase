@@ -6,16 +6,65 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class Match (
     // general data
-    var matchId: Int?, var homeTeamId: Int?, var awayTeamId: Int?, var homeName: String?, var awayName: String?, var homeBadge: String?,
-    var awayBadge: String?, var homeScore: Int?, var awayScore: Int?, var matchDate: String?, var matchTime: String?,
+    var id: Int? = null,
+    var matchId: Int? = null,
+    var homeTeamId: Int? = null,
+    var awayTeamId: Int? = null,
+    var homeName: String? = null,
+    var awayName: String? = null,
+    var homeBadge: String? = null,
+    var awayBadge: String? = null,
+    var homeScore: Int? = null,
+    var awayScore: Int? = null,
+    var matchDate: String? = null,
+    var matchTime: String? = null,
     
     // home
-    var homeGoalDetails: List<String?>, var homeRedCardDetails: List<String?>, var homeYellowCardDetails: List<String?>, var homeGoalkeeper: List<String?>,
-    var homeDefense: List<String?>, var homeMidfield: List<String?>, var homeForward: List<String?>, var homeSubstitutes: List<String?>,
+    var homeGoalDetails: List<String?> = listOf(null),
+    var homeRedCardDetails: List<String?> = listOf(null),
+    var homeYellowCardDetails: List<String?> = listOf(null),
+    var homeGoalkeeper: List<String?> = listOf(null),
+    var homeDefense: List<String?> = listOf(null),
+    var homeMidfield: List<String?> = listOf(null),
+    var homeForward: List<String?> = listOf(null),
+    var homeSubstitutes: List<String?> = listOf(null),
     
     // away
-    var awayGoalDetails: List<String?>, var awayRedCardDetails: List<String?>, var awayYellowCardDetails: List<String?>, var awayGoalkeeper: List<String?>,
-    var awayDefense: List<String?>, var awayMidfield: List<String?>, var awayForward: List<String?>, var awaySubstitutes: List<String?>): Parcelable {
+    var awayGoalDetails: List<String?> = listOf(null),
+    var awayRedCardDetails: List<String?> = listOf(null),
+    var awayYellowCardDetails: List<String?> = listOf(null),
+    var awayGoalkeeper: List<String?> = listOf(null),
+    var awayDefense: List<String?> = listOf(null),
+    var awayMidfield: List<String?> = listOf(null),
+    var awayForward: List<String?> = listOf(null),
+    var awaySubstitutes: List<String?> = listOf(null)): Parcelable {
+
+    constructor (
+                id: Int?,
+                matchId: Int?,
+                homeTeamId: Int?,
+                awayTeamId: Int?,
+                homeName: String?,
+                awayName: String?,
+                homeBadge: String?,
+                awayBadge: String?,
+                homeScore: Int?,
+                awayScore: Int?,
+                matchDate: String?,
+                matchTime: String?) : this() {
+        this.id = id
+        this.matchId = matchId
+        this.homeTeamId = homeTeamId
+        this.awayTeamId = awayTeamId
+        this.homeName = homeName
+        this.awayName = awayName
+        this.homeBadge = homeBadge
+        this.awayBadge = awayBadge
+        this.homeScore = homeScore
+        this.awayScore = awayScore
+        this.matchDate = matchDate
+        this.matchTime = matchTime
+    }
 
     companion object {
         const val ID = "ID_"

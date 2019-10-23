@@ -97,8 +97,8 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
                 }
 
                 // general data
-                select(Match.TABLE_FAVORITE)
-                    .whereArgs("(${Match.MATCH_ID} = {matchId})",
+                delete(Match.TABLE_FAVORITE,
+                    "(${Match.MATCH_ID} = {matchId})",
                         "matchId" to matchId)
 
                 view.removedFromFavorites()

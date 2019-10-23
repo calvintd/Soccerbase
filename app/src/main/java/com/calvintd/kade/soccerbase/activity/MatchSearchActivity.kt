@@ -43,6 +43,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                 onQueryTextListener {
                     onQueryTextSubmit {
                         progressBar.visibility = View.VISIBLE
+                        textView.visibility = View.GONE
                         val query = searchView.query.toString()
                         presenter.loadMatchesByQuery(query)
                         false

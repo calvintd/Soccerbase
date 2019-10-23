@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.model.MatchAdapterModel
 import com.calvintd.kade.soccerbase.presenter.FavoriteMatchesPresenter
@@ -19,13 +20,14 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
 class FavoriteMatchesActivity : AppCompatActivity(), FavoriteMatchesView {
     private lateinit var textView: TextView
     private lateinit var recyclerView: RecyclerView
+    private lateinit var presenter: FavoriteMatchesPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.title = resources.getString(R.string.favorite_matches_activity_title)
 
-        val presenter = FavoriteMatchesPresenter(this)
+        presenter = FavoriteMatchesPresenter(this)
 
         scrollView {
             verticalLayout {
@@ -62,5 +64,10 @@ class FavoriteMatchesActivity : AppCompatActivity(), FavoriteMatchesView {
 
     override fun showError(e: SQLiteConstraintException) {
         toast(e.localizedMessage)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.loadFavorites(database)
     }
 }

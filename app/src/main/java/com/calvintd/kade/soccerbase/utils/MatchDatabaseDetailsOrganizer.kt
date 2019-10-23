@@ -46,7 +46,7 @@ class MatchDatabaseDetailsOrganizer (private val helper: DatabaseHelper) {
             val matchId = match.matchId!!
 
             for (i in Match.DETAILS_TABLES.indices) {
-                select(Match.DETAILS_TABLES[i])
+                select(Match.DETAILS_TABLES[i], Match.PLAYER_NAME)
                     .whereArgs("(${Match.MATCH_ID} = {matchId})",
                         "matchId" to matchId)
                     .exec {
