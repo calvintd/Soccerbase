@@ -20,11 +20,12 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
+class LeagueAdapter (private val leagues: List<League>, private val descriptionListener: (League) -> Unit, private val scheduleListener: (League) -> Unit) :
+    RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LeagueUI().createView(AnkoContext.Companion.create(parent.context, parent)))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(leagues[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(leagues[position], descriptionListener, scheduleListener)
 
     override fun getItemCount(): Int = leagues.size
 
@@ -154,7 +155,7 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
         private val descriptionButton = view.find<LinearLayout>(R.id.llListingDescriptionLayout)
         private val scheduleButton = view.find<LinearLayout>(R.id.llListingScheduleLayout)
 
-        fun bindItem (league: League) {
+        fun bindItem (league: League, descriptionListener: (League) -> Unit, scheduleListener: (League) -> Unit) {
             league.badge.let {
                 Picasso.get()
                 .load(it)
@@ -167,15 +168,11 @@ class LeagueAdapter (private val leagues: List<League>) : RecyclerView.Adapter<L
             name.text = league.name
 
             descriptionButton.onClick {
-                itemView.context.startActivity<LeagueDescriptionActivity>(
-                    "league" to league
-                )
+                descriptionListener(league)
             }
 
             scheduleButton.onClick {
-                itemView.context.startActivity<LeagueScheduleActivity>(
-                    "league" to league
-                )
+                scheduleListener(league)
             }
         }
     }

@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.model.MatchAdapterModel
+import com.calvintd.kade.soccerbase.adapter.MatchAdapter
+import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import okhttp3.ResponseBody
@@ -73,14 +74,18 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         }
     }
 
-    override fun loadMatchesByQuery(model: MatchAdapterModel, query: String) {
-        textView.visibility = View.VISIBLE
+    override fun loadMatchesByQuery(matches: ArrayList<Match>, query: String) {
         textView.text = String.format(
             resources.getString(R.string.match_search_search_results_for_query),
             query)
-        recyclerView.adapter = model.getMatchAdapter()
+        recyclerView.adapter = MatchAdapter(matches) {
+            startActivity<MatchDetailsActivity>(
+                "match" to it
+            )
+        }
         recyclerView.adapter!!.notifyDataSetChanged()
         progressBar.visibility = View.GONE
+        textView.visibility = View.VISIBLE
         recyclerView.visibility = View.VISIBLE
     }
 

@@ -12,8 +12,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.activity.MatchDetailsActivity
+import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
-import com.calvintd.kade.soccerbase.model.MatchAdapterModel
+import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.presenter.LeagueScheduleUpcomingMatchesPresenter
 import com.calvintd.kade.soccerbase.view.LeagueScheduleUpcomingMatchesView
 import okhttp3.ResponseBody
@@ -78,14 +80,18 @@ class LeagueScheduleUpcomingMatchesFragment : Fragment(), LeagueScheduleUpcoming
         }.view
     }
 
-    override fun loadMatchesByLeague(model: MatchAdapterModel, league: String) {
+    override fun loadMatchesByLeague(matches: ArrayList<Match>, league: String) {
         if (context != null) {
             textView.visibility = View.VISIBLE
             textView.text = String.format(
                 resources.getString(R.string.league_schedule_display_upcoming_matches),
                 league
             )
-            recyclerView.adapter = model.getMatchAdapter()
+            recyclerView.adapter = MatchAdapter(matches) {
+                context?.startActivity<MatchDetailsActivity>(
+                    "match" to it
+                )
+            }
             recyclerView.adapter!!.notifyDataSetChanged()
             progressBar.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE

@@ -23,11 +23,12 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
-class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
+class MatchAdapter (private val matches: List<Match>, private val detailsListener: (Match) -> Unit) :
+    RecyclerView.Adapter<MatchAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(MatchUI().createView(AnkoContext.Companion.create(parent.context, parent)))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(matches[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(matches[position], detailsListener)
 
     override fun getItemCount(): Int = matches.size
 
@@ -224,7 +225,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
         private val matchShowDetails = view.find<TextView>(R.id.tvMatchShowDetails)
         private val resources = itemView.context.resources
 
-        fun bindItem (match: Match) {
+        fun bindItem (match: Match, detailsListener: (Match) -> Unit) {
             val currentTime = LocalDateTime.now()
             val matchFetchedDateTime = LocalDateTime.of(LocalDate.parse(match.matchDate, DateTimeFormatter.ofPattern("d MMMM u")),
                 LocalTime.parse(match.matchTime, DateTimeFormatter.ofPattern("HH:mm")))
@@ -266,9 +267,7 @@ class MatchAdapter (private val matches: List<Match>) : RecyclerView.Adapter<Mat
             }
 
             matchShowDetails.onClick {
-                itemView.context.startActivity<MatchDetailsActivity>(
-                    "match" to match
-                )
+                detailsListener(match)
             }
         }
     }

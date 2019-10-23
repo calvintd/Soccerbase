@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.database.database
-import com.calvintd.kade.soccerbase.model.MatchAdapterModel
+import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.presenter.FavoriteMatchesPresenter
 import com.calvintd.kade.soccerbase.view.FavoriteMatchesView
 import org.jetbrains.anko.*
@@ -52,10 +52,14 @@ class FavoriteMatchesActivity : AppCompatActivity(), FavoriteMatchesView {
         presenter.loadFavorites(database)
     }
 
-    override fun loadFavoriteMatches(model: MatchAdapterModel) {
-        recyclerView.visibility = View.VISIBLE
-        recyclerView.adapter = model.getMatchAdapter()
+    override fun loadFavoriteMatches(matches: ArrayList<Match>) {
+        recyclerView.adapter = MatchAdapter(matches) {
+            startActivity<MatchDetailsActivity>(
+                "match" to it
+            )
+        }
         recyclerView.adapter!!.notifyDataSetChanged()
+        recyclerView.visibility = View.VISIBLE
     }
 
     override fun showNoFavoriteMatches() {

@@ -7,8 +7,6 @@ class TeamResponse (
     var teams: List<Teams>) {
 
     class Teams (
-        @SerializedName("idTeam")
-        var teamId: Int?,
         @SerializedName("strTeamBadge")
         var teamBadge: String?
     )

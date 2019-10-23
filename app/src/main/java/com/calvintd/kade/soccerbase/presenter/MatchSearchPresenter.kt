@@ -1,10 +1,7 @@
 package com.calvintd.kade.soccerbase.presenter
 
-import androidx.recyclerview.widget.RecyclerView
-import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.Match
-import com.calvintd.kade.soccerbase.model.MatchAdapterModel
 import com.calvintd.kade.soccerbase.utils.MatchDataProcessor
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import kotlinx.coroutines.CoroutineScope
@@ -55,9 +52,7 @@ class MatchSearchPresenter(private val view: MatchSearchView) {
                                                     matches.add(matchItem)
 
                                                     if (i == matchResponseItems.lastIndex) {
-                                                        val matchAdapter = MatchAdapter(matches)
-                                                        val matchAdapterModel = MatchAdapterModel(matchAdapter)
-                                                        view.loadMatchesByQuery(matchAdapterModel, query)
+                                                        view.loadMatchesByQuery(matches, query)
                                                     }
                                                 } else {
                                                     view.showResponseError(hResponse.code(), hResponse.errorBody())
