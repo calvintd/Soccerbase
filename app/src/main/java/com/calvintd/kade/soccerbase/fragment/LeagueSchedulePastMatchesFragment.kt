@@ -48,7 +48,7 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueSchedulePastMatchesV
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val league = arguments?.getParcelable(LEAGUE_BUNDLE_ARG) as League
+        val league = arguments?.getParcelable<League>(LEAGUE_BUNDLE_ARG)!!
         val leagueId = league.leagueId
         val leagueName = league.name
 

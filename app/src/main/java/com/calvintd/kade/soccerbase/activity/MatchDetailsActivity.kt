@@ -661,7 +661,4 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
         }
         this.isFavorited = isFavorited
     }
-
-    private fun dropComma(textView: TextView) {
-    }
 }
