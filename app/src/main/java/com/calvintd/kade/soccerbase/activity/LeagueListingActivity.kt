@@ -11,6 +11,8 @@ import com.calvintd.kade.soccerbase.adapter.LeagueAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.presenter.LeagueListingPresenter
 import com.calvintd.kade.soccerbase.view.LeagueListingView
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -46,27 +48,32 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
         presenter.loadData()
     }
 
-    override fun loadData(leagues: ArrayList<League>) {
-        recyclerView.adapter = LeagueAdapter(leagues, {
-            startActivity<LeagueDescriptionActivity>(
-                "league" to it
-            )
-        }, {
-            startActivity<LeagueScheduleActivity>(
-                "league" to it
-            )
-        })
-        recyclerView.adapter!!.notifyDataSetChanged()
-        progressBar.visibility = View.GONE
-        recyclerView.visibility = View.VISIBLE
-
+    override fun loadData(leagues: List<League>) {
+        runOnUiThread {
+            recyclerView.adapter = LeagueAdapter(leagues, {
+                startActivity<LeagueDescriptionActivity>(
+                    "league" to it
+                )
+            }, {
+                startActivity<LeagueScheduleActivity>(
+                    "league" to it
+                )
+            })
+            recyclerView.adapter!!.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+        }
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
-        toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
+        runOnUiThread {
+            toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
+        }
     }
 
     override fun showException(e: HttpException) {
-        toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
+        runOnUiThread {
+            toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
+        }
     }
 }

@@ -5,7 +5,7 @@ import okhttp3.ResponseBody
 import retrofit2.HttpException
 
 interface LeagueListingView {
-    fun loadData(leagues: ArrayList<League>)
+    fun loadData(leagues: List<League>)
     fun showResponseError(code: Int, responseBody: ResponseBody?)
     fun showException(e: HttpException)
 }
