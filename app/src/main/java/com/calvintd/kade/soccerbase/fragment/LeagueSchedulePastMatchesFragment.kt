@@ -17,18 +17,19 @@ import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchesPresenter
-import com.calvintd.kade.soccerbase.view.LeagueSchedulePastMatchesView
+import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.UI
+import org.jetbrains.anko.support.v4.runOnUiThread
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.HttpException
 
 /**
  * A simple [Fragment] subclass.
  */
-class LeagueSchedulePastMatchesFragment : Fragment(), LeagueSchedulePastMatchesView {
+class LeagueSchedulePastMatchesFragment : Fragment(), LeagueScheduleView {
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
@@ -80,39 +81,60 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueSchedulePastMatchesV
         }.view
     }
 
-    override fun loadMatchesByLeague(matches: ArrayList<Match>, league: String) {
+    override fun loadMatchesByLeague(matches: List<Match>, league: String) {
         if (context != null) {
-            textView.visibility = View.VISIBLE
-            textView.text = String.format(
-                resources.getString(R.string.league_schedule_display_past_matches),
-                league)
-            recyclerView.adapter = MatchAdapter(matches) {
-                context?.startActivity<MatchDetailsActivity>(
-                    "match" to it
+            runOnUiThread {
+                textView.visibility = View.VISIBLE
+                textView.text = String.format(
+                    resources.getString(R.string.league_schedule_display_past_matches),
+                    league
                 )
+                recyclerView.adapter = MatchAdapter(matches) {
+                    context?.startActivity<MatchDetailsActivity>(
+                        "match" to it
+                    )
+                }
+                recyclerView.adapter!!.notifyDataSetChanged()
+                progressBar.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
             }
-            recyclerView.adapter!!.notifyDataSetChanged()
-            progressBar.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
         }
     }
 
     override fun showNoResultsFound(league: String) {
         if (context != null) {
-            textView.visibility = View.VISIBLE
-            textView.text = String.format(
-                resources.getString(R.string.league_schedule_no_past_matches),
-                league)
-            recyclerView.adapter?.notifyDataSetChanged()
-            progressBar.visibility = View.GONE
+            runOnUiThread {
+                textView.visibility = View.VISIBLE
+                textView.text = String.format(
+                    resources.getString(R.string.league_schedule_no_past_matches),
+                    league
+                )
+                recyclerView.adapter?.notifyDataSetChanged()
+                progressBar.visibility = View.GONE
+            }
         }
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
-        toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
+        runOnUiThread {
+            toast(
+                String.format(
+                    resources.getString(R.string.error_messages_response_code),
+                    code.toString(),
+                    responseBody.toString()
+                )
+            )
+        }
     }
 
     override fun showException(e: HttpException) {
-        toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
+        runOnUiThread {
+            toast(
+                String.format(
+                    resources.getString(R.string.error_messages_http_exception),
+                    e.message()
+                )
+            )
+        }
     }
 }

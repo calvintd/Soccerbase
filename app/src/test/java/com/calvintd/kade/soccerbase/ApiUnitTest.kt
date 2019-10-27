@@ -3,22 +3,19 @@ package com.calvintd.kade.soccerbase
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.api.RetrofitService
 import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
-import com.calvintd.kade.soccerbase.itemmodel.Leagues
 import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
 import com.calvintd.kade.soccerbase.presenter.LeagueListingPresenter
 import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchesPresenter
 import com.calvintd.kade.soccerbase.presenter.LeagueScheduleUpcomingMatchesPresenter
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
 import com.calvintd.kade.soccerbase.view.LeagueListingView
-import com.calvintd.kade.soccerbase.view.LeagueSchedulePastMatchesView
-import com.calvintd.kade.soccerbase.view.LeagueScheduleUpcomingMatchesView
+import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Before
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import retrofit2.HttpException
@@ -45,9 +42,7 @@ class ApiUnitTest {
     @Mock
     private lateinit var leagueListingView: LeagueListingView
     @Mock
-    private lateinit var leagueSchedulePastMatchesView: LeagueSchedulePastMatchesView
-    @Mock
-    private lateinit var leagueScheduleUpcomingMatchesView: LeagueScheduleUpcomingMatchesView
+    private lateinit var leagueScheduleView: LeagueScheduleView
     @Mock
     private lateinit var matchSearchView: MatchSearchView
 
@@ -62,17 +57,14 @@ class ApiUnitTest {
 
         service = RetrofitInstance.getInstance()
         leagueListingPresenter = LeagueListingPresenter(leagueListingView)
-        leagueSchedulePastMatchesPresenter = LeagueSchedulePastMatchesPresenter(leagueSchedulePastMatchesView)
-        leagueScheduleUpcomingMatchesPresenter = LeagueScheduleUpcomingMatchesPresenter(leagueScheduleUpcomingMatchesView)
+        leagueSchedulePastMatchesPresenter = LeagueSchedulePastMatchesPresenter(leagueScheduleView)
+        leagueScheduleUpcomingMatchesPresenter = LeagueScheduleUpcomingMatchesPresenter(leagueScheduleView)
         matchSearchPresenter = MatchSearchPresenter(matchSearchView)
     }
 
     @Test
     fun loadLeagueListingTest() {
         runBlocking {
-            leagueResponse = service.getSoccerLeagues()
-
-            leagueListingPresenter.loadData()
             verify(leagueListingView).loadData(leagueListingPresenter.getFetchedLeagues())
             verify(leagueListingView).showResponseError(
                 leagueResponse.code(),

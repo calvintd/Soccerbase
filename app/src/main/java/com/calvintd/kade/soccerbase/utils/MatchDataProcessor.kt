@@ -105,9 +105,11 @@ object MatchDataProcessor {
         )
     }
 
-    fun assignBadge (matchItem: Match, homeTeamResponseItem: List<TeamResponse.Teams>, awayTeamResponseItem: List<TeamResponse.Teams>) : Match {
-        matchItem.homeBadge = homeTeamResponseItem.last().teamBadge.plus("/preview")
-        matchItem.awayBadge = awayTeamResponseItem.last().teamBadge.plus("/preview")
+    fun assignBadge (matchItem: Match, homeTeamResponseItem: List<TeamResponse.Teams>?, awayTeamResponseItem: List<TeamResponse.Teams>?) : Match {
+        if (homeTeamResponseItem != null && awayTeamResponseItem != null) {
+            matchItem.homeBadge = homeTeamResponseItem.last().teamBadge.plus("/preview")
+            matchItem.awayBadge = awayTeamResponseItem.last().teamBadge.plus("/preview")
+        }
 
         return matchItem
     }

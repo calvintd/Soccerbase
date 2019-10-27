@@ -2,76 +2,32 @@ package com.calvintd.kade.soccerbase.presenter
 
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.Match
-import com.calvintd.kade.soccerbase.utils.MatchDataProcessor
+import com.calvintd.kade.soccerbase.utils.FetchMatchesCoroutines
 import com.calvintd.kade.soccerbase.view.MatchSearchView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import retrofit2.HttpException
+import kotlinx.coroutines.*
 
 class MatchSearchPresenter(private val view: MatchSearchView) {
+    private val instance = RetrofitInstance.getInstance()
+    private val fetcher = FetchMatchesCoroutines
+
     fun loadMatchesByQuery(query: String) {
-        val matches = ArrayList<Match>()
-        val instance = RetrofitInstance.getInstance()
-        val processor = MatchDataProcessor
+        val fetchedMatches = CoroutineScope(Dispatchers.IO).async {
+            getFetchedMatches(query)
+        }
 
         CoroutineScope(Dispatchers.IO).launch {
-            val response = instance.getMatchesSearch(query)
-            withContext(Dispatchers.Main) {
-                try {
-                    if (response.isSuccessful) {
-                        val matchResponse = response.body()
-                        if (matchResponse?.matches == null) {
-                            view.showNoResultsFound(query)
-                        } else {
-                            val matchResponseItems = matchResponse.matches
-                            for (i in matchResponseItems.indices) {
-                                if (matchResponseItems[i].sport.equals("Soccer")) {
-                                    val match = matchResponseItems[i]
-
-                                    var matchItem = processor.matchDataInit(match)
-                                    val homeTeamId = matchItem.homeTeamId
-                                    val awayTeamId = matchItem.awayTeamId
-
-                                    // fetch team data
-                                    CoroutineScope(Dispatchers.IO).launch {
-                                        val hResponse = instance.getTeamDetails(homeTeamId!!.toInt())
-                                        val aResponse = instance.getTeamDetails(awayTeamId!!.toInt())
-                                        withContext(Dispatchers.Main) {
-                                            try {
-                                                if (response.isSuccessful) {
-                                                    val homeResponse = hResponse.body()
-                                                    val awayResponse = aResponse.body()
-
-                                                    val homeResponseItems = homeResponse!!.teams
-                                                    val awayResponseItems = awayResponse!!.teams
-
-                                                    matchItem = processor.assignBadge(matchItem, homeResponseItems, awayResponseItems)
-
-                                                    matches.add(matchItem)
-
-                                                    if (i == matchResponseItems.lastIndex) {
-                                                        view.loadMatchesByQuery(matches, query)
-                                                    }
-                                                } else {
-                                                    view.showResponseError(hResponse.code(), hResponse.errorBody())
-                                                }
-                                            } catch (e: HttpException) {
-                                                view.showException(e)
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    } else {
-                        view.showResponseError(response.code(), response.errorBody())
-                    }
-                } catch (e: HttpException) {
-                    view.showException(e)
-                }
+            if (fetchedMatches.await().isEmpty()) {
+                view.showNoResultsFound(query)
+            } else {
+                view.loadMatchesByQuery(fetchedMatches.await(), query)
             }
+        }
+    }
+
+    suspend fun getFetchedMatches(query: String): List<Match> {
+        return withContext(Dispatchers.Main) {
+            val response = instance.getMatchesSearch(query)
+            fetcher.getFetchedMatchesMatchSearch(view, response)
         }
     }
 }

@@ -74,35 +74,45 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         }
     }
 
-    override fun loadMatchesByQuery(matches: ArrayList<Match>, query: String) {
-        textView.text = String.format(
-            resources.getString(R.string.match_search_search_results_for_query),
-            query)
-        recyclerView.adapter = MatchAdapter(matches) {
-            startActivity<MatchDetailsActivity>(
-                "match" to it
+    override fun loadMatchesByQuery(matches: List<Match>, query: String) {
+        runOnUiThread {
+            textView.text = String.format(
+                resources.getString(R.string.match_search_search_results_for_query),
+                query
             )
+            recyclerView.adapter = MatchAdapter(matches) {
+                startActivity<MatchDetailsActivity>(
+                    "match" to it
+                )
+            }
+            recyclerView.adapter!!.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+            textView.visibility = View.VISIBLE
+            recyclerView.visibility = View.VISIBLE
         }
-        recyclerView.adapter!!.notifyDataSetChanged()
-        progressBar.visibility = View.GONE
-        textView.visibility = View.VISIBLE
-        recyclerView.visibility = View.VISIBLE
     }
 
     override fun showNoResultsFound(query: String) {
-        textView.visibility = View.VISIBLE
-        textView.text = String.format(
-            resources.getString(R.string.match_search_no_search_results_found),
-            query)
-        recyclerView.adapter?.notifyDataSetChanged()
-        progressBar.visibility = View.GONE
+        runOnUiThread {
+            textView.visibility = View.VISIBLE
+            textView.text = String.format(
+                resources.getString(R.string.match_search_no_search_results_found),
+                query
+            )
+            recyclerView.adapter?.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+        }
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
-        toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
+        runOnUiThread {
+            toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
+        }
     }
 
     override fun showException(e: HttpException) {
-        toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
+        runOnUiThread {
+            toast(String.format(resources.getString(R.string.error_messages_http_exception),e.message()))
+        }
     }
 }
