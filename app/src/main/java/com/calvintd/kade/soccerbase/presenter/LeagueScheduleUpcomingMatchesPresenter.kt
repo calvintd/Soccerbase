@@ -31,10 +31,9 @@ class LeagueScheduleUpcomingMatchesPresenter (private val view: LeagueScheduleVi
 
     suspend fun getFetchedMatches(leagueId: Int): List<Match> {
         return withContext(context.main) {
-            val call = instance.getUpcomingLeagueMatches(leagueId)
             lateinit var responseParam: Response<MatchLeagueResponse>
 
-            call.enqueue(object : Callback<MatchLeagueResponse> {
+            instance.getUpcomingLeagueMatches(leagueId).enqueue(object : Callback<MatchLeagueResponse> {
                 override fun onFailure(call: Call<MatchLeagueResponse>, t: Throwable) {
                     view.showCallError(t)
                 }

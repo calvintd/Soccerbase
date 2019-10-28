@@ -31,10 +31,9 @@ class MatchSearchPresenter(private val view: MatchSearchView, private val contex
 
     suspend fun getFetchedMatches(query: String): List<Match> {
         return withContext(context.main) {
-            val call = instance.getMatchesSearch(query)
             lateinit var responseParam: Response<MatchResponse>
 
-            call.enqueue(object : Callback<MatchResponse> {
+            instance.getMatchesSearch(query).enqueue(object : Callback<MatchResponse> {
                 override fun onFailure(call: Call<MatchResponse>, t: Throwable) {
                     view.showCallError(t)
                 }
