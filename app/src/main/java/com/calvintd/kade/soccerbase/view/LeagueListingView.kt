@@ -6,6 +6,7 @@ import retrofit2.HttpException
 
 interface LeagueListingView {
     fun loadData(leagues: List<League>)
+    fun showCallError(t: Throwable)
     fun showResponseError(code: Int, responseBody: ResponseBody?)
     fun showException(e: HttpException)
 }

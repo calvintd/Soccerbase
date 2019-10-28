@@ -62,6 +62,9 @@
     <item name="llScheduleLayout" type="id"/>
     <item name="bnScheduleNav" type="id"/>
 
+    <!-- match search -->
+    <item name="svMatchSearchView" type="id"/>
+
     <!-- match details -->
     <item name="glMatchDetailsHeaderCenterGuideline" type="id"/>
 

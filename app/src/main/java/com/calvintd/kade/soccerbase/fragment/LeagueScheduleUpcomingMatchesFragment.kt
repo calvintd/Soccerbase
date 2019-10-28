@@ -115,6 +115,17 @@ class LeagueScheduleUpcomingMatchesFragment : Fragment(), LeagueScheduleView {
         }
     }
 
+    override fun showCallError(t: Throwable) {
+        runOnUiThread {
+            toast(
+                String.format(
+                    resources.getString(R.string.error_messages_http_exception),
+                    t.localizedMessage
+                )
+            )
+        }
+    }
+
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
         runOnUiThread {
             toast(

@@ -14,6 +14,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Before
+import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
@@ -29,7 +30,7 @@ class ApiUnitTest {
     private val leagueId = 4328
     private val leagueName = "English Premier League"
 
-    private lateinit var service: RetrofitService
+    private var service: RetrofitService = RetrofitInstance.getInstance()
 
     private lateinit var leagueSchedulePastMatchesPresenter: LeagueSchedulePastMatchesPresenter
     private lateinit var leagueScheduleUpcomingMatchesPresenter: LeagueScheduleUpcomingMatchesPresenter
@@ -40,34 +41,35 @@ class ApiUnitTest {
 
     @Mock
     private lateinit var matchResponse: Response<MatchResponse>
-    @Mock
+    @InjectMocks
     private lateinit var matchLeagueResponse: Response<MatchLeagueResponse>
 
     @Before
     fun setUp() {
         service = mock(RetrofitService::class.java)
 
-        leagueSchedulePastMatchesPresenter = mock(LeagueSchedulePastMatchesPresenter::class.java)
-        leagueScheduleUpcomingMatchesPresenter = mock(LeagueScheduleUpcomingMatchesPresenter::class.java)
-        matchSearchPresenter = mock(MatchSearchPresenter::class.java)
-
         leagueScheduleView = mock(LeagueScheduleView::class.java)
         matchSearchView = mock(MatchSearchView::class.java)
+
+        // leagueSchedulePastMatchesPresenter = mock(LeagueSchedulePastMatchesPresenter::class.java)
+        leagueSchedulePastMatchesPresenter = LeagueSchedulePastMatchesPresenter(leagueScheduleView, TestContextProvider())
+        leagueScheduleUpcomingMatchesPresenter = LeagueScheduleUpcomingMatchesPresenter(leagueScheduleView, TestContextProvider())
+        matchSearchPresenter = MatchSearchPresenter(matchSearchView, TestContextProvider())
 
         MockitoAnnotations.initMocks(this)
     }
 
     @Test
     fun loadLeagueSchedulePastMatchesTest() {
-        val leaguesList = mutableListOf<Match>()
+        val matchesList: List<Match> = listOf()
 
         runBlocking {
             `when`(service.getPastLeagueMatches(leagueId)).thenReturn(matchLeagueResponse)
-            `when`(leagueSchedulePastMatchesPresenter.getFetchedMatches(leagueId)).thenReturn(leaguesList)
+            //`when`(leagueSchedulePastMatchesPresenter.getFetchedMatches(leagueId)).thenReturn(matchesList)
 
             leagueSchedulePastMatchesPresenter.loadMatchesByLeague(leagueId, leagueName)
 
-            verify(leagueScheduleView).loadMatchesByLeague(leaguesList, leagueName)
+            verify(leagueScheduleView).loadMatchesByLeague(matchesList, leagueName)
             verify(leagueScheduleView).showNoResultsFound(leagueName)
             verify(leagueScheduleView).showResponseError(
                 matchLeagueResponse.code(),

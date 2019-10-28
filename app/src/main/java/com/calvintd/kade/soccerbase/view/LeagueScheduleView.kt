@@ -7,6 +7,7 @@ import retrofit2.HttpException
 interface LeagueScheduleView {
     fun loadMatchesByLeague(matches: List<Match>, league: String)
     fun showNoResultsFound(league: String)
+    fun showCallError(t: Throwable)
     fun showResponseError(code: Int, responseBody: ResponseBody?)
     fun showException(e: HttpException)
 }

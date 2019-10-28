@@ -92,6 +92,17 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         }
     }
 
+    override fun showCallError(t: Throwable) {
+        runOnUiThread {
+            toast(
+                String.format(
+                    resources.getString(R.string.error_messages_http_exception),
+                    t.localizedMessage
+                )
+            )
+        }
+    }
+
     override fun showNoResultsFound(query: String) {
         runOnUiThread {
             textView.visibility = View.VISIBLE

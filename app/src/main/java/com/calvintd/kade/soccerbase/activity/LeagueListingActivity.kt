@@ -65,6 +65,17 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
         }
     }
 
+    override fun showCallError(t: Throwable) {
+        runOnUiThread {
+            toast(
+                String.format(
+                    resources.getString(R.string.error_messages_http_exception),
+                    t.localizedMessage
+                )
+            )
+        }
+    }
+
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
         runOnUiThread {
             toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))

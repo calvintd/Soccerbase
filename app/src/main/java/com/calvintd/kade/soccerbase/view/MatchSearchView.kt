@@ -6,6 +6,7 @@ import retrofit2.HttpException
 
 interface MatchSearchView {
     fun loadMatchesByQuery(matches: List<Match>, query: String)
+    fun showCallError(t: Throwable)
     fun showNoResultsFound(query: String)
     fun showResponseError(code: Int, responseBody: ResponseBody?)
     fun showException(e: HttpException)
