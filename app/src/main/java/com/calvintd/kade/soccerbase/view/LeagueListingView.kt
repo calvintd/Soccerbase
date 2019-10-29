@@ -1,12 +1,11 @@
 package com.calvintd.kade.soccerbase.view
 
 import com.calvintd.kade.soccerbase.itemmodel.League
+import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
+import com.calvintd.kade.soccerbase.repository.LeagueResponseRepositoryCallback
 import okhttp3.ResponseBody
-import retrofit2.HttpException
 
-interface LeagueListingView {
+interface LeagueListingView : LeagueResponseRepositoryCallback<LeagueResponse> {
     fun loadData(leagues: List<League>)
-    fun showCallError(t: Throwable)
     fun showResponseError(code: Int, responseBody: ResponseBody?)
-    fun showException(e: HttpException)
 }

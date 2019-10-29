@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.adapter.LeagueAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
+import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.presenter.LeagueListingPresenter
+import com.calvintd.kade.soccerbase.repository.LeagueResponseRepository
 import com.calvintd.kade.soccerbase.view.LeagueListingView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -17,6 +19,7 @@ import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import retrofit2.HttpException
+import retrofit2.Response
 
 class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
     private lateinit var progressBar: ProgressBar
@@ -27,7 +30,7 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
 
         supportActionBar?.title = resources.getText(R.string.league_listing_activity_title)
 
-        val presenter = LeagueListingPresenter(this)
+        val presenter = LeagueListingPresenter(this, LeagueResponseRepository())
 
         scrollView{
             verticalLayout{
@@ -65,26 +68,17 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
         }
     }
 
-    override fun showCallError(t: Throwable) {
-        runOnUiThread {
-            toast(
-                String.format(
-                    resources.getString(R.string.error_messages_http_exception),
-                    t.localizedMessage
-                )
-            )
-        }
-    }
-
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
         runOnUiThread {
             toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
         }
     }
 
-    override fun showException(e: HttpException) {
-        runOnUiThread {
-            toast(String.format(resources.getString(R.string.error_messages_http_exception), e.message()))
-        }
+    override fun onDataLoaded(data: LeagueResponse?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDataError(response: Response<LeagueResponse>) {
+        showResponseError(response.code(), response.errorBody())
     }
 }

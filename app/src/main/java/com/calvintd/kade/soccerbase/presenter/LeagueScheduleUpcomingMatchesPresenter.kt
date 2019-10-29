@@ -7,7 +7,8 @@ import com.calvintd.kade.soccerbase.utils.FetchMatchesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import kotlinx.coroutines.*
 
-class LeagueScheduleUpcomingMatchesPresenter (private val view: LeagueScheduleView, private val context: CoroutineContextProvider = CoroutineContextProvider()) {
+class LeagueScheduleUpcomingMatchesPresenter (private val view: LeagueScheduleView,
+                                              private val context: CoroutineContextProvider = CoroutineContextProvider()) {
     private val instance = RetrofitInstance.getInstance()
     private val fetcher = FetchMatchesCoroutines
 

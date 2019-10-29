@@ -4,10 +4,8 @@
     <!-- activity titles -->
     <string name="main_activity_title">Soccerbase</string>
     <string name="league_listing_activity_title">League Listing</string>
-    <string name="league_navigation_activity_title">League Navigation</string>
     <string name="league_description_activity_title">League Description</string>
     <string name="league_schedule_activity_title">League Schedule</string>
-    <string name="match_details_activity_title">Match Details</string>
     <string name="match_search_activity_title">Match Search</string>
     <string name="favorite_matches_activity_title">Favorite Matches</string>
 
