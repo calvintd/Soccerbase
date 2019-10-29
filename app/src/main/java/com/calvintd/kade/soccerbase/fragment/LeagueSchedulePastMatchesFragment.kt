@@ -17,6 +17,7 @@ import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchesPresenter
+import com.calvintd.kade.soccerbase.repository.MatchLeagueResponseRepository
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
@@ -33,7 +34,7 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueScheduleView {
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private val presenter = LeagueSchedulePastMatchesPresenter(this)
+    private val presenter = LeagueSchedulePastMatchesPresenter(this, MatchLeagueResponseRepository())
 
     companion object {
         private const val LEAGUE_BUNDLE_ARG = "league"

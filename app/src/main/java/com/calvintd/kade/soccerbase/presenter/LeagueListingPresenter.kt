@@ -16,8 +16,6 @@ import retrofit2.awaitResponse
 
 class LeagueListingPresenter(private val view: LeagueListingView, private val repository: LeagueResponseRepository,
                              private val context: CoroutineContextProvider = CoroutineContextProvider()) {
-    private val fetcher = FetchLeaguesCoroutines
-
     fun loadData() {
         val fetchedMatches = CoroutineScope(Dispatchers.IO).async {
             getFetchedLeagues()
@@ -44,7 +42,7 @@ class LeagueListingPresenter(private val view: LeagueListingView, private val re
 
             })
 
-            fetcher.getFetchedLeagues(view, response)
+            FetchLeaguesCoroutines.getFetchedLeagues(view, response)
         }
     }
 }
