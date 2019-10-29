@@ -23,23 +23,8 @@ class LeagueListingPresenter(private val view: LeagueListingView) {
 
     suspend fun getFetchedLeagues(): List<League> {
         return withContext(Dispatchers.Main) {
-            val call = instance.getSoccerLeagues()
-            lateinit var responseParam: Response<LeagueResponse>
-
-            call.enqueue(object : Callback<LeagueResponse> {
-                override fun onFailure(call: Call<LeagueResponse>, t: Throwable) {
-                    view.showCallError(t)
-                }
-
-                override fun onResponse(
-                    call: Call<LeagueResponse>,
-                    response: Response<LeagueResponse>
-                ) {
-                    responseParam = response
-                }
-            })
-
-            fetcher.getFetchedLeagues(view, responseParam)
+            val response = instance.getSoccerLeagues()
+            fetcher.getFetchedLeagues(view, response)
         }
     }
 }

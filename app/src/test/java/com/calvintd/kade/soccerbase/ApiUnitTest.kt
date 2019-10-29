@@ -8,9 +8,16 @@ import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
 import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchesPresenter
 import com.calvintd.kade.soccerbase.presenter.LeagueScheduleUpcomingMatchesPresenter
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
+import com.calvintd.kade.soccerbase.utils.FetchMatchesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import com.calvintd.kade.soccerbase.view.MatchSearchView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.setMain
+import org.junit.After
 import org.junit.Test
 
 import org.junit.Before
@@ -29,9 +36,12 @@ import retrofit2.awaitResponse
 class ApiUnitTest {
     private val leagueId = 4328
     private val leagueName = "English Premier League"
+    private val testContextProvider = TestContextProvider()
 
     @Mock
-    private var service: RetrofitService = RetrofitInstance.getInstance()
+    private val service: RetrofitService = RetrofitInstance.getInstance()
+    @Mock
+    private val fetcher = FetchMatchesCoroutines
 
     private lateinit var leagueSchedulePastMatchesPresenter: LeagueSchedulePastMatchesPresenter
     private lateinit var leagueScheduleUpcomingMatchesPresenter: LeagueScheduleUpcomingMatchesPresenter
@@ -41,36 +51,38 @@ class ApiUnitTest {
     private val matchSearchView: MatchSearchView = mock(MatchSearchView::class.java)
 
     @Mock
-    private lateinit var matchCall: Call<MatchResponse>
-    @Mock
-    private lateinit var matchLeagueCall: Call<MatchLeagueResponse>
-    @Mock
     private lateinit var matchResponse: Response<MatchResponse>
     @Mock
     private lateinit var matchLeagueResponse: Response<MatchLeagueResponse>
 
+    @ExperimentalCoroutinesApi
     @Before
     fun setUp() {
-        service = mock(RetrofitService::class.java)
+        // Dispatchers.setMain(Dispatchers.Unconfined)
 
-        // leagueSchedulePastMatchesPresenter = mock(LeagueSchedulePastMatchesPresenter::class.java)
-        leagueSchedulePastMatchesPresenter = LeagueSchedulePastMatchesPresenter(leagueScheduleView, TestContextProvider())
-        leagueScheduleUpcomingMatchesPresenter = LeagueScheduleUpcomingMatchesPresenter(leagueScheduleView, TestContextProvider())
-        matchSearchPresenter = MatchSearchPresenter(matchSearchView, TestContextProvider())
+        leagueScheduleUpcomingMatchesPresenter = LeagueScheduleUpcomingMatchesPresenter(leagueScheduleView, testContextProvider)
+        matchSearchPresenter = MatchSearchPresenter(matchSearchView, testContextProvider)
 
         MockitoAnnotations.initMocks(this)
     }
 
+    @ExperimentalCoroutinesApi
+    @After
+    fun tearDown() {
+        Dispatchers.resetMain()
+    }
+
+    @ExperimentalCoroutinesApi
     @Test
     fun loadLeagueSchedulePastMatchesTest() {
         val matchesList = listOf<Match>()
+        leagueSchedulePastMatchesPresenter = LeagueSchedulePastMatchesPresenter(leagueScheduleView, testContextProvider)
 
-        runBlocking {
-            `when`(service.getPastLeagueMatches(leagueId)).thenReturn(matchLeagueCall)
-            //`when`(matchLeagueCall.awaitResponse()).thenReturn(matchLeagueResponse)
-            `when`(leagueSchedulePastMatchesPresenter.getFetchedMatches(leagueId)).thenReturn(matchesList)
+        runBlockingTest {
+            `when`(service.getPastLeagueMatches(leagueId)).thenReturn(matchLeagueResponse)
 
             leagueSchedulePastMatchesPresenter.loadMatchesByLeague(leagueId, leagueName)
+            `when`(fetcher.getFetchedMatchesLeagueSchedule(leagueScheduleView, matchLeagueResponse)).thenReturn(matchesList)
 
             verify(leagueScheduleView).loadMatchesByLeague(matchesList, leagueName)
         }

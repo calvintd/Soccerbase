@@ -2,14 +2,10 @@ package com.calvintd.kade.soccerbase.presenter
 
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.Match
-import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
 import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
 import com.calvintd.kade.soccerbase.utils.FetchMatchesCoroutines
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MatchSearchPresenter(private val view: MatchSearchView, private val context: CoroutineContextProvider = CoroutineContextProvider()) {
     private val instance = RetrofitInstance.getInstance()
@@ -31,22 +27,8 @@ class MatchSearchPresenter(private val view: MatchSearchView, private val contex
 
     suspend fun getFetchedMatches(query: String): List<Match> {
         return withContext(context.main) {
-            lateinit var responseParam: Response<MatchResponse>
-
-            instance.getMatchesSearch(query).enqueue(object : Callback<MatchResponse> {
-                override fun onFailure(call: Call<MatchResponse>, t: Throwable) {
-                    view.showCallError(t)
-                }
-
-                override fun onResponse(
-                    call: Call<MatchResponse>,
-                    response: Response<MatchResponse>
-                ) {
-                    responseParam = response
-                }
-            })
-
-            fetcher.getFetchedMatchesMatchSearch(view, responseParam)
+            val response = instance.getMatchesSearch(query)
+            fetcher.getFetchedMatchesMatchSearch(view, response)
         }
     }
 }
