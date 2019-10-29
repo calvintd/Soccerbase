@@ -101,10 +101,4 @@ class ApiUnitTest {
 
         }
     }
-
-    @Test
-    fun loadMatchDetailsTest() {
-
-    }
-
 }

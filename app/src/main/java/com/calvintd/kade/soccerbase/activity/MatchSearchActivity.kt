@@ -37,6 +37,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
             lparams(width = matchParent, height = matchParent)
 
             searchView = searchView {
+                id = R.id.svMatchSearchView
                 isSubmitButtonEnabled = true
                 isIconified = false
                 queryHint = resources.getString(R.string.match_search_query_hint)
@@ -53,6 +54,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
             }.lparams(width = matchParent, height = wrapContent)
 
             textView = textView {
+                id = R.id.tvMatchSearchResults
                 padding = 32
                 textSize = 16f
                 visibility = View.GONE
@@ -60,12 +62,14 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
             }.lparams(width = matchParent, height = wrapContent)
 
             progressBar = progressBar {
+                id = R.id.pbMatchSearchProgressBar
                 padding = 128
                 visibility = View.GONE
             }.lparams(width = matchParent, height = matchParent)
 
             scrollView {
                 recyclerView = recyclerView {
+                    id = R.id.rvMatchSearchRecyclerView
                     lparams(width = matchParent, height = wrapContent)
                     layoutManager = LinearLayoutManager(this@MatchSearchActivity)
                     visibility = View.GONE

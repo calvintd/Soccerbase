@@ -64,6 +64,9 @@
 
     <!-- match search -->
     <item name="svMatchSearchView" type="id"/>
+    <item name="pbMatchSearchProgressBar" type="id"/>
+    <item name="tvMatchSearchResults" type="id"/>
+    <item name="rvMatchSearchRecyclerView" type="id"/>
 
     <!-- match details -->
     <item name="glMatchDetailsHeaderCenterGuideline" type="id"/>
