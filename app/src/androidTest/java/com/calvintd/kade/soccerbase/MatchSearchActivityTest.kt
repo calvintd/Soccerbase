@@ -42,6 +42,8 @@ class MatchSearchActivityTest {
     @Test
     fun matchSearchingTestFound() {
         onView(withId(R.id.svMatchSearchView))
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.svMatchSearchView))
             .perform(ViewActions.click())
         onView(isAssignableFrom(EditText::class.java))
             .perform(ViewActions.typeText(testTeamNameFound), ViewActions.pressImeActionButton())
@@ -57,6 +59,8 @@ class MatchSearchActivityTest {
 
     @Test
     fun matchSearchingTestZero() {
+        onView(withId(R.id.svMatchSearchView))
+            .check(matches(isDisplayed()))
         onView(withId(R.id.svMatchSearchView))
             .perform(ViewActions.click())
         onView(isAssignableFrom(EditText::class.java))
