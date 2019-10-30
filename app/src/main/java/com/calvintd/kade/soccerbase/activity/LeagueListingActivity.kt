@@ -1,6 +1,7 @@
 package com.calvintd.kade.soccerbase.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +14,9 @@ import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.presenter.LeagueListingPresenter
 import com.calvintd.kade.soccerbase.repository.LeagueResponseRepository
 import com.calvintd.kade.soccerbase.view.LeagueListingView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import retrofit2.HttpException
 import retrofit2.Response
 
 class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
@@ -75,7 +73,7 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
     }
 
     override fun onDataLoaded(data: LeagueResponse?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
     }
 
     override fun onDataError(response: Response<LeagueResponse>) {

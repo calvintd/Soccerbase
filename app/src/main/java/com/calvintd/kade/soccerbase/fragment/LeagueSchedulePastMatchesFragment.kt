@@ -2,6 +2,7 @@ package com.calvintd.kade.soccerbase.fragment
 
 import android.os.Bundle
 import android.os.Parcelable
+import android.util.Log
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.calvintd.kade.soccerbase.activity.MatchDetailsActivity
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.Match
+import com.calvintd.kade.soccerbase.itemmodel.MatchLeagueResponse
 import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchesPresenter
 import com.calvintd.kade.soccerbase.repository.MatchLeagueResponseRepository
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
@@ -26,6 +28,7 @@ import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.runOnUiThread
 import org.jetbrains.anko.support.v4.toast
 import retrofit2.HttpException
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -116,17 +119,6 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueScheduleView {
         }
     }
 
-    override fun showCallError(t: Throwable) {
-        runOnUiThread {
-            toast(
-                String.format(
-                    resources.getString(R.string.error_messages_http_exception),
-                    t.localizedMessage
-                )
-            )
-        }
-    }
-
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
         runOnUiThread {
             toast(
@@ -139,14 +131,11 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueScheduleView {
         }
     }
 
-    override fun showException(e: HttpException) {
-        runOnUiThread {
-            toast(
-                String.format(
-                    resources.getString(R.string.error_messages_http_exception),
-                    e.message()
-                )
-            )
-        }
+    override fun onDataLoaded(data: MatchLeagueResponse?) {
+        Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
+    }
+
+    override fun onDataError(response: Response<MatchLeagueResponse>) {
+        showResponseError(response.code(), response.errorBody())
     }
 }

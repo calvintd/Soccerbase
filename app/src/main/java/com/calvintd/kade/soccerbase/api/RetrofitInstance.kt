@@ -17,10 +17,11 @@ object RetrofitInstance {
 
     private val client = clientBuilder.build()
 
-    fun getInstance(): RetrofitService = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
-        .create(RetrofitService::class.java)
+    fun getInstance(): RetrofitService {return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(RetrofitService::class.java)
+    }
 }

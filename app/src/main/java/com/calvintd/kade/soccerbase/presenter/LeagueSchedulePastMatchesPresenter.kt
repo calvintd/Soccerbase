@@ -1,13 +1,14 @@
 package com.calvintd.kade.soccerbase.presenter
 
-import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.MatchLeagueResponse
 import com.calvintd.kade.soccerbase.repository.MatchLeagueResponseRepository
+import com.calvintd.kade.soccerbase.repository.MatchLeagueResponseRepositoryCallback
 import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
 import com.calvintd.kade.soccerbase.utils.FetchMatchesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import kotlinx.coroutines.*
+import retrofit2.Response
 
 class LeagueSchedulePastMatchesPresenter (private val view: LeagueScheduleView, private val repository: MatchLeagueResponseRepository,
                                           private val context: CoroutineContextProvider = CoroutineContextProvider()) {
@@ -30,7 +31,16 @@ class LeagueSchedulePastMatchesPresenter (private val view: LeagueScheduleView, 
         return withContext(context.main) {
             var response: MatchLeagueResponse? = MatchLeagueResponse(listOf())
 
+            repository.getPastLeagueMatches(leagueId, object: MatchLeagueResponseRepositoryCallback<MatchLeagueResponse> {
+                override fun onDataLoaded(data: MatchLeagueResponse?) {
+                    response = data
+                    view.onDataLoaded(data)
+                }
 
+                override fun onDataError(response: Response<MatchLeagueResponse>) {
+                    view.onDataError(response)
+                }
+            })
 
             FetchMatchesCoroutines.getFetchedMatchesLeagueSchedule(view, response)
         }

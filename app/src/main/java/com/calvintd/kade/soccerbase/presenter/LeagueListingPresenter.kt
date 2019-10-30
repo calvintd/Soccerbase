@@ -1,6 +1,5 @@
 package com.calvintd.kade.soccerbase.presenter
 
-import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.repository.LeagueResponseRepository
@@ -9,10 +8,7 @@ import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
 import com.calvintd.kade.soccerbase.utils.FetchLeaguesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueListingView
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.awaitResponse
 
 class LeagueListingPresenter(private val view: LeagueListingView, private val repository: LeagueResponseRepository,
                              private val context: CoroutineContextProvider = CoroutineContextProvider()) {
@@ -39,10 +35,9 @@ class LeagueListingPresenter(private val view: LeagueListingView, private val re
                 override fun onDataError(response: Response<LeagueResponse>) {
                     view.onDataError(response)
                 }
-
             })
 
-            FetchLeaguesCoroutines.getFetchedLeagues(view, response)
+            FetchLeaguesCoroutines.getFetchedLeagues(response)
         }
     }
 }

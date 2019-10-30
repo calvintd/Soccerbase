@@ -8,7 +8,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 
 object FetchLeaguesCoroutines {
-    suspend fun getFetchedLeagues(view: LeagueListingView, data: LeagueResponse?): List<League> {
+    suspend fun getFetchedLeagues(data: LeagueResponse?): List<League> {
         return withContext(Dispatchers.Main) {
             val fetchedLeagues = mutableListOf<League>()
             val leagueResponseItems = data!!.leagues

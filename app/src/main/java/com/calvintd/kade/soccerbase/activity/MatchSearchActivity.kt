@@ -1,6 +1,7 @@
 package com.calvintd.kade.soccerbase.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.ProgressBar
@@ -12,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.Match
+import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
+import com.calvintd.kade.soccerbase.repository.MatchResponseRepository
+import com.calvintd.kade.soccerbase.utils.EspressoIdlingResource
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
-import retrofit2.HttpException
+import retrofit2.Response
 
 class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
     private lateinit var searchView: SearchView
@@ -31,7 +35,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
 
         supportActionBar?.title = resources.getString(R.string.match_search_activity_title)
 
-        val presenter = MatchSearchPresenter(this)
+        val presenter = MatchSearchPresenter(this, MatchResponseRepository())
 
         verticalLayout {
             lparams(width = matchParent, height = matchParent)
@@ -47,6 +51,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                         progressBar.visibility = View.VISIBLE
                         textView.visibility = View.GONE
                         val query = searchView.query.toString()
+                        EspressoIdlingResource.increment()
                         presenter.loadMatchesByQuery(query)
                         false
                     }
@@ -80,6 +85,9 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
 
     override fun loadMatchesByQuery(matches: List<Match>, query: String) {
         runOnUiThread {
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                EspressoIdlingResource.decrement()
+            }
             textView.text = String.format(
                 resources.getString(R.string.match_search_search_results_for_query),
                 query
@@ -89,33 +97,25 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                     "match" to it
                 )
             }
-            recyclerView.adapter!!.notifyDataSetChanged()
             progressBar.visibility = View.GONE
+            recyclerView.adapter!!.notifyDataSetChanged()
             textView.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
         }
     }
 
-    override fun showCallError(t: Throwable) {
-        runOnUiThread {
-            toast(
-                String.format(
-                    resources.getString(R.string.error_messages_http_exception),
-                    t.localizedMessage
-                )
-            )
-        }
-    }
-
     override fun showNoResultsFound(query: String) {
         runOnUiThread {
+            if (!EspressoIdlingResource.idlingresource.isIdleNow) {
+                EspressoIdlingResource.decrement()
+            }
             textView.visibility = View.VISIBLE
             textView.text = String.format(
                 resources.getString(R.string.match_search_no_search_results_found),
                 query
             )
-            recyclerView.adapter?.notifyDataSetChanged()
             progressBar.visibility = View.GONE
+            recyclerView.adapter?.notifyDataSetChanged()
         }
     }
 
@@ -125,9 +125,11 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         }
     }
 
-    override fun showException(e: HttpException) {
-        runOnUiThread {
-            toast(String.format(resources.getString(R.string.error_messages_http_exception),e.message()))
-        }
+    override fun onDataLoaded(data: MatchResponse?) {
+        Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
+    }
+
+    override fun onDataError(response: Response<MatchResponse>) {
+        showResponseError(response.code(), response.errorBody())
     }
 }

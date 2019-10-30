@@ -71,4 +71,8 @@
 
     <!-- database helper -->
     <string name="database_helper_db_name">Soccerbase.db</string>
+
+    <!-- logging -->
+    <string name="logging_loaded_log_title">Data loaded</string>
+    <string name="logging_loaded_log_message">Data has been successfully fetched from the API; currently formatting the data to be displayed…</string>
 </resources>
