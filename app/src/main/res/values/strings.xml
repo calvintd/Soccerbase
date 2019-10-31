@@ -29,6 +29,8 @@
     <string name="match_search_no_search_results_found">"No search results found for \"%s\".</string>
 
     <!-- league listing -->
+    <string name="league_listing_standings_button">Standings</string>
+    <string name="league_listing_teams_button">Teams</string>
     <string name="league_listing_description_button">Description</string>
     <string name="league_listing_schedule_button">Schedule</string>
 

@@ -4,4 +4,4 @@ import com.google.gson.annotations.SerializedName
 
 class LeagueResponse (
     @SerializedName("countrys")
-    var leagues: List<Leagues>)
+    var leagues: List<LeagueResponseItem>)

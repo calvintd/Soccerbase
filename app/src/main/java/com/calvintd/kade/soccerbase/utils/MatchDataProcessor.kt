@@ -6,7 +6,7 @@ object MatchDataProcessor {
     private val splitter = MatchDetailsSplitter
     private val formatter = MatchDateTimeFormatter
 
-    fun matchDataInit (matchResponseItem: Matches) : Match {
+    fun matchDataInit (matchResponseItem: MatchResponseItem) : Match {
         // general data
         val matchId = matchResponseItem.matchId
         val homeTeamId = matchResponseItem.homeTeamId
