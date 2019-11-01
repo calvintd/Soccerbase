@@ -1,6 +1,8 @@
 package com.calvintd.kade.soccerbase.utils
 
-import com.calvintd.kade.soccerbase.itemmodel.*
+import com.calvintd.kade.soccerbase.itemmodel.Match
+import com.calvintd.kade.soccerbase.itemmodel.MatchResponseItem
+import com.calvintd.kade.soccerbase.itemmodel.TeamResponseItem
 
 object MatchDataProcessor {
     private val splitter = MatchDetailsSplitter
@@ -105,7 +107,7 @@ object MatchDataProcessor {
         )
     }
 
-    fun assignBadge (matchItem: Match, homeTeamResponseItem: List<TeamResponse.Teams>?, awayTeamResponseItem: List<TeamResponse.Teams>?) : Match {
+    fun assignBadge (matchItem: Match, homeTeamResponseItem: List<TeamResponseItem>?, awayTeamResponseItem: List<TeamResponseItem>?) : Match {
         if (homeTeamResponseItem != null && awayTeamResponseItem != null) {
             matchItem.homeBadge = homeTeamResponseItem.last().teamBadge.plus("/preview")
             matchItem.awayBadge = awayTeamResponseItem.last().teamBadge.plus("/preview")

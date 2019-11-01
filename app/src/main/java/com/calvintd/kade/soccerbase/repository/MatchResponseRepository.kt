@@ -6,7 +6,7 @@ import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
 class MatchResponseRepository {
     suspend fun getMatchesSearch(query: String, callback: MatchResponseRepositoryCallback<MatchResponse>) {
         val instance = RetrofitInstance.getInstance()
-        val response = instance.getMatchesSearch(query)
+        val response = instance.getMatchesByTeamName(query)
 
         if (response.isSuccessful) {
             callback.onDataLoaded(response.body())
