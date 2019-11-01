@@ -8,6 +8,9 @@ import com.calvintd.kade.soccerbase.presenter.LeagueSchedulePastMatchesPresenter
 import com.calvintd.kade.soccerbase.presenter.LeagueScheduleUpcomingMatchesPresenter
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
 import com.calvintd.kade.soccerbase.repository.*
+import com.calvintd.kade.soccerbase.repository.callback.LeagueResponseRepositoryCallback
+import com.calvintd.kade.soccerbase.repository.callback.MatchLeagueResponseRepositoryCallback
+import com.calvintd.kade.soccerbase.repository.callback.MatchResponseRepositoryCallback
 import com.calvintd.kade.soccerbase.view.LeagueListingView
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import com.calvintd.kade.soccerbase.view.MatchSearchView
@@ -16,12 +19,10 @@ import com.nhaarman.mockito_kotlin.eq
 import com.nhaarman.mockito_kotlin.verify
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.Before
 import org.junit.Test
-import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 

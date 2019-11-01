@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.activity
+package com.calvintd.kade.soccerbase.activity.listing
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.activity.league.LeagueDescriptionActivity
+import com.calvintd.kade.soccerbase.activity.league.LeagueScheduleActivity
+import com.calvintd.kade.soccerbase.activity.league.LeagueStandingsActivity
 import com.calvintd.kade.soccerbase.adapter.LeagueAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
@@ -52,6 +55,10 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
     override fun loadData(leagues: List<League>) {
         runOnUiThread {
             recyclerView.adapter = LeagueAdapter(leagues, {
+                startActivity<LeagueStandingsActivity>(
+                    "league" to it
+                )
+            }, {
                 startActivity<LeagueDescriptionActivity>(
                     "league" to it
                 )

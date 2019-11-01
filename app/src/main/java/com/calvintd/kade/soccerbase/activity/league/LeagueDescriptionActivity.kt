@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.activity
+package com.calvintd.kade.soccerbase.activity.league
 
 import android.graphics.Typeface
 import android.os.Build

@@ -20,6 +20,9 @@
     <item name="ivLeagueBadge" type="id"/>
     <item name="tvLeagueName" type="id"/>
     <item name="glButtonGuideline" type="id"/>
+    <item name="llListingStandingsLayout" type="id"/>
+    <item name="ivListingStandingsIcon" type="id"/>
+    <item name="tvListingStandingsName" type="id"/>
     <item name="llListingDescriptionLayout" type="id"/>
     <item name="ivListingDescriptionIcon" type="id"/>
     <item name="tvListingDescriptionName" type="id"/>

@@ -2,6 +2,7 @@ package com.calvintd.kade.soccerbase.repository
 
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.MatchLeagueResponse
+import com.calvintd.kade.soccerbase.repository.callback.MatchLeagueResponseRepositoryCallback
 
 class MatchLeagueResponseRepository {
     private val instance = RetrofitInstance.getInstance()

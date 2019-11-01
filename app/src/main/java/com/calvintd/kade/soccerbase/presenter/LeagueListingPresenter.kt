@@ -3,7 +3,7 @@ package com.calvintd.kade.soccerbase.presenter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.repository.LeagueResponseRepository
-import com.calvintd.kade.soccerbase.repository.LeagueResponseRepositoryCallback
+import com.calvintd.kade.soccerbase.repository.callback.LeagueResponseRepositoryCallback
 import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
 import com.calvintd.kade.soccerbase.utils.FetchLeaguesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueListingView
@@ -26,7 +26,8 @@ class LeagueListingPresenter(private val view: LeagueListingView, private val re
         return withContext(context.main) {
             var response: LeagueResponse? = LeagueResponse(listOf())
 
-            repository.getSoccerLeagues(object: LeagueResponseRepositoryCallback<LeagueResponse> {
+            repository.getSoccerLeagues(object:
+                LeagueResponseRepositoryCallback<LeagueResponse> {
                 override fun onDataLoaded(data: LeagueResponse?) {
                     response = data
                     view.onDataLoaded(data)

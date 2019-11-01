@@ -12,20 +12,20 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.activity.LeagueDescriptionActivity
-import com.calvintd.kade.soccerbase.activity.LeagueScheduleActivity
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class LeagueAdapter (private val leagues: List<League>, private val descriptionListener: (League) -> Unit, private val scheduleListener: (League) -> Unit) :
+class LeagueAdapter (private val leagues: List<League>, private val standingsListener: (League) -> Unit,
+                     private val descriptionListener: (League) -> Unit, private val scheduleListener: (League) -> Unit) :
     RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LeagueUI().createView(AnkoContext.Companion.create(parent.context, parent)))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(leagues[position], descriptionListener, scheduleListener)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(leagues[position], standingsListener, descriptionListener,
+        scheduleListener)
 
     override fun getItemCount(): Int = leagues.size
 
@@ -64,6 +64,27 @@ class LeagueAdapter (private val leagues: List<League>, private val descriptionL
                     id = R.id.glButtonGuideline
                 }.lparams(width = matchConstraint, height = 0) {
                     orientation = ConstraintLayout.LayoutParams.HORIZONTAL
+                }
+
+                val standingsButton = linearLayout {
+                    id = R.id.llListingStandingsLayout
+                    lparams(width = wrapContent, height = wrapContent)
+                    isClickable = true
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = Gravity.CENTER_VERTICAL
+
+                    imageView {
+                        id = R.id.ivListingStandingsIcon
+                        image = resources.getDrawable(R.drawable.standings, context.theme)
+                        rightPadding = iconPadding
+                    }.lparams(width = iconSize, height = iconSize)
+
+                    textView {
+                        id = R.id.tvListingStandingsName
+                        text = resources.getString(R.string.league_listing_standings_button)
+                        textSize = buttonTextSize
+                        textColor = Color.rgb(255, 127, 80)
+                    }.lparams(width = wrapContent, height = wrapContent)
                 }
 
                 val descriptionButton = linearLayout {
@@ -129,6 +150,14 @@ class LeagueAdapter (private val leagues: List<League>, private val descriptionL
                         )
                     }
 
+                    standingsButton {
+                        connect(
+                            end to start of descriptionButton margin dip(margin),
+                            top to bottom of buttonGuideline,
+                            bottom to bottom of parent
+                        )
+                    }
+
                     descriptionButton {
                         connect (
                             end to start of scheduleButton margin dip(margin),
@@ -152,10 +181,12 @@ class LeagueAdapter (private val leagues: List<League>, private val descriptionL
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
         private val badge = view.find<ImageView>(R.id.ivLeagueBadge)
         private val name = view.find<TextView>(R.id.tvLeagueName)
+        private val standingsButton = view.find<LinearLayout>(R.id.llListingStandingsLayout)
         private val descriptionButton = view.find<LinearLayout>(R.id.llListingDescriptionLayout)
         private val scheduleButton = view.find<LinearLayout>(R.id.llListingScheduleLayout)
 
-        fun bindItem (league: League, descriptionListener: (League) -> Unit, scheduleListener: (League) -> Unit) {
+        fun bindItem (league: League, standingsListener: (League) -> Unit, descriptionListener: (League) -> Unit,
+                      scheduleListener: (League) -> Unit) {
             league.badge.let {
                 Picasso.get()
                 .load(it)
@@ -166,6 +197,10 @@ class LeagueAdapter (private val leagues: List<League>, private val descriptionL
                 .into(badge) }
 
             name.text = league.name
+
+            standingsButton.onClick {
+                standingsListener(league)
+            }
 
             descriptionButton.onClick {
                 descriptionListener(league)

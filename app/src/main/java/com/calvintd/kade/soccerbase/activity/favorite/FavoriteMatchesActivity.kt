@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.activity
+package com.calvintd.kade.soccerbase.activity.favorite
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.activity.MatchDetailsActivity
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.itemmodel.Match

@@ -7,6 +7,9 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.activity.favorite.FavoriteMatchesActivity
+import com.calvintd.kade.soccerbase.activity.listing.LeagueListingActivity
+import com.calvintd.kade.soccerbase.activity.search.MatchSearchActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick

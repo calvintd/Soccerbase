@@ -18,12 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueListingActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueDescriptionActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.LeagueScheduleActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.listing.ListingNavigationActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.listing.LeagueListingActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.league.LeagueDescriptionActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.league.LeagueScheduleActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.MatchDetailsActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.MatchSearchActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.FavoriteMatchesActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.search.SearchNavigationActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.search.MatchSearchActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteNavigationActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteMatchesActivity"/>
     </application>
 
 </manifest>

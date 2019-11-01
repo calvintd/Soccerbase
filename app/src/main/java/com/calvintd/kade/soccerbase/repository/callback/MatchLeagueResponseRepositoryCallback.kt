@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.repository
+package com.calvintd.kade.soccerbase.repository.callback
 
 import retrofit2.Response
 

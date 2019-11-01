@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.activity
+package com.calvintd.kade.soccerbase.activity.league
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
