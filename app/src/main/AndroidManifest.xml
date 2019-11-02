@@ -20,13 +20,20 @@
         </activity>
         <activity android:name="com.calvintd.kade.soccerbase.activity.listing.ListingNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.listing.LeagueListingActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.listing.TeamListingActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.listing.PlayerListingActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.league.LeagueDescriptionActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.league.LeagueScheduleActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.MatchDetailsActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.league.LeagueStandingsActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.details.MatchDetailsActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.details.PlayerDetailsActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.details.TeamDetailsActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.search.SearchNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.search.MatchSearchActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.search.TeamSearchActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteMatchesActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteTeamsActivity"/>
     </application>
 
 </manifest>

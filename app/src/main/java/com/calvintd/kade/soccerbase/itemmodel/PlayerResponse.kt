@@ -1,4 +1,7 @@
 package com.calvintd.kade.soccerbase.itemmodel
 
-class PlayerResponse {
-}
+import com.google.gson.annotations.SerializedName
+
+class PlayerResponse (
+    @SerializedName("player")
+    var players: List<PlayerResponseItem>)

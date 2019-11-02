@@ -5,9 +5,8 @@ import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.repository.callback.LeagueResponseRepositoryCallback
 
 class LeagueResponseRepository {
-    private val instance = RetrofitInstance.getInstance()
-
     suspend fun getSoccerLeagues(callback: LeagueResponseRepositoryCallback<LeagueResponse>) {
+        val instance = RetrofitInstance.getInstance()
         val response = instance.getSoccerLeagues()
 
         if (response.isSuccessful) {

@@ -70,7 +70,7 @@ class Match (
         const val ID = "ID_"
 
         // favorite matches
-        const val TABLE_FAVORITE = "TABLE_FAVORITE"
+        const val TABLE_FAVORITE = "TABLE_FAVORITE_MATCHES"
 
         // general data
         const val MATCH_ID = "MATCH_ID"

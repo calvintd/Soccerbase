@@ -4,10 +4,11 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.itemmodel.Match
+import com.calvintd.kade.soccerbase.itemmodel.Team
 import org.jetbrains.anko.db.*
 
 class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
-    context.resources.getString(R.string.database_helper_db_name), null, 1) {
+    context.resources.getString(R.string.database_helper_db_name), null, 2) {
     companion object {
         private var instance: DatabaseHelper? = null
 
@@ -21,6 +22,7 @@ class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
     }
 
     override fun onCreate(db: SQLiteDatabase) {
+        // favorite matches
         db.createTable(Match.TABLE_FAVORITE,
             true,
             Match.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
@@ -38,6 +40,23 @@ class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
             Match.MATCH_DATE to TEXT,
             Match.MATCH_TIME to TEXT
         )
+
+        // favorite teams
+        db.createTable(Team.TABLE_FAVORITE,
+            true,
+            Team.ID to INTEGER + PRIMARY_KEY + AUTOINCREMENT + UNIQUE,
+            Team.TEAM_ID to INTEGER + UNIQUE,
+            Team.TEAM_YEAR_FORMED to INTEGER,
+            Team.TEAM_STADIUM to TEXT,
+            Team.TEAM_STADIUM_LOCATION to TEXT,
+            Team.TEAM_STADIUM_CAPACITY to INTEGER,
+            Team.TEAM_WEBSITE to TEXT,
+            Team.TEAM_FACEBOOK to TEXT,
+            Team.TEAM_TWITTER to TEXT,
+            Team.TEAM_INSTAGRAM to TEXT,
+            Team.TEAM_YOUTUBE to TEXT,
+            Team.TEAM_BADGE to TEXT,
+            Team.TEAM_BANNER to TEXT)
 
         // home details
         db.createTable(Match.TABLE_HOME_GOALS,
@@ -158,6 +177,7 @@ class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.dropTable(Match.TABLE_FAVORITE, true)
+        db.dropTable(Team.TABLE_FAVORITE, true)
         db.dropTable(Match.TABLE_HOME_GOALS, true)
         db.dropTable(Match.TABLE_HOME_RED_CARDS, true)
         db.dropTable(Match.TABLE_HOME_YELLOW_CARDS, true)

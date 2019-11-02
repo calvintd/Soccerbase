@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.activity
+package com.calvintd.kade.soccerbase.activity.details
 
 import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Typeface
@@ -18,7 +18,6 @@ import com.calvintd.kade.soccerbase.view.MatchDetailsView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
-import org.jetbrains.anko.design.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
 class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
