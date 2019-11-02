@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
                 textView {
                     id = R.id.tvListingName
-                    text = resources.getString(R.string.main_activity_league_listing_button)
+                    text = resources.getString(R.string.main_activity_listings_button)
                     textSize = buttonTextSize
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = wrapContent, height = wrapContent)
@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
                 textView {
                     id = R.id.tvSearchName
-                    text = resources.getString(R.string.main_activity_match_search_button)
+                    text = resources.getString(R.string.main_activity_search_button)
                     textSize = buttonTextSize
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = wrapContent, height = wrapContent)
@@ -103,21 +103,21 @@ class MainActivity : AppCompatActivity() {
             }.lparams(width = matchConstraint, height = wrapContent)
 
             val favoriteButton = linearLayout {
-                id = R.id.llFavoriteLayout
+                id = R.id.llFavoritesLayout
                 lparams(width = wrapContent, height = wrapContent)
                 isClickable = true
                 orientation = LinearLayout.HORIZONTAL
                 gravity = Gravity.CENTER
 
                 imageView {
-                    id = R.id.ivFavoriteIcon
+                    id = R.id.ivFavoritesIcon
                     padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, theme)
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 textView {
-                    id = R.id.tvFavoriteName
-                    text = resources.getString(R.string.main_activity_favorite_matches_button)
+                    id = R.id.tvFavoritesName
+                    text = resources.getString(R.string.main_activity_favorites_button)
                     textSize = buttonTextSize
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = wrapContent, height = wrapContent)

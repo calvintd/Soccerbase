@@ -3,11 +3,19 @@
 
     <!-- activity titles -->
     <string name="main_activity_title">Soccerbase</string>
+    <string name="listings_navigation_activity_title">Listings Navigation</string>
+    <string name="search_navigation_activity_title">Search Navigation</string>
+    <string name="favorite_navigation_activity_title">Favorite Navigation</string>
     <string name="league_listing_activity_title">League Listing</string>
+    <string name="team_listing_activity_title">Team Listing</string>
+    <string name="player_listing_activity_title">Player Listing</string>
     <string name="league_description_activity_title">League Description</string>
     <string name="league_schedule_activity_title">League Schedule</string>
+    <string name="league_standings_activity_title">League Standings</string>
     <string name="match_search_activity_title">Match Search</string>
+    <string name="team_search_activity_title">Team Search</string>
     <string name="favorite_matches_activity_title">Favorite Matches</string>
+    <string name="favorite_teams_activity_title">Favorite Teams</string>
 
     <!-- placeholders -->
     <string name="item_league_name_placeholder">League Name</string>
@@ -19,9 +27,24 @@
 
     <!-- main activity -->
     <string name="main_activity_tagline">Your soccer info companion!</string>
-    <string name="main_activity_league_listing_button">League Listing</string>
-    <string name="main_activity_match_search_button">Match Search</string>
-    <string name="main_activity_favorite_matches_button">Favorite Matches</string>
+    <string name="main_activity_listings_button">Listings</string>
+    <string name="main_activity_search_button">Search</string>
+    <string name="main_activity_favorites_button">Favorites</string>
+
+    <!-- listings navigation -->
+    <string name="listings_navigation_title">Listings</string>
+    <string name="listings_navigation_leagues">Leagues</string>
+    <string name="listings_navigation_teams">Teams</string>
+
+    <!-- search navigation -->
+    <string name="search_navigation_title">Search</string>
+    <string name="search_navigation_match">Match</string>
+    <string name="search_naavigation_team">Team</string>
+
+    <!-- favorites navigation -->
+    <string name="favorite_navigation_title">Favorites</string>
+    <string name="favorite_navigation_matches">Matches</string>
+    <string name="favorite_navigation_teams">Teams</string>
 
     <!-- match search -->
     <string name="match_search_query_hint">Type in a team\'s name…</string>>

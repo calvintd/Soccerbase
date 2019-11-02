@@ -11,9 +11,42 @@
     <item name="llSearchLayout" type="id"/>
     <item name="ivSearchIcon" type="id"/>
     <item name="tvSearchName" type="id"/>
-    <item name="llFavoriteLayout" type="id"/>
-    <item name="ivFavoriteIcon" type="id"/>
-    <item name="tvFavoriteName" type="id"/>
+    <item name="llFavoritesLayout" type="id"/>
+    <item name="ivFavoritesIcon" type="id"/>
+    <item name="tvFavoritesName" type="id"/>
+
+    <!-- listings navigation -->
+    <item name="llListingsNavigationLayout" type="id"/>
+    <item name="ivListingsNavigationIcon" type="id"/>
+    <item name="tvListingsNavigationName" type="id"/>
+    <item name="llLListingsNavigationLeagueLayout" type="id"/>
+    <item name="ivListingsNavigationLeagueIcon" type="id"/>
+    <item name="tvListingsNavigationLeagueName" type="id"/>
+    <item name="llListingsNavigationTeamLayout" type="id"/>
+    <item name="ivListingsNavigationTeamIcon" type="id"/>
+    <item name="tvListingsNavigationTeamName" type="id"/>
+
+    <!-- search navigation -->
+    <item name="llSearchNavigationLayout" type="id"/>
+    <item name="ivSearchNavigationIcon" type="id"/>
+    <item name="tvSearchNavigationName" type="id"/>
+    <item name="llSearchNavigationMatchLayout" type="id"/>
+    <item name="ivSearchNavigationMatchIcon" type="id"/>
+    <item name="tvSearchNavigationMatchName" type="id"/>
+    <item name="llSearchNavigationTeamLayout" type="id"/>
+    <item name="ivSearchNavigationTeamIcon" type="id"/>
+    <item name="tvSearchNavigationTeamName" type="id"/>
+
+    <!-- favorites navigation -->
+    <item name="llFavoritesNavigationLayout" type="id"/>
+    <item name="ivFavoritesNavigationIcon" type="id"/>
+    <item name="tvFavoritesNavigationName" type="id"/>
+    <item name="llFavoritesNavigationMatchesLayout" type="id"/>
+    <item name="ivFavoritesNavigationMatchesIcon" type="id"/>
+    <item name="tvFavoritesNavigationMatchesName" type="id"/>
+    <item name="llFavoritesNavigationTeamsLayout" type="id"/>
+    <item name="ivFavoritesNavigationTeamsIcon" type="id"/>
+    <item name="tvFavoritesNavigationTeamsName" type="id"/>
 
     <!-- league listing -->
     <item name="llLeagueLayout" type="id"/>
