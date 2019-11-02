@@ -24,6 +24,8 @@
     <string name="item_away_name_placeholder">Away Team</string>
     <string name="item_home_score_placeholder">1</string>
     <string name="item_away_score_placeholder">0</string>
+    <string name="item_team_name_placeholder">Team Name</string>
+    <string name="item_player_name_placeholder">Player Name</string>
 
     <!-- main activity -->
     <string name="main_activity_tagline">Your soccer info companion!</string>
@@ -64,6 +66,9 @@
     <!-- team listing -->
     <string name="team_listing_details_button">Details</string>
     <string name="team_listing_players_button">Players</string>
+
+    <!-- player listing -->
+    <string name="player_listing_details_button">Details</string>
 
     <!-- league schedule -->
     <string name="league_schedule_nav_past">Past Matches</string>

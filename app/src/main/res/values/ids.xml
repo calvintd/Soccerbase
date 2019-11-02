@@ -52,7 +52,7 @@
     <item name="llLeagueLayout" type="id"/>
     <item name="ivLeagueBadge" type="id"/>
     <item name="tvLeagueName" type="id"/>
-    <item name="glButtonGuideline" type="id"/>
+    <item name="glLeagueButtonGuideline" type="id"/>
     <item name="llListingStandingsLayout" type="id"/>
     <item name="ivListingStandingsIcon" type="id"/>
     <item name="tvListingStandingsName" type="id"/>
@@ -77,6 +77,27 @@
     <item name="tvAwayScore" type="id"/>
     <item name="glShowDetailsGuideline" type="id"/>
     <item name="tvMatchShowDetails" type="id"/>
+
+    <!-- team listing -->
+    <item name="llTeamLayout" type="id"/>
+    <item name="ivTeamBadge" type="id"/>
+    <item name="tvTeamName" type="id"/>
+    <item name="glTeamButtonGuideline" type="id"/>
+    <item name="llTeamDetailsLayout" type="id"/>
+    <item name="ivTeamDetailsIcon" type="id"/>
+    <item name="tvTeamDetailsName" type="id"/>
+    <item name="llTeamPlayersLayout" type="id"/>
+    <item name="ivTeamPlayersIcon" type="id"/>
+    <item name="tvTeamPlayersName" type="id"/>
+
+    <!-- player listing -->
+    <item name="llPlayerLayout" type="id"/>
+    <item name="ivPlayerThumb" type="id"/>
+    <item name="tvPlayerName" type="id"/>
+    <item name="glPlayerButtonGuideline" type="id"/>
+    <item name="llPlayerDetailsLayout" type="id"/>
+    <item name="ivPlayerDetailsIcon" type="id"/>
+    <item name="tvPlayerDetailsName" type="id"/>
 
     <!-- league navigation -->
     <item name="llNavigationHeaderLayout" type="id"/>
@@ -103,6 +124,12 @@
     <item name="pbMatchSearchProgressBar" type="id"/>
     <item name="tvMatchSearchResults" type="id"/>
     <item name="rvMatchSearchRecyclerView" type="id"/>
+    
+    <!-- team search -->
+    <item name="svTeamSearchView" type="id"/>
+    <item name="pbTeamSearchProgressBar" type="id"/>
+    <item name="tvTeamSearchResults" type="id"/>
+    <item name="rvTeamSearchRecyclerView" type="id"/>
 
     <!-- match details -->
     <item name="glMatchDetailsHeaderCenterGuideline" type="id"/>

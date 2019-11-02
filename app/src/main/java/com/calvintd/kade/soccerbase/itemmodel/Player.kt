@@ -11,5 +11,6 @@ class Player (
     var playerWage: String? = null,
     var playerDescription: String? = null,
     var playerPosition: String? = null,
+    var playerThumbnail: String? = null,
     var playerFanart: String? = null
 )

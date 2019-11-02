@@ -23,6 +23,8 @@ class PlayerResponseItem (
     var playerDescription: String?,
     @SerializedName("strPosition")
     var playerPosition: String?,
+    @SerializedName("strThumb")
+    var playerThumbnail: String?,
     @SerializedName("strFanart1")
     var playerFanart: String?
 )

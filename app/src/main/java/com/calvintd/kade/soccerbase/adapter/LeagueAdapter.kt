@@ -61,7 +61,7 @@ class LeagueAdapter (private val leagues: List<League>, private val standingsLis
                 }.lparams(width = matchConstraint, height = wrapContent)
 
                 val buttonGuideline = guideline {
-                    id = R.id.glButtonGuideline
+                    id = R.id.glLeagueButtonGuideline
                 }.lparams(width = matchConstraint, height = 0) {
                     orientation = ConstraintLayout.LayoutParams.HORIZONTAL
                 }
