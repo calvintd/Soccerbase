@@ -5,7 +5,7 @@
     <string name="main_activity_title">Soccerbase</string>
     <string name="listings_navigation_activity_title">Listings Navigation</string>
     <string name="search_navigation_activity_title">Search Navigation</string>
-    <string name="favorite_navigation_activity_title">Favorite Navigation</string>
+    <string name="favorites_navigation_activity_title">Favorite Navigation</string>
     <string name="league_listing_activity_title">League Listing</string>
     <string name="team_listing_activity_title">Team Listing</string>
     <string name="player_listing_activity_title">Player Listing</string>
@@ -33,16 +33,16 @@
 
     <!-- listings navigation -->
     <string name="listings_navigation_title">Listings</string>
-    <string name="listings_navigation_leagues">Leagues</string>
-    <string name="listings_navigation_teams">Teams</string>
+    <string name="listings_navigation_league">League</string>
+    <string name="listings_navigation_team">Team</string>
 
     <!-- search navigation -->
     <string name="search_navigation_title">Search</string>
     <string name="search_navigation_match">Match</string>
-    <string name="search_naavigation_team">Team</string>
+    <string name="search_navigation_team">Team</string>
 
     <!-- favorites navigation -->
-    <string name="favorite_navigation_title">Favorites</string>
+    <string name="favorites_navigation_title">Favorites</string>
     <string name="favorite_navigation_matches">Matches</string>
     <string name="favorite_navigation_teams">Teams</string>
 

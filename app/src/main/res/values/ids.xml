@@ -19,7 +19,7 @@
     <item name="llListingsNavigationLayout" type="id"/>
     <item name="ivListingsNavigationIcon" type="id"/>
     <item name="tvListingsNavigationName" type="id"/>
-    <item name="llLListingsNavigationLeagueLayout" type="id"/>
+    <item name="llListingsNavigationLeagueLayout" type="id"/>
     <item name="ivListingsNavigationLeagueIcon" type="id"/>
     <item name="tvListingsNavigationLeagueName" type="id"/>
     <item name="llListingsNavigationTeamLayout" type="id"/>

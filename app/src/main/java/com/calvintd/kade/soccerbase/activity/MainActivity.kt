@@ -7,9 +7,9 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.activity.favorite.FavoriteMatchesActivity
-import com.calvintd.kade.soccerbase.activity.listing.LeagueListingActivity
-import com.calvintd.kade.soccerbase.activity.search.MatchSearchActivity
+import com.calvintd.kade.soccerbase.activity.favorite.FavoritesNavigationActivity
+import com.calvintd.kade.soccerbase.activity.listing.ListingsNavigationActivity
+import com.calvintd.kade.soccerbase.activity.search.SearchNavigationActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonIconPadding = 16
         val buttonTextSize = 24f
+        val headerIconSize = 512
 
         supportActionBar?.title = resources.getString(R.string.main_activity_title)
 
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                     id = R.id.ivAppLogo
                     padding = 64
                     image = resources.getDrawable(R.drawable.soccer, theme)
-                }.lparams(width = 512, height = 512)
+                }.lparams(width = headerIconSize, height = headerIconSize)
 
                 textView {
                     id = R.id.tvAppName
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 onClick {
-                    startActivity<LeagueListingActivity>()
+                    startActivity<ListingsNavigationActivity>()
                 }
             }.lparams(width = matchConstraint, height = wrapContent)
 
@@ -98,7 +99,7 @@ class MainActivity : AppCompatActivity() {
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 onClick {
-                    startActivity<MatchSearchActivity>()
+                    startActivity<SearchNavigationActivity>()
                 }
             }.lparams(width = matchConstraint, height = wrapContent)
 
@@ -123,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 onClick {
-                    startActivity<FavoriteMatchesActivity>()
+                    startActivity<FavoritesNavigationActivity>()
                 }
             }.lparams(width = matchConstraint, height = wrapContent)
 

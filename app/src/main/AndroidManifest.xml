@@ -31,7 +31,7 @@
         <activity android:name="com.calvintd.kade.soccerbase.activity.search.SearchNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.search.MatchSearchActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.search.TeamSearchActivity"/>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteNavigationActivity"/>
+        <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoritesNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteMatchesActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.favorite.FavoriteTeamsActivity"/>
     </application>
