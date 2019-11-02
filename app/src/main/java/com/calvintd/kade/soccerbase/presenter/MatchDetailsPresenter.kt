@@ -3,7 +3,7 @@ package com.calvintd.kade.soccerbase.presenter
 import android.database.sqlite.SQLiteConstraintException
 import com.calvintd.kade.soccerbase.database.DatabaseHelper
 import com.calvintd.kade.soccerbase.itemmodel.Match
-import com.calvintd.kade.soccerbase.utils.MatchDatabaseDetailsOrganizer
+import com.calvintd.kade.soccerbase.utils.database.MatchDatabaseDetailsOrganizer
 import com.calvintd.kade.soccerbase.view.MatchDetailsView
 import org.jetbrains.anko.db.*
 
@@ -34,7 +34,8 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
     fun addToFavorites (match: Match, helper: DatabaseHelper) {
         try {
             helper.use {
-                val organizer = MatchDatabaseDetailsOrganizer(helper)
+                val organizer =
+                    MatchDatabaseDetailsOrganizer(helper)
 
                 val detailsLists = listOf(
                     // home
@@ -89,7 +90,8 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
     fun removeFromFavorites (matchId: Int, helper: DatabaseHelper) {
         try {
             helper.use {
-                val organizer = MatchDatabaseDetailsOrganizer(helper)
+                val organizer =
+                    MatchDatabaseDetailsOrganizer(helper)
 
                 // home
                 for (i in Match.DETAILS_TABLES.indices) {

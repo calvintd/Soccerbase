@@ -11,9 +11,9 @@ class MatchLeagueResponseRepository {
         val response = instance.getPastLeagueMatches(leagueId)
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onMatchLeagueDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onMatchLeagueDataError(response)
         }
     }
 
@@ -21,9 +21,9 @@ class MatchLeagueResponseRepository {
         val response = instance.getUpcomingLeagueMatches(leagueId)
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onMatchLeagueDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onMatchLeagueDataError(response)
         }
     }
 }

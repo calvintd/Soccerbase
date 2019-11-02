@@ -10,9 +10,9 @@ class LeagueResponseRepository {
         val response = instance.getSoccerLeagues()
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onLeagueDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onLeagueDataError(response)
         }
     }
 }

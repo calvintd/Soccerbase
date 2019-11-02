@@ -17,7 +17,7 @@ import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
 import com.calvintd.kade.soccerbase.presenter.MatchSearchPresenter
 import com.calvintd.kade.soccerbase.repository.MatchResponseRepository
-import com.calvintd.kade.soccerbase.utils.EspressoIdlingResource
+import com.calvintd.kade.soccerbase.utils.test.EspressoIdlingResource
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import okhttp3.ResponseBody
 import org.jetbrains.anko.*
@@ -126,11 +126,11 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
         }
     }
 
-    override fun onDataLoaded(data: MatchResponse?) {
+    override fun onMatchDataLoaded(data: MatchResponse?) {
         Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
     }
 
-    override fun onDataError(response: Response<MatchResponse>) {
+    override fun onMatchDataError(response: Response<MatchResponse>) {
         showResponseError(response.code(), response.errorBody())
     }
 }

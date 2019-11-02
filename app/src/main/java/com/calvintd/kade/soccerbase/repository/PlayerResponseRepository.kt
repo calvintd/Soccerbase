@@ -10,9 +10,9 @@ class PlayerResponseRepository {
         val response = instance.getTeamPlayers(teamId)
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onPlayerDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onPlayerDataError(response)
         }
     }
 }

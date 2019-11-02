@@ -79,11 +79,11 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
         }
     }
 
-    override fun onDataLoaded(data: LeagueResponse?) {
+    override fun onLeagueDataLoaded(data: LeagueResponse?) {
         Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
     }
 
-    override fun onDataError(response: Response<LeagueResponse>) {
+    override fun onLeagueDataError(response: Response<LeagueResponse>) {
         showResponseError(response.code(), response.errorBody())
     }
 }

@@ -3,7 +3,7 @@ package com.calvintd.kade.soccerbase.presenter
 import android.database.sqlite.SQLiteConstraintException
 import com.calvintd.kade.soccerbase.database.DatabaseHelper
 import com.calvintd.kade.soccerbase.itemmodel.Match
-import com.calvintd.kade.soccerbase.utils.MatchDatabaseDetailsOrganizer
+import com.calvintd.kade.soccerbase.utils.database.MatchDatabaseDetailsOrganizer
 import com.calvintd.kade.soccerbase.view.FavoriteMatchesView
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.parseList
@@ -15,7 +15,8 @@ class FavoriteMatchesPresenter(private val view: FavoriteMatchesView) {
     fun loadFavorites(helper: DatabaseHelper) {
         matches.clear()
 
-        val organizer = MatchDatabaseDetailsOrganizer(helper)
+        val organizer =
+            MatchDatabaseDetailsOrganizer(helper)
 
         try {
             helper.use {

@@ -11,9 +11,9 @@ class TeamResponseRepository {
         val response = instance.getTeamDetails(teamId)
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onTeamDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onTeamDataError(response)
         }
     }
 
@@ -21,9 +21,9 @@ class TeamResponseRepository {
         val response = instance.getTeamsByLeague(leagueId)
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onTeamDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onTeamDataError(response)
         }
     }
 }

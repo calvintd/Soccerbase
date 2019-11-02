@@ -3,6 +3,6 @@ package com.calvintd.kade.soccerbase.repository.callback
 import retrofit2.Response
 
 interface PlayerResponseRepositoryCallback<PlayerResponse> {
-    fun onDataLoaded(data: PlayerResponse?)
-    fun onDataError(response: Response<PlayerResponse>)
+    fun onPlayerDataLoaded(data: PlayerResponse?)
+    fun onPlayerDataError(response: Response<PlayerResponse>)
 }

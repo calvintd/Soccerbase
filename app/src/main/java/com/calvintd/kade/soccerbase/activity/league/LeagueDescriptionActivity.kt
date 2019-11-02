@@ -42,7 +42,7 @@ class LeagueDescriptionActivity : AppCompatActivity() {
                 }.lparams(width = matchConstraint, height = wrapContent)
 
                 val description = textView {
-                    id = R.id.tvDescrriptionDesc
+                    id = R.id.tvDescriptionDesc
                     text = leagueDescription
                     gravity = Gravity.START
                     textSize = 16f

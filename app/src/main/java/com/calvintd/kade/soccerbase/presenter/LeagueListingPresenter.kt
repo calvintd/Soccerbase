@@ -4,21 +4,22 @@ import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.repository.LeagueResponseRepository
 import com.calvintd.kade.soccerbase.repository.callback.LeagueResponseRepositoryCallback
-import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
-import com.calvintd.kade.soccerbase.utils.FetchLeaguesCoroutines
+import com.calvintd.kade.soccerbase.utils.test.CoroutineContextProvider
+import com.calvintd.kade.soccerbase.utils.fetchers.FetchLeaguesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueListingView
 import kotlinx.coroutines.*
 import retrofit2.Response
 
 class LeagueListingPresenter(private val view: LeagueListingView, private val repository: LeagueResponseRepository,
-                             private val context: CoroutineContextProvider = CoroutineContextProvider()) {
+                             private val context: CoroutineContextProvider = CoroutineContextProvider()
+) {
     fun loadData() {
-        val fetchedMatches = CoroutineScope(Dispatchers.IO).async {
+        val fetchedLeagues = CoroutineScope(Dispatchers.IO).async {
             getFetchedLeagues()
         }
 
         CoroutineScope(Dispatchers.IO).launch {
-            view.loadData(fetchedMatches.await())
+            view.loadData(fetchedLeagues.await())
         }
     }
 
@@ -28,13 +29,13 @@ class LeagueListingPresenter(private val view: LeagueListingView, private val re
 
             repository.getSoccerLeagues(object:
                 LeagueResponseRepositoryCallback<LeagueResponse> {
-                override fun onDataLoaded(data: LeagueResponse?) {
+                override fun onLeagueDataLoaded(data: LeagueResponse?) {
                     response = data
-                    view.onDataLoaded(data)
+                    view.onLeagueDataLoaded(data)
                 }
 
-                override fun onDataError(response: Response<LeagueResponse>) {
-                    view.onDataError(response)
+                override fun onLeagueDataError(response: Response<LeagueResponse>) {
+                    view.onLeagueDataError(response)
                 }
             })
 

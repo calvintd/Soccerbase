@@ -79,6 +79,11 @@
     <item name="tvMatchShowDetails" type="id"/>
 
     <!-- team listing -->
+    <item name="spTeamListingSpinner" type="id"/>
+    <item name="btnTeamListingButton" type="id"/>
+    <item name="tvTeamListingResults" type="id"/>
+    <item name="pbTeamListingProgressBar" type="id"/>
+    <item name="rvTeamListingRecyclerView" type="id"/>
     <item name="llTeamLayout" type="id"/>
     <item name="ivTeamBadge" type="id"/>
     <item name="tvTeamName" type="id"/>
@@ -113,7 +118,7 @@
     <!-- league description -->
     <item name="ivDescriptionBadge" type="id"/>
     <item name="tvDescriptionName" type="id"/>
-    <item name="tvDescrriptionDesc" type="id"/>
+    <item name="tvDescriptionDesc" type="id"/>
 
     <!-- league schedule -->
     <item name="llScheduleLayout" type="id"/>

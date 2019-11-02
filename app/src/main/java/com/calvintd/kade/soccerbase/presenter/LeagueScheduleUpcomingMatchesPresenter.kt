@@ -4,14 +4,15 @@ import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.MatchLeagueResponse
 import com.calvintd.kade.soccerbase.repository.MatchLeagueResponseRepository
 import com.calvintd.kade.soccerbase.repository.callback.MatchLeagueResponseRepositoryCallback
-import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
-import com.calvintd.kade.soccerbase.utils.FetchMatchesCoroutines
+import com.calvintd.kade.soccerbase.utils.test.CoroutineContextProvider
+import com.calvintd.kade.soccerbase.utils.fetchers.FetchMatchesCoroutines
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import kotlinx.coroutines.*
 import retrofit2.Response
 
 class LeagueScheduleUpcomingMatchesPresenter (private val view: LeagueScheduleView, private val repository: MatchLeagueResponseRepository,
-                                              private val context: CoroutineContextProvider = CoroutineContextProvider()) {
+                                              private val context: CoroutineContextProvider = CoroutineContextProvider()
+) {
 
     fun loadMatchesByLeague (leagueId: Int, leagueName: String) {
         val fetchedMatches = CoroutineScope(Dispatchers.IO).async {
@@ -33,13 +34,13 @@ class LeagueScheduleUpcomingMatchesPresenter (private val view: LeagueScheduleVi
 
             repository.getUpcomingLeagueMatches(leagueId, object:
                 MatchLeagueResponseRepositoryCallback<MatchLeagueResponse> {
-                override fun onDataLoaded(data: MatchLeagueResponse?) {
+                override fun onMatchLeagueDataLoaded(data: MatchLeagueResponse?) {
                     response = data
-                    view.onDataLoaded(data)
+                    view.onMatchLeagueDataLoaded(data)
                 }
 
-                override fun onDataError(response: Response<MatchLeagueResponse>) {
-                    view.onDataError(response)
+                override fun onMatchLeagueDataError(response: Response<MatchLeagueResponse>) {
+                    view.onMatchLeagueDataError(response)
                 }
             })
 

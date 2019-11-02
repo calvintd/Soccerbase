@@ -84,9 +84,9 @@ class ApiUnitTest {
             leagueListingPresenter.getFetchedLeagues()
             argumentCaptor<LeagueResponseRepositoryCallback<LeagueResponse>>().apply {
                 verify(leagueResponseRepository).getSoccerLeagues(capture())
-                firstValue.onDataLoaded(leagueResponse)
+                firstValue.onLeagueDataLoaded(leagueResponse)
             }
-            verify(leagueListingView).onDataLoaded(leagueResponse)
+            verify(leagueListingView).onLeagueDataLoaded(leagueResponse)
         }
     }
 
@@ -97,9 +97,9 @@ class ApiUnitTest {
             leagueSchedulePastMatchesPresenter.getFetchedMatches(leagueId)
             argumentCaptor<MatchLeagueResponseRepositoryCallback<MatchLeagueResponse>>().apply {
                 verify(matchLeagueResponseRepository).getPastLeagueMatches(eq(leagueId), capture())
-                firstValue.onDataLoaded(matchLeagueResponse)
+                firstValue.onMatchLeagueDataLoaded(matchLeagueResponse)
             }
-            verify(leagueScheduleView).onDataLoaded(matchLeagueResponse)
+            verify(leagueScheduleView).onMatchLeagueDataLoaded(matchLeagueResponse)
         }
     }
 
@@ -110,9 +110,9 @@ class ApiUnitTest {
             leagueScheduleUpcomingMatchesPresenter.getFetchedMatches(leagueId)
             argumentCaptor<MatchLeagueResponseRepositoryCallback<MatchLeagueResponse>>().apply {
                 verify(matchLeagueResponseRepository).getUpcomingLeagueMatches(eq(leagueId), capture())
-                firstValue.onDataLoaded(matchLeagueResponse)
+                firstValue.onMatchLeagueDataLoaded(matchLeagueResponse)
             }
-            verify(leagueScheduleView).onDataLoaded(matchLeagueResponse)
+            verify(leagueScheduleView).onMatchLeagueDataLoaded(matchLeagueResponse)
         }
     }
 
@@ -123,9 +123,9 @@ class ApiUnitTest {
             matchSearchPresenter.getFetchedMatches(query)
             argumentCaptor<MatchResponseRepositoryCallback<MatchResponse>>().apply {
                 verify(matchResponseRepository).getMatchesSearch(eq(query), capture())
-                firstValue.onDataLoaded(matchResponse)
+                firstValue.onMatchDataLoaded(matchResponse)
             }
-            verify(matchSearchView).onDataLoaded(matchResponse)
+            verify(matchSearchView).onMatchDataLoaded(matchResponse)
         }
     }
 }

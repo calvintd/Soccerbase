@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.utils
+package com.calvintd.kade.soccerbase.utils.database
 
 import com.calvintd.kade.soccerbase.database.DatabaseHelper
 

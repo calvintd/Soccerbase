@@ -130,11 +130,11 @@ class LeagueScheduleUpcomingMatchesFragment : Fragment(), LeagueScheduleView {
         }
     }
 
-    override fun onDataLoaded(data: MatchLeagueResponse?) {
+    override fun onMatchLeagueDataLoaded(data: MatchLeagueResponse?) {
         Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
     }
 
-    override fun onDataError(response: Response<MatchLeagueResponse>) {
+    override fun onMatchLeagueDataError(response: Response<MatchLeagueResponse>) {
         showResponseError(response.code(), response.errorBody())
     }
 }

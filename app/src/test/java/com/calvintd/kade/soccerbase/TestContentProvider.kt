@@ -1,6 +1,6 @@
 package com.calvintd.kade.soccerbase
 
-import com.calvintd.kade.soccerbase.utils.CoroutineContextProvider
+import com.calvintd.kade.soccerbase.utils.test.CoroutineContextProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlin.coroutines.CoroutineContext

@@ -1,17 +1,16 @@
-package com.calvintd.kade.soccerbase.utils
+package com.calvintd.kade.soccerbase.utils.fetchers
 
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.MatchLeagueResponse
 import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
+import com.calvintd.kade.soccerbase.utils.matchutils.MatchDataProcessor
 import com.calvintd.kade.soccerbase.view.LeagueScheduleView
 import com.calvintd.kade.soccerbase.view.MatchSearchView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.HttpException
-import retrofit2.Response
 
 object FetchMatchesCoroutines {
     suspend fun getFetchedMatchesMatchSearch(view: MatchSearchView, data: MatchResponse?): List<Match> {
@@ -26,7 +25,10 @@ object FetchMatchesCoroutines {
                         if (matchResponseItems[i].sport.equals("Soccer")) {
                             val match = matchResponseItems[i]
 
-                            var matchItem = processor.matchDataInit(match)
+                            var matchItem =
+                                MatchDataProcessor.matchDataInit(
+                                    match
+                                )
                             val homeTeamId = matchItem.homeTeamId
                             val awayTeamId = matchItem.awayTeamId
 
@@ -42,11 +44,12 @@ object FetchMatchesCoroutines {
                                         val homeResponseItems = homeResponse?.teams
                                         val awayResponseItems = awayResponse?.teams
 
-                                        matchItem = processor.assignBadge(
-                                            matchItem,
-                                            homeResponseItems,
-                                            awayResponseItems
-                                        )
+                                        matchItem =
+                                            MatchDataProcessor.assignBadge(
+                                                matchItem,
+                                                homeResponseItems,
+                                                awayResponseItems
+                                            )
 
                                         fetchedMatches.add(matchItem)
                                     } else {
@@ -76,7 +79,10 @@ object FetchMatchesCoroutines {
                     if (matchLeagueResponseItems[i].sport.equals("Soccer")) {
                         val match = matchLeagueResponseItems[i]
 
-                        var matchItem = processor.matchDataInit(match)
+                        var matchItem =
+                            MatchDataProcessor.matchDataInit(
+                                match
+                            )
                         val homeTeamId = matchItem.homeTeamId
                         val awayTeamId = matchItem.awayTeamId
 
@@ -92,11 +98,12 @@ object FetchMatchesCoroutines {
                                     val homeResponseItems = homeResponse?.teams
                                     val awayResponseItems = awayResponse?.teams
 
-                                    matchItem = processor.assignBadge(
-                                        matchItem,
-                                        homeResponseItems,
-                                        awayResponseItems
-                                    )
+                                    matchItem =
+                                        MatchDataProcessor.assignBadge(
+                                            matchItem,
+                                            homeResponseItems,
+                                            awayResponseItems
+                                        )
 
                                     fetchedMatches.add(matchItem)
                                 } else {

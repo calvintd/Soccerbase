@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.utils
+package com.calvintd.kade.soccerbase.utils.matchutils
 
 import java.time.LocalDate
 import java.time.LocalDateTime

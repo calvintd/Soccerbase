@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.utils
+package com.calvintd.kade.soccerbase.utils.test
 
 import androidx.test.espresso.IdlingResource
 import androidx.test.espresso.idling.CountingIdlingResource

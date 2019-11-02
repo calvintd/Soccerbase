@@ -10,9 +10,9 @@ class MatchResponseRepository {
         val response = instance.getMatchesByTeamName(query)
 
         if (response.isSuccessful) {
-            callback.onDataLoaded(response.body())
+            callback.onMatchDataLoaded(response.body())
         } else {
-            callback.onDataError(response)
+            callback.onMatchDataError(response)
         }
     }
 }

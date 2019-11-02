@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.utils
+package com.calvintd.kade.soccerbase.utils.matchutils
 
 object MatchDetailsSplitter {
     fun split (detailsSource: String?): List<String> {

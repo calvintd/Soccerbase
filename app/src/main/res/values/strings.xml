@@ -64,6 +64,7 @@
     <string name="match_listing_show_match_details">Show match details…</string>
 
     <!-- team listing -->
+    <string name="team_listing_find_teams_button">Find Teams for This League</string>
     <string name="team_listing_details_button">Details</string>
     <string name="team_listing_players_button">Players</string>
 

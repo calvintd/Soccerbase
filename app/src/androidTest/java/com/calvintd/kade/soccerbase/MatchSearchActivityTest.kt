@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.calvintd.kade.soccerbase.activity.search.MatchSearchActivity
-import com.calvintd.kade.soccerbase.utils.EspressoIdlingResource
+import com.calvintd.kade.soccerbase.utils.test.EspressoIdlingResource
 import org.hamcrest.core.StringContains.containsString
 import org.hamcrest.Matchers.not
 import org.junit.After

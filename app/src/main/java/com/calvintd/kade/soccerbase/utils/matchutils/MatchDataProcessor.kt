@@ -1,4 +1,4 @@
-package com.calvintd.kade.soccerbase.utils
+package com.calvintd.kade.soccerbase.utils.matchutils
 
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.MatchResponseItem
@@ -19,59 +19,78 @@ object MatchDataProcessor {
         val awayScore = matchResponseItem.awayScore
 
         // first = date; second = time
-        val matchDateTime = formatter.format(matchResponseItem.matchDate, matchResponseItem.matchTime)
+        val matchDateTime = MatchDateTimeFormatter.format(
+            matchResponseItem.matchDate,
+            matchResponseItem.matchTime
+        )
         val matchDate = matchDateTime.first
         val matchTime = matchDateTime.second
 
         // home
         val homeGoals = matchResponseItem.homeGoals
-        val homeGoalDetails = splitter.split(homeGoals)
+        val homeGoalDetails =
+            MatchDetailsSplitter.split(homeGoals)
 
         val homeRedCards = matchResponseItem.homeRedCards
-        val homeRedCardDetails = splitter.split(homeRedCards)
+        val homeRedCardDetails =
+            MatchDetailsSplitter.split(homeRedCards)
 
         val homeYellowCards = matchResponseItem.homeYellowCards
-        val homeYellowCardDetails = splitter.split(homeYellowCards)
+        val homeYellowCardDetails =
+            MatchDetailsSplitter.split(homeYellowCards)
 
         val homeGoalkeeper = matchResponseItem.homeGoalkeeper
-        val homeGoalkeeperDetails = splitter.split(homeGoalkeeper)
+        val homeGoalkeeperDetails =
+            MatchDetailsSplitter.split(homeGoalkeeper)
 
         val homeDefense = matchResponseItem.homeDefense
-        val homeDefenseDetails = splitter.split(homeDefense)
+        val homeDefenseDetails =
+            MatchDetailsSplitter.split(homeDefense)
 
         val homeMidfield = matchResponseItem.homeMidfield
-        val homeMidfieldDetails = splitter.split(homeMidfield)
+        val homeMidfieldDetails =
+            MatchDetailsSplitter.split(homeMidfield)
 
         val homeForward = matchResponseItem.homeForward
-        val homeForwardDetails = splitter.split(homeForward)
+        val homeForwardDetails =
+            MatchDetailsSplitter.split(homeForward)
 
         val homeSubstitutes = matchResponseItem.homeSubstitutes
-        val homeSubstitutesDetails = splitter.split(homeSubstitutes)
+        val homeSubstitutesDetails =
+            MatchDetailsSplitter.split(homeSubstitutes)
 
         // away
         val awayGoals = matchResponseItem.awayGoals
-        val awayGoalDetails = splitter.split(awayGoals)
+        val awayGoalDetails =
+            MatchDetailsSplitter.split(awayGoals)
 
         val awayRedCards = matchResponseItem.awayRedCards
-        val awayRedCardDetails = splitter.split(awayRedCards)
+        val awayRedCardDetails =
+            MatchDetailsSplitter.split(awayRedCards)
 
         val awayYellowCards = matchResponseItem.awayYellowCards
-        val awayYellowCardDetails = splitter.split(awayYellowCards)
+        val awayYellowCardDetails =
+            MatchDetailsSplitter.split(awayYellowCards)
 
         val awayGoalkeeper = matchResponseItem.awayGoalkeeper
-        val awayGoalkeeperDetails = splitter.split(awayGoalkeeper)
+        val awayGoalkeeperDetails =
+            MatchDetailsSplitter.split(awayGoalkeeper)
 
         val awayDefense = matchResponseItem.awayDefense
-        val awayDefenseDetails = splitter.split(awayDefense)
+        val awayDefenseDetails =
+            MatchDetailsSplitter.split(awayDefense)
 
         val awayMidfield = matchResponseItem.awayMidfield
-        val awayMidfieldDetails = splitter.split(awayMidfield)
+        val awayMidfieldDetails =
+            MatchDetailsSplitter.split(awayMidfield)
 
         val awayForward = matchResponseItem.awayForward
-        val awayForwardDetails = splitter.split(awayForward)
+        val awayForwardDetails =
+            MatchDetailsSplitter.split(awayForward)
 
         val awaySubstitutes = matchResponseItem.awaySubstitutes
-        val awaySubstitutesDetails = splitter.split(awaySubstitutes)
+        val awaySubstitutesDetails =
+            MatchDetailsSplitter.split(awaySubstitutes)
 
         return Match(
             // general data
