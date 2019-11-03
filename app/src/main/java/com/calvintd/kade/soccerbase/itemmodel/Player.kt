@@ -1,5 +1,9 @@
 package com.calvintd.kade.soccerbase.itemmodel
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 class Player (
     var playerId: Int? = null,
     var playerNationality: String? = null,
@@ -13,4 +17,4 @@ class Player (
     var playerPosition: String? = null,
     var playerThumbnail: String? = null,
     var playerFanart: String? = null
-)
+): Parcelable

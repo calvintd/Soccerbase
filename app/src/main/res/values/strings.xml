@@ -15,6 +15,8 @@
     <string name="team_search_activity_title">Team Search</string>
     <string name="favorite_matches_activity_title">Favorite Matches</string>
     <string name="favorite_teams_activity_title">Favorite Teams</string>
+    <string name="team_details_activity_title">Team Details</string>
+    <string name="player_details_activity_title">Player Details</string>
 
     <!-- placeholders -->
     <string name="item_league_name_placeholder">League Name</string>
