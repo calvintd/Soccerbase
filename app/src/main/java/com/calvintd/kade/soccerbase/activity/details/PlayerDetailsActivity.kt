@@ -4,9 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.itemmodel.Player
+import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.constraintLayout
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.scrollView
 
 class PlayerDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +18,11 @@ class PlayerDetailsActivity : AppCompatActivity() {
         scrollView {
             constraintLayout {
                 lparams(width = matchParent, height = matchParent)
+                padding = 16
+
+                imageView {
+                    id = R.id.ivPlayerDetailsFanart
+                }.lparams(width = wrapContent, height = wrapContent)
 
             }
         }

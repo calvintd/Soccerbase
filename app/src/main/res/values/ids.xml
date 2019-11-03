@@ -184,6 +184,8 @@
     <item name="tvMatchDetailsAwaySubstitutes" type="id"/>
 
     <!-- team details -->
+    <item name="ivTeamDetailsBanner" type="id"/>
 
     <!-- player details -->
+    <item name="ivPlayerDetailsFanart" type="id"/>
 </resources>

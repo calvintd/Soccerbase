@@ -61,7 +61,7 @@ class FavoritesNavigationActivity : AppCompatActivity() {
                 }.lparams(width = menuIconSize, height = menuIconSize)
 
                 textView {
-                    id = R.id.tvListingsNavigationTeamName
+                    id = R.id.tvFavoritesNavigationTeamsName
                     text = resources.getString(R.string.favorite_navigation_matches)
                     textSize = buttonTextSize
                     typeface = Typeface.DEFAULT_BOLD
