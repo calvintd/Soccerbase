@@ -5,12 +5,15 @@ import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.itemmodel.Player
+import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -81,7 +84,7 @@ class PlayerAdapter (private val players: List<Player>, private val detailsListe
                         id = R.id.tvPlayerDetailsName
                         text = resources.getString(R.string.player_listing_details_button)
                         textSize = buttonTextSize
-                        textColor = Color.rgb(255, 127, 80)
+                        textColor = Color.rgb(196, 77, 255)
                     }.lparams(width = wrapContent, height = wrapContent)
                 }
 
@@ -119,9 +122,23 @@ class PlayerAdapter (private val players: List<Player>, private val detailsListe
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
+        private val thumb = view.find<ImageView>(R.id.ivPlayerThumb)
+        private val name = view.find<TextView>(R.id.tvPlayerName)
         private val detailsButton = view.find<LinearLayout>(R.id.llPlayerDetailsLayout)
 
         fun bindItem (player: Player, detailsListener: (Player) -> Unit) {
+            player.playerThumbnail.let {
+                Picasso.get()
+                    .load(it)
+                    .fit()
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_placeholder_black_48dp)
+                    .error(R.drawable.ic_error_black_48dp)
+                    .into(thumb)
+            }
+
+            name.text = player.playerName
+
             detailsButton.onClick {
                 detailsListener(player)
             }

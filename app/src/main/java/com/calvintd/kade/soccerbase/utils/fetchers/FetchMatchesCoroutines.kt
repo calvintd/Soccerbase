@@ -18,50 +18,50 @@ object FetchMatchesCoroutines {
             val fetchedMatches = mutableListOf<Match>()
             val instance = RetrofitInstance.getInstance()
 
-                if (data?.matches != null) {
-                    val matchResponseItems = data.matches
-                    for (i in matchResponseItems.indices) {
-                        if (matchResponseItems[i].sport.equals("Soccer")) {
-                            val match = matchResponseItems[i]
+            if (data?.matches != null) {
+                val matchResponseItems = data.matches
+                for (i in matchResponseItems.indices) {
+                    if (matchResponseItems[i].sport.equals("Soccer")) {
+                        val match = matchResponseItems[i]
 
-                            var matchItem =
-                                MatchDataProcessor.matchDataInit(
-                                    match
-                                )
-                            val homeTeamId = matchItem.homeTeamId
-                            val awayTeamId = matchItem.awayTeamId
+                        var matchItem =
+                            MatchDataProcessor.matchDataInit(
+                                match
+                            )
+                        val homeTeamId = matchItem.homeTeamId
+                        val awayTeamId = matchItem.awayTeamId
 
-                            // fetch team data
-                            CoroutineScope(Dispatchers.IO).launch {
-                                val hResponse = instance.getTeamDetails(homeTeamId)
-                                val aResponse = instance.getTeamDetails(awayTeamId)
-                                withContext(Dispatchers.Main) {
-                                    if (hResponse.isSuccessful) {
-                                        val homeResponse = hResponse.body()
-                                        val awayResponse = aResponse.body()
+                        // fetch team data
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val hResponse = instance.getTeamDetails(homeTeamId)
+                            val aResponse = instance.getTeamDetails(awayTeamId)
+                            withContext(Dispatchers.Main) {
+                                if (hResponse.isSuccessful) {
+                                    val homeResponse = hResponse.body()
+                                    val awayResponse = aResponse.body()
 
-                                        val homeResponseItems = homeResponse?.teams
-                                        val awayResponseItems = awayResponse?.teams
+                                    val homeResponseItems = homeResponse?.teams
+                                    val awayResponseItems = awayResponse?.teams
 
-                                        matchItem =
-                                            MatchDataProcessor.assignBadge(
-                                                matchItem,
-                                                homeResponseItems,
-                                                awayResponseItems
-                                            )
-
-                                        fetchedMatches.add(matchItem)
-                                    } else {
-                                        view.showResponseError(
-                                            hResponse.code(),
-                                            hResponse.errorBody()
+                                    matchItem =
+                                        MatchDataProcessor.assignBadge(
+                                            matchItem,
+                                            homeResponseItems,
+                                            awayResponseItems
                                         )
-                                    }
+
+                                    fetchedMatches.add(matchItem)
+                                } else {
+                                    view.showResponseError(
+                                        hResponse.code(),
+                                        hResponse.errorBody()
+                                    )
                                 }
-                            }.join()
-                        }
+                            }
+                        }.join()
                     }
                 }
+            }
             fetchedMatches
         }
     }

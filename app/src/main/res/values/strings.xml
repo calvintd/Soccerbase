@@ -60,11 +60,13 @@
     <!-- team listing -->
     <string name="team_listing_details_button">Details</string>
     <string name="team_listing_players_button">Players</string>
-    <string name="team_listing_load_league_teams">Displaying teams for %s:</string>
-    <string name="team_listing_show_no_teams_found">There were no teams found for %s.</string>
+    <string name="team_listing_load_league_teams">Displaying teams under %s:</string>
+    <string name="team_listing_show_no_teams_found">There were no teams found of %s.</string>
 
     <!-- player listing -->
     <string name="player_listing_details_button">Details</string>
+    <string name="player_listing_load_team_players">Displaying players of %s:</string>
+    <string name="players_listing_show_no_players_found">There were no players found of %s.</string>
 
     <!-- league schedule -->
     <string name="league_schedule_nav_past">Past Matches</string>

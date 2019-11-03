@@ -158,12 +158,12 @@ class TeamAdapter (private val teams: List<Team>, private val detailsListener: (
         fun bindItem (team: Team, detailsListener: (Team) -> Unit, playersListener: (Team) -> Unit) {
             team.teamBadge.let {
                 Picasso.get()
-                .load(it)
-                .fit()
-                .centerCrop()
-                .placeholder(R.drawable.ic_placeholder_black_48dp)
-                .error(R.drawable.ic_error_black_48dp)
-                .into(badge)
+                    .load(it)
+                    .fit()
+                    .centerCrop()
+                    .placeholder(R.drawable.ic_placeholder_black_48dp)
+                    .error(R.drawable.ic_error_black_48dp)
+                    .into(badge)
             }
 
             name.text = team.teamName

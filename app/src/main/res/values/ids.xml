@@ -102,6 +102,9 @@
     <item name="tvTeamPlayersName" type="id"/>
 
     <!-- player listing -->
+    <item name="tvPlayerListingResults" type="id"/>
+    <item name="pbPlayerListingProgressBar" type="id"/>
+    <item name="rvPlayerListingRecyclerView" type="id"/>
     <item name="llPlayerLayout" type="id"/>
     <item name="ivPlayerThumb" type="id"/>
     <item name="tvPlayerName" type="id"/>
