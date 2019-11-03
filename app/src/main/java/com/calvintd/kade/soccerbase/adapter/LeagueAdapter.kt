@@ -18,14 +18,14 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class LeagueAdapter (private val leagues: List<League>, private val standingsListener: (League) -> Unit,
+class LeagueAdapter (private val leagues: List<League>, private val teamsListener: (League) -> Unit, private val standingsListener: (League) -> Unit,
                      private val descriptionListener: (League) -> Unit, private val scheduleListener: (League) -> Unit) :
     RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LeagueUI().createView(AnkoContext.Companion.create(parent.context, parent)))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(leagues[position], standingsListener, descriptionListener,
-        scheduleListener)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(leagues[position], teamsListener, standingsListener,
+        descriptionListener, scheduleListener)
 
     override fun getItemCount(): Int = leagues.size
 
@@ -65,6 +65,28 @@ class LeagueAdapter (private val leagues: List<League>, private val standingsLis
                 }.lparams(width = matchConstraint, height = 0) {
                     orientation = ConstraintLayout.LayoutParams.HORIZONTAL
                 }
+
+                val teamsButton = linearLayout {
+                    id = R.id.llListingTeamsLayout
+                    lparams(width = wrapContent, height = wrapContent)
+                    isClickable = true
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = Gravity.CENTER_VERTICAL
+
+                    imageView {
+                        id = R.id.ivListingTeamsIcon
+                        image = resources.getDrawable(R.drawable.team, context.theme)
+                        rightPadding = iconPadding
+                    }.lparams(width = iconSize, height = iconSize)
+
+                    textView {
+                        id = R.id.tvListingTeamsName
+                        text = resources.getString(R.string.league_listing_teams_button)
+                        textSize = buttonTextSize
+                        textColor = Color.rgb(0, 108, 226)
+                    }.lparams(width = wrapContent, height = wrapContent)
+                }
+
 
                 val standingsButton = linearLayout {
                     id = R.id.llListingStandingsLayout
@@ -150,6 +172,14 @@ class LeagueAdapter (private val leagues: List<League>, private val standingsLis
                         )
                     }
 
+                    teamsButton {
+                        connect(
+                            end to start of standingsButton margin dip(margin),
+                            top to bottom of buttonGuideline,
+                            bottom to bottom of parent
+                        )
+                    }
+
                     standingsButton {
                         connect(
                             end to start of descriptionButton margin dip(margin),
@@ -181,11 +211,12 @@ class LeagueAdapter (private val leagues: List<League>, private val standingsLis
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
         private val badge = view.find<ImageView>(R.id.ivLeagueBadge)
         private val name = view.find<TextView>(R.id.tvLeagueName)
+        private val teamsButton = view.find<LinearLayout>(R.id.llListingTeamsLayout)
         private val standingsButton = view.find<LinearLayout>(R.id.llListingStandingsLayout)
         private val descriptionButton = view.find<LinearLayout>(R.id.llListingDescriptionLayout)
         private val scheduleButton = view.find<LinearLayout>(R.id.llListingScheduleLayout)
 
-        fun bindItem (league: League, standingsListener: (League) -> Unit, descriptionListener: (League) -> Unit,
+        fun bindItem (league: League, teamsListener: (League) -> Unit, standingsListener: (League) -> Unit, descriptionListener: (League) -> Unit,
                       scheduleListener: (League) -> Unit) {
             league.badge.let {
                 Picasso.get()
@@ -194,9 +225,14 @@ class LeagueAdapter (private val leagues: List<League>, private val standingsLis
                 .centerCrop()
                 .placeholder(R.drawable.ic_placeholder_black_48dp)
                 .error(R.drawable.ic_error_black_48dp)
-                .into(badge) }
+                .into(badge)
+            }
 
             name.text = league.name
+
+            teamsButton.onClick {
+                teamsListener(league)
+            }
 
             standingsButton.onClick {
                 standingsListener(league)

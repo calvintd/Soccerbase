@@ -3,7 +3,6 @@
 
     <!-- activity titles -->
     <string name="main_activity_title">Soccerbase</string>
-    <string name="listings_navigation_activity_title">Listings Navigation</string>
     <string name="search_navigation_activity_title">Search Navigation</string>
     <string name="favorites_navigation_activity_title">Favorite Navigation</string>
     <string name="league_listing_activity_title">League Listing</string>
@@ -29,14 +28,9 @@
 
     <!-- main activity -->
     <string name="main_activity_tagline">Your soccer info companion!</string>
-    <string name="main_activity_listings_button">Listings</string>
+    <string name="main_activity_listings_button">League Listing</string>
     <string name="main_activity_search_button">Search</string>
     <string name="main_activity_favorites_button">Favorites</string>
-
-    <!-- listings navigation -->
-    <string name="listings_navigation_title">Listings</string>
-    <string name="listings_navigation_league">League</string>
-    <string name="listings_navigation_team">Team</string>
 
     <!-- search navigation -->
     <string name="search_navigation_title">Search</string>
@@ -54,8 +48,8 @@
     <string name="match_search_no_search_results_found">"No search results found for \"%s\".</string>
 
     <!-- league listing -->
-    <string name="league_listing_standings_button">Standings</string>
     <string name="league_listing_teams_button">Teams</string>
+    <string name="league_listing_standings_button">Standings</string>
     <string name="league_listing_description_button">Description</string>
     <string name="league_listing_schedule_button">Schedule</string>
 
@@ -64,9 +58,10 @@
     <string name="match_listing_show_match_details">Show match details…</string>
 
     <!-- team listing -->
-    <string name="team_listing_find_teams_button">Find Teams for This League</string>
     <string name="team_listing_details_button">Details</string>
     <string name="team_listing_players_button">Players</string>
+    <string name="team_listing_load_league_teams">Displaying teams for %s:</string>
+    <string name="team_listing_show_no_teams_found">There were no teams found for %s.</string>
 
     <!-- player listing -->
     <string name="player_listing_details_button">Details</string>

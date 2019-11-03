@@ -53,6 +53,9 @@
     <item name="ivLeagueBadge" type="id"/>
     <item name="tvLeagueName" type="id"/>
     <item name="glLeagueButtonGuideline" type="id"/>
+    <item name="llListingTeamsLayout" type="id"/>
+    <item name="ivListingTeamsIcon" type="id"/>
+    <item name="tvListingTeamsName" type="id"/>
     <item name="llListingStandingsLayout" type="id"/>
     <item name="ivListingStandingsIcon" type="id"/>
     <item name="tvListingStandingsName" type="id"/>
@@ -62,6 +65,11 @@
     <item name="llListingScheduleLayout" type="id"/>
     <item name="ivListingScheduleIcon" type="id"/>
     <item name="tvListingScheduleName" type="id"/>
+
+    <!-- league spinner -->
+    <item name="llLeagueSpinnerLayout" type="id"/>
+    <item name="ivLeagueSpinnerBadge" type="id"/>
+    <item name="tvLeagueSpinnerName" type="id"/>
 
     <!-- match listing -->
     <item name="glMatchCenterGuideline" type="id"/>
@@ -79,8 +87,6 @@
     <item name="tvMatchShowDetails" type="id"/>
 
     <!-- team listing -->
-    <item name="spTeamListingSpinner" type="id"/>
-    <item name="btnTeamListingButton" type="id"/>
     <item name="tvTeamListingResults" type="id"/>
     <item name="pbTeamListingProgressBar" type="id"/>
     <item name="rvTeamListingRecyclerView" type="id"/>

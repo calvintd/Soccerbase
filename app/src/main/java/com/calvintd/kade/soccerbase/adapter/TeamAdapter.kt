@@ -5,12 +5,15 @@ import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.itemmodel.Team
+import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -44,13 +47,13 @@ class TeamAdapter (private val teams: List<Team>, private val detailsListener: (
                     gravity = Gravity.CENTER_VERTICAL
 
                     imageView {
-                        id = R.id.ivLeagueBadge
+                        id = R.id.ivTeamBadge
                         image = resources.getDrawable(R.drawable.ic_placeholder_black_48dp, ctx.theme)
                         rightPadding = 32
                     }.lparams(width = badgeSize, height = badgeSize)
 
                     textView {
-                        id = R.id.tvLeagueName
+                        id = R.id.tvTeamName
                         text = resources.getText(R.string.item_team_name_placeholder)
                         textSize = 18f
                         typeface = Typeface.DEFAULT_BOLD
@@ -147,10 +150,23 @@ class TeamAdapter (private val teams: List<Team>, private val detailsListener: (
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view) {
-        val detailsButton = view.find<LinearLayout>(R.id.llTeamDetailsLayout)
-        val playersButton = view.find<LinearLayout>(R.id.llTeamPlayersLayout)
+        private val badge = view.find<ImageView>(R.id.ivTeamBadge)
+        private val name = view.find<TextView>(R.id.tvTeamName)
+        private val detailsButton = view.find<LinearLayout>(R.id.llTeamDetailsLayout)
+        private val playersButton = view.find<LinearLayout>(R.id.llTeamPlayersLayout)
 
         fun bindItem (team: Team, detailsListener: (Team) -> Unit, playersListener: (Team) -> Unit) {
+            team.teamBadge.let {
+                Picasso.get()
+                .load(it)
+                .fit()
+                .centerCrop()
+                .placeholder(R.drawable.ic_placeholder_black_48dp)
+                .error(R.drawable.ic_error_black_48dp)
+                .into(badge)
+            }
+
+            name.text = team.teamName
 
             detailsButton.onClick {
                 detailsListener(team)

@@ -10,11 +10,14 @@ object FetchLeaguesCoroutines {
         return withContext(Dispatchers.Main) {
             val fetchedLeagues = mutableListOf<League>()
             val leagueResponseItems = data!!.leagues
+
             for (i in leagueResponseItems.indices) {
-                val leagueId = leagueResponseItems[i].leagueId
-                val name = leagueResponseItems[i].name
-                val badge = leagueResponseItems[i].badge
-                val description = leagueResponseItems[i].description
+                val item = leagueResponseItems[i]
+
+                val leagueId = item.leagueId
+                val name = item.name
+                val badge = item.badge
+                val description = item.description
 
                 val league = League(leagueId, name, badge, description)
 

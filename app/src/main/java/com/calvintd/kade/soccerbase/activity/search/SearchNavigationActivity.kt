@@ -20,7 +20,8 @@ class SearchNavigationActivity : AppCompatActivity() {
 
         val buttonIconPadding = 16
         val buttonTextSize = 20f
-        val headerIconSize = 480
+        val headerIconSize = 432
+        val menuIconSize = 128
 
         supportActionBar?.title = resources.getString(R.string.search_navigation_activity_title)
 
@@ -34,7 +35,7 @@ class SearchNavigationActivity : AppCompatActivity() {
 
                 imageView {
                     id = R.id.ivSearchNavigationIcon
-                    padding = 96
+                    padding = 48
                     image = resources.getDrawable(R.drawable.ic_search_black_48dp, theme)
                 }.lparams(width = headerIconSize, height = headerIconSize)
 
@@ -57,7 +58,7 @@ class SearchNavigationActivity : AppCompatActivity() {
                     id = R.id.ivSearchNavigationMatchIcon
                     padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.match, theme)
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = menuIconSize, height = menuIconSize)
 
                 textView {
                     id = R.id.tvSearchNavigationMatchName
@@ -82,7 +83,7 @@ class SearchNavigationActivity : AppCompatActivity() {
                     id = R.id.ivSearchNavigationTeamIcon
                     padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.team, theme)
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = menuIconSize, height = menuIconSize)
 
                 textView {
                     id = R.id.tvSearchNavigationTeamName

@@ -18,7 +18,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.calvintd.kade.soccerbase.activity.listing.ListingsNavigationActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.listing.LeagueListingActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.listing.TeamListingActivity"/>
         <activity android:name="com.calvintd.kade.soccerbase.activity.listing.PlayerListingActivity"/>

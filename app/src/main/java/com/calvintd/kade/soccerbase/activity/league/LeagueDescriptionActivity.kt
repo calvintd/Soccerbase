@@ -17,12 +17,12 @@ class LeagueDescriptionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.title = resources.getText(R.string.league_description_activity_title)
+
         val league = intent.getParcelableExtra("league") as League
         val leagueName = league.name
         val leagueBadge = league.badge
         val leagueDescription = league.description
-
-        supportActionBar?.title = resources.getText(R.string.league_description_activity_title)
 
         scrollView {
             constraintLayout {

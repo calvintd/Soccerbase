@@ -116,6 +116,9 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                 query
             )
             progressBar.visibility = View.GONE
+            recyclerView.adapter = MatchAdapter(listOf()) {
+
+            }
             recyclerView.adapter?.notifyDataSetChanged()
         }
     }

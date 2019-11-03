@@ -20,7 +20,8 @@ class FavoritesNavigationActivity : AppCompatActivity() {
 
         val buttonIconPadding = 16
         val buttonTextSize = 20f
-        val headerIconSize = 480
+        val headerIconSize = 432
+        val menuIconSize = 128
 
         supportActionBar?.title = resources.getString(R.string.favorites_navigation_activity_title)
 
@@ -34,7 +35,7 @@ class FavoritesNavigationActivity : AppCompatActivity() {
 
                 imageView {
                     id = R.id.ivFavoritesNavigationIcon
-                    padding = 96
+                    padding = 48
                     image = resources.getDrawable(R.drawable.ic_favorited_black_48dp, theme)
                 }.lparams(width = headerIconSize, height = headerIconSize)
 
@@ -57,7 +58,7 @@ class FavoritesNavigationActivity : AppCompatActivity() {
                     id = R.id.ivFavoritesNavigationMatchesIcon
                     padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.match, theme)
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = menuIconSize, height = menuIconSize)
 
                 textView {
                     id = R.id.tvListingsNavigationTeamName
@@ -82,7 +83,7 @@ class FavoritesNavigationActivity : AppCompatActivity() {
                     id = R.id.ivFavoritesNavigationTeamsIcon
                     padding = buttonIconPadding
                     image = resources.getDrawable(R.drawable.team, theme)
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = menuIconSize, height = menuIconSize)
 
                 textView {
                     id = R.id.tvFavoritesNavigationTeamsName

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.activity.favorite.FavoritesNavigationActivity
-import com.calvintd.kade.soccerbase.activity.listing.ListingsNavigationActivity
+import com.calvintd.kade.soccerbase.activity.listing.LeagueListingActivity
 import com.calvintd.kade.soccerbase.activity.search.SearchNavigationActivity
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 onClick {
-                    startActivity<ListingsNavigationActivity>()
+                    startActivity<LeagueListingActivity>()
                 }
             }.lparams(width = matchConstraint, height = wrapContent)
 

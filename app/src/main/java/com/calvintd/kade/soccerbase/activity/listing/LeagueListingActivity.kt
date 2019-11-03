@@ -55,6 +55,10 @@ class LeagueListingActivity : AppCompatActivity(), LeagueListingView {
     override fun loadData(leagues: List<League>) {
         runOnUiThread {
             recyclerView.adapter = LeagueAdapter(leagues, {
+               startActivity<TeamListingActivity>(
+                   "league" to it
+               )
+            }, {
                 startActivity<LeagueStandingsActivity>(
                     "league" to it
                 )

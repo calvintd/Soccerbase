@@ -17,7 +17,6 @@ object FetchMatchesCoroutines {
         return withContext(Dispatchers.Main) {
             val fetchedMatches = mutableListOf<Match>()
             val instance = RetrofitInstance.getInstance()
-            val processor = MatchDataProcessor
 
                 if (data?.matches != null) {
                     val matchResponseItems = data.matches

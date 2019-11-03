@@ -7,6 +7,7 @@ import kotlinx.android.parcel.Parcelize
 class Team (
     var id: Int? = null,
     var teamId: Int? = null,
+    var teamName: String? = null,
     var teamYearFormed: Int? = null,
     var teamStadium: String? = null,
     var teamStadiumLocation: String? = null,
@@ -26,6 +27,7 @@ class Team (
         // favorite teams
         const val TABLE_FAVORITE = "TABLE_FAVORITE_TEAMS"
         const val TEAM_ID = "TEAM_ID"
+        const val TEAM_NAME = "TEAM_NAME"
         const val TEAM_YEAR_FORMED = "TEAM_YEAR_FORMED"
         const val TEAM_STADIUM = "TEAM_STADIUM"
         const val TEAM_STADIUM_LOCATION = "TEAM_STADIUM_LOCATION"

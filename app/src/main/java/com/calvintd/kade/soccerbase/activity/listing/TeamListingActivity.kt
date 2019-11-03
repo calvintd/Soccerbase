@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.activity.details.TeamDetailsActivity
+import com.calvintd.kade.soccerbase.adapter.TeamAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.LeagueResponse
 import com.calvintd.kade.soccerbase.itemmodel.Team
@@ -27,39 +29,22 @@ import org.jetbrains.anko.sdk27.coroutines.onClick
 import retrofit2.Response
 
 class TeamListingActivity : AppCompatActivity(), TeamListingView {
-    private lateinit var spinner: Spinner
-    private lateinit var button: Button
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var recyclerView: RecyclerView
-    private lateinit var leagues: List<League>
-    private lateinit var teams: List<Team>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.title = resources.getString(R.string.team_listing_activity_title)
 
-        val presenter =  TeamListingPresenter(this, LeagueResponseRepository(), TeamResponseRepository())
+        val presenter =  TeamListingPresenter(this, TeamResponseRepository())
+        val league = intent.getParcelableExtra("league") as League
+        val leagueId = league.leagueId!!
+        val leagueName = league.name!!
 
         verticalLayout {
             lparams(width = matchParent, height = matchParent)
-
-            spinner = spinner {
-                id = R.id.spTeamListingSpinner
-            }.lparams(width = matchParent, height = wrapContent)
-
-            button = button {
-                id = R.id.btnTeamListingButton
-                textSize = 20f
-                text = resources.getString(R.string.team_listing_find_teams_button)
-                visibility = View.GONE
-
-                onClick {
-                    button.visibility = View.GONE
-                }
-            }.lparams(width = matchParent, height = wrapContent)
-
             textView = textView {
                 id = R.id.tvTeamListingResults
                 padding = 32
@@ -71,7 +56,6 @@ class TeamListingActivity : AppCompatActivity(), TeamListingView {
             progressBar = progressBar {
                 id = R.id.pbTeamListingProgressBar
                 padding = 128
-                visibility = View.GONE
             }.lparams(width = matchParent, height = matchParent)
 
             scrollView {
@@ -84,24 +68,42 @@ class TeamListingActivity : AppCompatActivity(), TeamListingView {
             }
         }
 
-
+        presenter.loadLeagueTeams(leagueId, leagueName)
     }
-    override fun loadDataIntoSpinner(leagues: List<League>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    override fun loadLeagueTeams(teams: List<Team>, leagueName: String) {
+        runOnUiThread {
+            recyclerView.adapter = TeamAdapter(teams, {
+                startActivity<TeamDetailsActivity>(
+                    "team" to it
+                )
+            }, {
+                startActivity<PlayerListingActivity>(
+                    "team" to it
+                )
+            })
+            recyclerView.adapter!!.notifyDataSetChanged()
+            recyclerView.visibility = View.VISIBLE
+            textView.text = String.format(resources.getString(R.string.team_listing_load_league_teams), leagueName)
+            textView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    override fun showNoTeamsFound(leagueName: String) {
+        runOnUiThread {
+            recyclerView.adapter = TeamAdapter(listOf(), {}, {})
+            recyclerView.adapter?.notifyDataSetChanged()
+            textView.text = String.format(resources.getString(R.string.team_listing_show_no_teams_found), leagueName)
+            textView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+        }
     }
 
     override fun showResponseError(code: Int, responseBody: ResponseBody?) {
         runOnUiThread {
             toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
         }
-    }
-
-    override fun onLeagueDataLoaded(data: LeagueResponse?) {
-        Log.i(resources.getString((R.string.logging_loaded_log_title)), resources.getString(R.string.logging_loaded_log_message))
-    }
-
-    override fun onLeagueDataError(response: Response<LeagueResponse>) {
-        showResponseError(response.code(), response.errorBody())
     }
 
     override fun onTeamDataLoaded(data: TeamResponse?) {
