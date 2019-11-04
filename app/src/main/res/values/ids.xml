@@ -184,8 +184,29 @@
     <item name="tvMatchDetailsAwaySubstitutes" type="id"/>
 
     <!-- team details -->
-    <item name="ivTeamDetailsBanner" type="id"/>
+    <item name="ivTeamDetailsActivityBanner" type="id"/>
+    <item name="ivTeamDetailsActivityBadge" type="id"/>
+    <item name="tvTeamDetailsActivityName" type="id"/>
+    <item name="tvTeamDetailsActivityYearFormed" type="id"/>
+    <item name="tvTeamDetailsActivityStadium" type="id"/>
+    <item name="tvTeamDetailsActivityStadiumLocation" type="id"/>
+    <item name="tvTeamDetailsActivityStadiumCapacity" type="id"/>
+    <item name="tvTeamDetailsActivityWebsite" type="id"/>
+    <item name="tvTeamDetailsActivityFacebook" type="id"/>
+    <item name="tvTeamDetailsActivityTwitter" type="id"/>
+    <item name="tvTeamDetailsActivityInstagram" type="id"/>
+    <item name="tvTeamDetailsActivityYoutube" type="id"/>
+    <item name="tvTeamDetailsActivityDescription" type="id"/>
 
     <!-- player details -->
-    <item name="ivPlayerDetailsFanart" type="id"/>
+    <item name="ivPlayerDetailsActivityFanart" type="id"/>
+    <item name="ivPlayerDetailsActivityThumb" type="id"/>
+    <item name="tvPlayerDetailsActivityName" type="id"/>
+    <item name="tvPlayerDetailsActivityNationality" type="id"/>
+    <item name="tvPlayerDetailsActivityTeam" type="id"/>
+    <item name="tvPlayerDetailsActivityBirthDate" type="id"/>
+    <item name="tvPlayerDetailsActivityBirthLocation" type="id"/>
+    <item name="tvPlayerDetailsActivitySignedDate" type="id"/>
+    <item name="tvPlayerDetailsActivityPosition" type="id"/>
+    <item name="tvPlayerDetailsActivityDescription" type="id"/>
 </resources>

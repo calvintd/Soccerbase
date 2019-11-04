@@ -88,6 +88,26 @@
     <string name="match_details_forwards">Forward(s): %s</string>
     <string name="match_details_substitutes">Substitute(s): %s</string>
 
+    <!-- team details -->
+    <string name="team_details_year_formed">Year formed: %d</string>
+    <string name="team_details_stadium">Stadium: %s</string>
+    <string name="team_details_stadium_location">Stadium location: %s</string>
+    <string name="team_details_stadium_capacity">Stadium capacity: %d</string>
+    <string name="team_details_website">Website: %s</string>
+    <string name="team_details_facebook">Facebook: %s</string>
+    <string name="team_details_twitter">Twitter: %s</string>
+    <string name="team_details_instagram">Instagram: %s</string>
+    <string name="team_details_youtube">YouTube: %s</string>
+
+    <!-- player details -->
+    <string name="player_details_nationality">Nationality: %s</string>
+    <string name="player_details_team">Team: %s</string>
+    <string name="player_details_birth_date">Birth date: %s</string>
+    <string name="player_details_birth_location">Birth location: %s</string>
+    <string name="player_details_signed_date">Signed date: %s</string>
+    <string name="player_details_wage">Wage: %s</string>
+    <string name="player_details_position">Position: %s</string>
+
     <!-- favorite matches (in match details) -->
     <string name="favorite_matches_favorite_match">Favorite</string>
     <string name="favorite_matches_unfavorite_match">Unfavorite</string>

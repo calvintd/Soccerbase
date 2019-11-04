@@ -26,4 +26,7 @@ interface RetrofitService {
 
     @GET("/api/v1/json/1/lookup_all_players.php")
     suspend fun getTeamPlayers(@Query("id") teamId: Int?): Response<PlayerResponse>
+
+    @GET("/api/v1/json/1/lookuptable.php?s=1920")
+    suspend fun getLeagueStandings(@Query("l") leagueId: Int?): Response<StandingsResponse>
 }

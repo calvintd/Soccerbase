@@ -7,7 +7,10 @@ import java.time.OffsetTime
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 
-object MatchDateTimeFormatter {
+object DateTimeFormatterUtil {
+    private val dateFormatter = DateTimeFormatter.ofPattern("d MMMM u")
+    private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+
     fun format(date: String?, time: String?): Pair<String, String> {
         val gmt = 7L
 
@@ -22,12 +25,11 @@ object MatchDateTimeFormatter {
         val matchLocalDate = matchDateTime.toLocalDate()
         val matchLocalTime = matchDateTime.toLocalTime()
 
-        val dateFormatter = DateTimeFormatter.ofPattern("d MMMM u")
-        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-
         val parsedDate = matchLocalDate.format(dateFormatter)
         val parsedTime = matchLocalTime.format(timeFormatter)
 
         return Pair(parsedDate, parsedTime)
     }
+
+    fun dateFormat(date: String?): String = LocalDate.parse(date).format(dateFormatter)
 }

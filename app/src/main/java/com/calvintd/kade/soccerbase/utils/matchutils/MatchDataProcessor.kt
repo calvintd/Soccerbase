@@ -6,7 +6,7 @@ import com.calvintd.kade.soccerbase.itemmodel.TeamResponseItem
 
 object MatchDataProcessor {
     private val splitter = MatchDetailsSplitter
-    private val formatter = MatchDateTimeFormatter
+    private val formatter = DateTimeFormatterUtil
 
     fun matchDataInit (matchResponseItem: MatchResponseItem) : Match {
         // general data
@@ -19,7 +19,7 @@ object MatchDataProcessor {
         val awayScore = matchResponseItem.awayScore
 
         // first = date; second = time
-        val matchDateTime = MatchDateTimeFormatter.format(
+        val matchDateTime = DateTimeFormatterUtil.format(
             matchResponseItem.matchDate,
             matchResponseItem.matchTime
         )
