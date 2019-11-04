@@ -6,7 +6,7 @@ import com.calvintd.kade.soccerbase.repository.callback.TeamResponseRepositoryCa
 import okhttp3.ResponseBody
 
 interface TeamSearchView : TeamResponseRepositoryCallback<TeamResponse> {
-    fun loadTeamsByQuery(matches: List<Team>, query: String)
+    fun loadTeamsByQuery(teams: List<Team>, query: String)
     fun showNoResultsFound(query: String)
     fun showResponseError(code: Int, responseBody: ResponseBody?)
 }

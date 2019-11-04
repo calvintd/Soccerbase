@@ -31,5 +31,12 @@ object DateTimeFormatterUtil {
         return Pair(parsedDate, parsedTime)
     }
 
-    fun dateFormat(date: String?): String = LocalDate.parse(date).format(dateFormatter)
+    fun dateFormat(date: String?): String {
+        var parsedDate = ""
+        if (!date.isNullOrEmpty()) {
+            parsedDate = LocalDate.parse(date).format(dateFormatter)
+        }
+
+        return parsedDate
+    }
 }

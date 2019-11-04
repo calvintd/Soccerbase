@@ -10,13 +10,12 @@ import org.jetbrains.anko.db.parseList
 import org.jetbrains.anko.db.select
 
 class FavoriteMatchesPresenter(private val view: FavoriteMatchesView) {
-    val matches = ArrayList<Match>()
+    val matches = mutableListOf<Match>()
 
     fun loadFavorites(helper: DatabaseHelper) {
         matches.clear()
 
-        val organizer =
-            MatchDatabaseDetailsOrganizer(helper)
+        val organizer = MatchDatabaseDetailsOrganizer(helper)
 
         try {
             helper.use {
@@ -36,7 +35,7 @@ class FavoriteMatchesPresenter(private val view: FavoriteMatchesView) {
                 view.loadFavoriteMatches(matches)
             }
         } catch (e: SQLiteConstraintException) {
-            view.showError(e)
+            view.showError(e.localizedMessage)
         }
     }
 }

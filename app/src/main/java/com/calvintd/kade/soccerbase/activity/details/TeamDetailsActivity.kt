@@ -2,6 +2,8 @@ package com.calvintd.kade.soccerbase.activity.details
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
@@ -30,7 +32,7 @@ class TeamDetailsActivity : AppCompatActivity() {
 
                 val banner = imageView {
                     id = R.id.ivTeamDetailsActivityBanner
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = matchConstraint, height = wrapContent)
 
                 val badge = imageView {
                     id = R.id.ivTeamDetailsActivityBadge
@@ -40,12 +42,13 @@ class TeamDetailsActivity : AppCompatActivity() {
                     id = R.id.tvTeamDetailsActivityName
                     text = team.teamName
                     textSize = 20f
+                    gravity = Gravity.CENTER
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = matchConstraint, height = wrapContent)
 
                 val yearFormed = textView {
                     id = R.id.tvTeamDetailsActivityYearFormed
-                    text = String.format(resources.getString(R.string.team_details_year_formed), team.teamYearFormed)
+                    text = String.format(resources.getString(R.string.team_details_year_formed), team.teamYearFormed.toString())
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 val stadium = textView {
@@ -60,7 +63,7 @@ class TeamDetailsActivity : AppCompatActivity() {
 
                 val stadiumCapacity = textView {
                     id = R.id.tvTeamDetailsActivityStadiumCapacity
-                    text = String.format(resources.getString(R.string.team_details_stadium_capacity), team.teamStadiumCapacity)
+                    text = String.format(resources.getString(R.string.team_details_stadium_capacity), team.teamStadiumCapacity.toString())
                 }.lparams(width = wrapContent, height = wrapContent)
 
                 val website = textView {
@@ -100,7 +103,8 @@ class TeamDetailsActivity : AppCompatActivity() {
                     val top = ConstraintSetBuilder.Side.TOP
                     val bottom = ConstraintSetBuilder.Side.BOTTOM
                     val margin = 16
-                    val halfMargin = margin/2
+                    val doubleMargin = margin * 2
+                    val halfMargin = margin / 2
 
                     banner {
                         connect (
@@ -114,7 +118,7 @@ class TeamDetailsActivity : AppCompatActivity() {
                         connect (
                             start to start of parent,
                             end to end of parent,
-                            top to bottom of banner margin dip(margin)
+                            top to bottom of banner margin dip(doubleMargin)
                         )
                     }
 
@@ -198,23 +202,27 @@ class TeamDetailsActivity : AppCompatActivity() {
                 }
 
                 team.teamBanner.let {
-                    Picasso.get()
-                        .load(it)
-                        .fit()
-                        .centerCrop()
-                        .placeholder(R.drawable.ic_placeholder_black_48dp)
-                        .error(R.drawable.ic_error_black_48dp)
-                        .into(banner)
+                    if (!it.isNullOrEmpty()) {
+                        Picasso.get()
+                            .load(it)
+                            .placeholder(R.drawable.ic_placeholder_black_48dp)
+                            .error(R.drawable.ic_error_black_48dp)
+                            .into(banner)
+                    } else {
+                        banner.visibility = View.GONE
+                    }
                 }
 
                 team.teamBadge.let {
-                    Picasso.get()
-                        .load(it)
-                        .fit()
-                        .centerCrop()
-                        .placeholder(R.drawable.ic_placeholder_black_48dp)
-                        .error(R.drawable.ic_error_black_48dp)
-                        .into(badge)
+                    if (!it.isNullOrEmpty()) {
+                        Picasso.get()
+                            .load(it)
+                            .placeholder(R.drawable.ic_placeholder_black_48dp)
+                            .error(R.drawable.ic_error_black_48dp)
+                            .into(badge)
+                    } else {
+                        badge.visibility = View.GONE
+                    }
                 }
             }
         }

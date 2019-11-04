@@ -84,10 +84,10 @@
     <string name="match_details_substitutes">Substitute(s): %s</string>
 
     <!-- team details -->
-    <string name="team_details_year_formed">Year formed: %d</string>
+    <string name="team_details_year_formed">Year formed: %s</string>
     <string name="team_details_stadium">Stadium: %s</string>
     <string name="team_details_stadium_location">Stadium location: %s</string>
-    <string name="team_details_stadium_capacity">Stadium capacity: %d</string>
+    <string name="team_details_stadium_capacity">Stadium capacity: %s</string>
     <string name="team_details_website">Website: %s</string>
     <string name="team_details_facebook">Facebook: %s</string>
     <string name="team_details_twitter">Twitter: %s</string>
@@ -108,10 +108,12 @@
     <string name="favorite_navigation_matches">Matches</string>
     <string name="favorite_navigation_teams">Teams</string>
 
+    <!-- favorite matches -->
+    <string name="favorite_matches_no_favorites_yet">You don\'t have any favorite matches added yet!</string>
+
     <!-- favorite matches (in match details) -->
     <string name="favorite_matches_favorite_match">Favorite</string>
     <string name="favorite_matches_unfavorite_match">Unfavorite</string>
-    <string name="favorite_matches_no_favorites_yet">You don\'t have any favorite matches added yet!</string>
     <string name="favorite_matches_add_confirmation_title">Add to Favorites</string>
     <string name="favorite_matches_add_confirmation_message">Are you sure you want to add this match to your favorite matches?</string>
     <string name="favorite_matches_added_to_favorites">Added to favorites!</string>
@@ -119,12 +121,24 @@
     <string name="favorite_matches_remove_confirmation_message">Are you sure you want to remove this match from your favorite matches?</string>
     <string name="favorite_matches_removed_from_favorites">Removed from favorites!</string>
 
-    <!-- favorite teams (in team details) -->
+    <!-- favorite teams -->
+    <string name="favorite_teams_no_favorites_yet">You don\'t have any favorite teams added yet!</string>
 
+    <!-- favorite teams (in team details) -->
+    <string name="favorite_teams_favorite_team">Favorite</string>
+    <string name="favorite_teams_unfavorite_team">Unfavorite</string>
+    <string name="favorite_teams_add_confirmation_title">Add to Favorites</string>
+    <string name="favorite_teams_add_confirmation_message">Are you sure you want to add this team to your favorite teams?</string>
+    <string name="favorite_teams_added_to_favorites">Added to favorites!</string>
+    <string name="favorite_teams_remove_confirmation_title">Remove from Favorites</string>
+    <string name="favorite_teams_remove_confirmation_message">Are you sure you want to remove this team from your favorite teams?</string>
+    <string name="favorite_teams_removed_from_favorites">Removed from favorites!</string>
+    
 
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>
-    <string name="error_messages_http_exception">The following exception happened: %s</string>
+    <string name="error_messages_http_exception">The following HTTP exception happened: %s</string>
+    <string name="error_messages_sqlite_exception">There was a mistake during the execution of SQLite. %s</string>
 
     <!-- database helper -->
     <string name="database_helper_db_name">Soccerbase.db</string>

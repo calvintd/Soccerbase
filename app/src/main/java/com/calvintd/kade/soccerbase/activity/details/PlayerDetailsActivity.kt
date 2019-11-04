@@ -2,6 +2,8 @@ package com.calvintd.kade.soccerbase.activity.details
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
@@ -30,7 +32,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
 
                 val fanart = imageView {
                     id = R.id.ivPlayerDetailsActivityFanart
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = matchConstraint, height = wrapContent)
 
                 val thumb = imageView {
                     id = R.id.ivPlayerDetailsActivityThumb
@@ -40,6 +42,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
                     id = R.id.tvPlayerDetailsActivityName
                     text = player.playerName
                     textSize = 20f
+                    gravity = Gravity.CENTER
                     typeface = Typeface.DEFAULT_BOLD
                 }.lparams(width = matchConstraint, height = wrapContent)
 
@@ -87,7 +90,8 @@ class PlayerDetailsActivity : AppCompatActivity() {
                     val top = ConstraintSetBuilder.Side.TOP
                     val bottom = ConstraintSetBuilder.Side.BOTTOM
                     val margin = 16
-                    val halfMargin = margin/2
+                    val doubleMargin = margin * 2
+                    val halfMargin = margin / 2
 
                     fanart {
                         connect (
@@ -101,7 +105,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
                         connect (
                             start to start of parent,
                             end to end of parent,
-                            top to bottom of fanart margin dip(margin)
+                            top to bottom of fanart margin dip(doubleMargin)
                         )
                     }
 
@@ -165,23 +169,27 @@ class PlayerDetailsActivity : AppCompatActivity() {
                 }
 
                 player.playerFanart.let {
-                    Picasso.get()
-                        .load(it)
-                        .fit()
-                        .centerCrop()
-                        .placeholder(R.drawable.ic_placeholder_black_48dp)
-                        .error(R.drawable.ic_error_black_48dp)
-                        .into(fanart)
+                    if (!it.isNullOrEmpty()) {
+                        Picasso.get()
+                            .load(it)
+                            .placeholder(R.drawable.ic_placeholder_black_48dp)
+                            .error(R.drawable.ic_error_black_48dp)
+                            .into(fanart)
+                    } else {
+                        fanart.visibility = View.GONE
+                    }
                 }
 
                 player.playerThumbnail.let {
-                    Picasso.get()
-                        .load(it)
-                        .fit()
-                        .centerCrop()
-                        .placeholder(R.drawable.ic_placeholder_black_48dp)
-                        .error(R.drawable.ic_error_black_48dp)
-                        .into(thumb)
+                    if (!it.isNullOrEmpty()) {
+                        Picasso.get()
+                            .load(it)
+                            .placeholder(R.drawable.ic_placeholder_black_48dp)
+                            .error(R.drawable.ic_error_black_48dp)
+                            .into(thumb)
+                    } else {
+                        thumb.visibility = View.GONE
+                    }
                 }
             }
         }
