@@ -45,7 +45,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                 id = R.id.svMatchSearchView
                 isSubmitButtonEnabled = true
                 isIconified = false
-                queryHint = resources.getString(R.string.match_search_query_hint)
+                queryHint = resources.getString(R.string.search_query_hint)
 
                 onQueryTextListener {
                     onQueryTextSubmit {
@@ -90,7 +90,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                 EspressoIdlingResource.decrement()
             }
             textView.text = String.format(
-                resources.getString(R.string.match_search_search_results_for_query),
+                resources.getString(R.string.search_results_for_query),
                 query
             )
             recyclerView.adapter = MatchAdapter(matches) {
@@ -112,7 +112,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
             }
             textView.visibility = View.VISIBLE
             textView.text = String.format(
-                resources.getString(R.string.match_search_no_search_results_found),
+                resources.getString(R.string.search_no_results_found),
                 query
             )
             progressBar.visibility = View.GONE

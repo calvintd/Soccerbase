@@ -13,8 +13,6 @@ import retrofit2.Response
 class MatchSearchPresenter(private val view: MatchSearchView, private val repository: MatchResponseRepository,
                            private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
-    private val fetcher = FetchMatchesCoroutines
-
     fun loadMatchesByQuery(query: String) {
         val fetchedMatches = CoroutineScope(Dispatchers.IO).async {
             getFetchedMatches(query)
@@ -44,7 +42,7 @@ class MatchSearchPresenter(private val view: MatchSearchView, private val reposi
                 }
             })
 
-            fetcher.getFetchedMatchesMatchSearch(view, response)
+            FetchMatchesCoroutines.getFetchedMatchesMatchSearch(view, response)
         }
     }
 }

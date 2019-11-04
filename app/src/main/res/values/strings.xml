@@ -39,15 +39,10 @@
     <string name="search_navigation_match">Match</string>
     <string name="search_navigation_team">Team</string>
 
-    <!-- favorites navigation -->
-    <string name="favorites_navigation_title">Favorites</string>
-    <string name="favorite_navigation_matches">Matches</string>
-    <string name="favorite_navigation_teams">Teams</string>
-
-    <!-- match search -->
-    <string name="match_search_query_hint">Type in a team\'s name…</string>>
-    <string name="match_search_search_results_for_query">"Displaying search results for \"%s\":"</string>
-    <string name="match_search_no_search_results_found">"No search results found for \"%s\".</string>
+    <!-- search strings -->
+    <string name="search_query_hint">Type in a team\'s name…</string>>
+    <string name="search_results_for_query">"Displaying search results for \"%s\":"</string>
+    <string name="search_no_results_found">"No search results found for \"%s\".</string>
 
     <!-- league listing -->
     <string name="league_listing_teams_button">Teams</string>
@@ -108,6 +103,11 @@
     <string name="player_details_wage">Wage: %s</string>
     <string name="player_details_position">Position: %s</string>
 
+    <!-- favorites navigation -->
+    <string name="favorites_navigation_title">Favorites</string>
+    <string name="favorite_navigation_matches">Matches</string>
+    <string name="favorite_navigation_teams">Teams</string>
+
     <!-- favorite matches (in match details) -->
     <string name="favorite_matches_favorite_match">Favorite</string>
     <string name="favorite_matches_unfavorite_match">Unfavorite</string>
@@ -118,6 +118,9 @@
     <string name="favorite_matches_remove_confirmation_title">Remove from Favorites</string>
     <string name="favorite_matches_remove_confirmation_message">Are you sure you want to remove this match from your favorite matches?</string>
     <string name="favorite_matches_removed_from_favorites">Removed from favorites!</string>
+
+    <!-- favorite teams (in team details) -->
+
 
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>

@@ -7,8 +7,8 @@ import com.calvintd.kade.soccerbase.repository.callback.TeamResponseRepositoryCa
 class TeamResponseRepository {
     private val instance = RetrofitInstance.getInstance()
 
-    suspend fun getTeamDetails(teamId: Int, callback: TeamResponseRepositoryCallback<TeamResponse>) {
-        val response = instance.getTeamDetails(teamId)
+    suspend fun getTeamsByName(teamName: String, callback: TeamResponseRepositoryCallback<TeamResponse>) {
+        val response = instance.getTeamsByName(teamName)
 
         if (response.isSuccessful) {
             callback.onTeamDataLoaded(response.body())
