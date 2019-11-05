@@ -113,6 +113,10 @@
     <item name="ivNavigationScheduleIcon" type="id"/>
     <item name="tvNavigationScheduleName" type="id"/>
 
+    <!-- league standings -->
+    <item name="pbLeagueStandingsProgressBar" type="id"/>
+    <item name="tvLeagueStandingsResults" type="id"/>
+
     <!-- league description -->
     <item name="ivDescriptionBadge" type="id"/>
     <item name="tvDescriptionName" type="id"/>

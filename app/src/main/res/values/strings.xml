@@ -65,6 +65,10 @@
     <string name="player_listing_load_team_players">Displaying players of %s:</string>
     <string name="players_listing_show_no_players_found">There were no players found of %s.</string>
 
+    <!-- league standings -->
+    <string name="league_standings_display">Displaying the current season\'s standings for %s:</string>
+    <string name="league_standings_not_found">There were no standings table found for this season\'s %s.</string>
+
     <!-- league schedule -->
     <string name="league_schedule_nav_past">Past Matches</string>
     <string name="league_schedule_nav_upcoming">Upcoming Matches</string>
@@ -133,7 +137,6 @@
     <string name="favorite_teams_remove_confirmation_title">Remove from Favorites</string>
     <string name="favorite_teams_remove_confirmation_message">Are you sure you want to remove this team from your favorite teams?</string>
     <string name="favorite_teams_removed_from_favorites">Removed from favorites!</string>
-    
 
     <!-- error messages -->
     <string name="error_messages_response_code">Error in fetching response through API: %1$s %2$s</string>

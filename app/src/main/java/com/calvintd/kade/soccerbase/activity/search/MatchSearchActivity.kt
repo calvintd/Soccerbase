@@ -98,10 +98,10 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                     "match" to it
                 )
             }
-            progressBar.visibility = View.GONE
             recyclerView.adapter!!.notifyDataSetChanged()
-            textView.visibility = View.VISIBLE
             recyclerView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+            textView.visibility = View.VISIBLE
         }
     }
 
@@ -110,16 +110,16 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
             if (!EspressoIdlingResource.idlingresource.isIdleNow) {
                 EspressoIdlingResource.decrement()
             }
-            textView.visibility = View.VISIBLE
             textView.text = String.format(
                 resources.getString(R.string.search_no_results_found),
                 query
             )
-            progressBar.visibility = View.GONE
             recyclerView.adapter = MatchAdapter(listOf()) {
 
             }
             recyclerView.adapter?.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+            textView.visibility = View.VISIBLE
         }
     }
 
