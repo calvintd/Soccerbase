@@ -4,10 +4,10 @@ import android.database.sqlite.SQLiteConstraintException
 import com.calvintd.kade.soccerbase.database.DatabaseHelper
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.utils.database.MatchDatabaseDetailsOrganizer
-import com.calvintd.kade.soccerbase.view.MatchDetailsView
+import com.calvintd.kade.soccerbase.view.ItemDetailsView
 import org.jetbrains.anko.db.*
 
-class MatchDetailsPresenter (private val view: MatchDetailsView) {
+class MatchDetailsPresenter (private val view: ItemDetailsView) {
     fun checkFavorite (isFavorited: Boolean) {
         view.checkedFavorite(isFavorited)
     }
@@ -25,7 +25,7 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
                     }
             }
         } catch (e: SQLiteConstraintException) {
-            view.showError(e)
+            view.showError(e.localizedMessage)
         }
 
         return isFavorited
@@ -83,7 +83,7 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
                 view.addedToFavorites()
             }
         } catch (e: SQLiteConstraintException) {
-            view.showError(e)
+            view.showError(e.localizedMessage)
         }
     }
 
@@ -106,7 +106,7 @@ class MatchDetailsPresenter (private val view: MatchDetailsView) {
                 view.removedFromFavorites()
             }
         } catch (e: SQLiteConstraintException) {
-            view.showError(e)
+            view.showError(e.localizedMessage)
         }
 
     }

@@ -184,6 +184,10 @@
     <item name="tvMatchDetailsAwaySubstitutes" type="id"/>
 
     <!-- team details -->
+    <item name="llTeamDetailsActivityFavoriteLayout" type="id"/>
+    <item name="ivTeamDetailsActivityFavoriteIcon" type="id"/>
+    <item name="tvTeamDetailsActivityFavoriteName" type="id"/>
+
     <item name="ivTeamDetailsActivityBanner" type="id"/>
     <item name="ivTeamDetailsActivityBadge" type="id"/>
     <item name="tvTeamDetailsActivityName" type="id"/>

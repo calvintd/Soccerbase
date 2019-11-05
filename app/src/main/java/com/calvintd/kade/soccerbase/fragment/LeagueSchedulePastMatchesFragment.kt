@@ -13,7 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.activity.details.MatchDetailsActivity
+import com.calvintd.kade.soccerbase.activity.details.ItemDetailsActivity
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.Match
@@ -93,7 +93,7 @@ class LeagueSchedulePastMatchesFragment : Fragment(), LeagueScheduleView {
                     league
                 )
                 recyclerView.adapter = MatchAdapter(matches) {
-                    context?.startActivity<MatchDetailsActivity>(
+                    context?.startActivity<ItemDetailsActivity>(
                         "match" to it
                     )
                 }

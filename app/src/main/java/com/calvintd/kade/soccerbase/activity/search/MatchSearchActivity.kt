@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.activity.details.MatchDetailsActivity
+import com.calvintd.kade.soccerbase.activity.details.ItemDetailsActivity
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.MatchResponse
@@ -94,7 +94,7 @@ class MatchSearchActivity : AppCompatActivity(), MatchSearchView {
                 query
             )
             recyclerView.adapter = MatchAdapter(matches) {
-                startActivity<MatchDetailsActivity>(
+                startActivity<ItemDetailsActivity>(
                     "match" to it
                 )
             }

@@ -37,6 +37,7 @@ class Team (
         const val TEAM_TWITTER = "TEAM_TWITTER"
         const val TEAM_INSTAGRAM = "TEAM_INSTAGRAM"
         const val TEAM_YOUTUBE = "TEAM_YOUTUBE"
+        const val TEAM_DESCRIPTION = "TEAM_DESCRIPTION"
         const val TEAM_BADGE = "TEAM_BADGE"
         const val TEAM_BANNER = "TEAM_BANNER"
     }

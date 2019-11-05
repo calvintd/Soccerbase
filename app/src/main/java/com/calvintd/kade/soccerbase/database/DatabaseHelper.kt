@@ -56,6 +56,7 @@ class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
             Team.TEAM_TWITTER to TEXT,
             Team.TEAM_INSTAGRAM to TEXT,
             Team.TEAM_YOUTUBE to TEXT,
+            Team.TEAM_DESCRIPTION to TEXT,
             Team.TEAM_BADGE to TEXT,
             Team.TEAM_BANNER to TEXT)
 

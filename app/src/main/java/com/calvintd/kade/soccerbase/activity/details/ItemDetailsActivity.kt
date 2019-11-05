@@ -14,13 +14,13 @@ import com.calvintd.kade.soccerbase.R
 import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.presenter.MatchDetailsPresenter
-import com.calvintd.kade.soccerbase.view.MatchDetailsView
+import com.calvintd.kade.soccerbase.view.ItemDetailsView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
+class ItemDetailsActivity : AppCompatActivity(), ItemDetailsView {
     private lateinit var favoriteIcon: ImageView
     private lateinit var favoriteName: TextView
     private lateinit var alertTitle: String
@@ -641,8 +641,8 @@ class MatchDetailsActivity : AppCompatActivity(), MatchDetailsView {
         toast(resources.getString(R.string.favorite_matches_removed_from_favorites))
     }
 
-    override fun showError(e: SQLiteConstraintException) {
-        toast(e.localizedMessage)
+    override fun showError(message: String?) {
+        toast(String.format(resources.getString(R.string.error_messages_sqlite_exception), message))
     }
 
     private fun changeFavoriteUI(isFavorited: Boolean) {

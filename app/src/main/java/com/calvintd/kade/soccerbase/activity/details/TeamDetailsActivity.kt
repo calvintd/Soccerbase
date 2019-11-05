@@ -1,22 +1,34 @@
 package com.calvintd.kade.soccerbase.activity.details
 
+import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.itemmodel.Team
+import com.calvintd.kade.soccerbase.presenter.TeamDetailsPresenter
+import com.calvintd.kade.soccerbase.view.ItemDetailsView
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder
 import org.jetbrains.anko.constraint.layout.applyConstraintSet
 import org.jetbrains.anko.constraint.layout.constraintLayout
 import org.jetbrains.anko.constraint.layout.matchConstraint
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class TeamDetailsActivity : AppCompatActivity() {
+class TeamDetailsActivity : AppCompatActivity(), ItemDetailsView {
+    private lateinit var favoriteIcon: ImageView
+    private lateinit var favoriteName: TextView
+    private lateinit var alertTitle: String
+    private lateinit var alertMessage: String
+    private var isFavorited: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +36,55 @@ class TeamDetailsActivity : AppCompatActivity() {
         supportActionBar?.title = resources.getString(R.string.team_details_activity_title)
 
         val team = intent.getParcelableExtra("team") as Team
+        val teamId = team.teamId!!
+        val favoriteIconSize = 96
+
+        val presenter = TeamDetailsPresenter(this)
+
+        isFavorited = presenter.returnFavorite(teamId, database)
 
         scrollView {
             constraintLayout {
                 lparams(width = matchParent, height = matchParent)
                 padding = 16
+
+                val favorite = linearLayout {
+                    id = R.id.llTeamDetailsActivityFavoriteLayout
+                    lparams(width = wrapContent, height = wrapContent)
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = Gravity.CENTER_VERTICAL
+                    rightPadding = 16
+                    topPadding = 16
+
+                    favoriteIcon = imageView {
+                        id = R.id.ivTeamDetailsActivityFavoriteIcon
+                        image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, context.theme)
+                        padding = 8
+                    }.lparams(width = favoriteIconSize, height = favoriteIconSize)
+
+                    favoriteName = textView {
+                        id = R.id.tvTeamDetailsActivityFavoriteName
+                        text = resources.getString(R.string.favorite_matches_favorite_match)
+                        typeface = Typeface.DEFAULT_BOLD
+                    }.lparams(width = wrapContent, height = wrapContent)
+
+                    presenter.checkFavorite(isFavorited)
+
+                    onClick {
+                        alert(alertMessage, alertTitle) {
+                            yesButton {
+                                if(!isFavorited) {
+                                    presenter.addToFavorites(team, database)
+                                } else {
+                                    presenter.removeFromFavorites(teamId, database)
+                                }
+                            }
+                            noButton {
+
+                            }
+                        }.show()
+                    }
+                }
 
                 val banner = imageView {
                     id = R.id.ivTeamDetailsActivityBanner
@@ -226,5 +282,39 @@ class TeamDetailsActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun checkedFavorite(isFavorited: Boolean) {
+        changeFavoriteUI(isFavorited)
+    }
+
+    override fun addedToFavorites() {
+        changeFavoriteUI(true)
+        toast(resources.getString(R.string.favorite_matches_added_to_favorites))
+    }
+
+    override fun removedFromFavorites() {
+        changeFavoriteUI(false)
+        toast(resources.getString(R.string.favorite_matches_removed_from_favorites))
+    }
+
+    override fun showError(message: String?) {
+        toast(String.format(resources.getString(R.string.error_messages_sqlite_exception), message))
+    }
+
+    private fun changeFavoriteUI(isFavorited: Boolean) {
+        if (!isFavorited) {
+            favoriteIcon.image = resources.getDrawable(R.drawable.ic_not_favorite_black_48dp, theme)
+            favoriteName.text = resources.getString(R.string.favorite_teams_favorite_team)
+            alertTitle = resources.getString(R.string.favorite_teams_add_confirmation_title)
+            alertMessage = resources.getString(R.string.favorite_teams_add_confirmation_message)
+        }
+        else {
+            favoriteIcon.image = resources.getDrawable(R.drawable.ic_favorited_black_48dp, theme)
+            favoriteName.text = resources.getString(R.string.favorite_teams_unfavorite_team)
+            alertTitle = resources.getString(R.string.favorite_teams_remove_confirmation_title)
+            alertMessage = resources.getString(R.string.favorite_teams_remove_confirmation_message)
+        }
+        this.isFavorited = isFavorited
     }
 }
