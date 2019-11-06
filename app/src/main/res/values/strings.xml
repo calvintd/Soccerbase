@@ -68,6 +68,9 @@
     <!-- league standings -->
     <string name="league_standings_display">Displaying the current season\'s standings for %s:</string>
     <string name="league_standings_not_found">There were no standings table found for this season\'s %s.</string>
+    <string name="league_standings_wdl">%1$dW / %2$dD / %3$dL</string>
+    <string name="league_standings_goals">GF: %1$d / GA: %2$d / GD: %3$d</string>
+    <string name="league_standings_note">Notes: W = Wins; D = Draws; L = Losses; GF = Goals For; GA = Goals Against; GD = Goals Difference</string>
 
     <!-- league schedule -->
     <string name="league_schedule_nav_past">Past Matches</string>

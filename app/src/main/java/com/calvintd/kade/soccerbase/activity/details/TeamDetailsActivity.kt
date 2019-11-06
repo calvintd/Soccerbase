@@ -162,11 +162,18 @@ class TeamDetailsActivity : AppCompatActivity(), ItemDetailsView {
                     val doubleMargin = margin * 2
                     val halfMargin = margin / 2
 
+                    favorite {
+                        connect (
+                            end to end of parent,
+                            top to top of parent
+                        )
+                    }
+
                     banner {
                         connect (
                             start to start of parent,
                             end to end of parent,
-                            top to top of parent
+                            top to bottom of favorite margin dip(halfMargin)
                         )
                     }
 

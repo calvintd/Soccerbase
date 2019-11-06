@@ -20,7 +20,7 @@ import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class ItemDetailsActivity : AppCompatActivity(), ItemDetailsView {
+class MatchDetailsActivity : AppCompatActivity(), ItemDetailsView {
     private lateinit var favoriteIcon: ImageView
     private lateinit var favoriteName: TextView
     private lateinit var alertTitle: String

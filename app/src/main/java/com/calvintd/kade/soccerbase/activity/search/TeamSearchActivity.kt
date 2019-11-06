@@ -27,7 +27,6 @@ import org.jetbrains.anko.sdk27.coroutines.onQueryTextListener
 import retrofit2.Response
 
 class TeamSearchActivity : AppCompatActivity(), TeamSearchView {
-
     private lateinit var searchView: SearchView
     private lateinit var textView: TextView
     private lateinit var progressBar: ProgressBar

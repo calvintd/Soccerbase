@@ -8,7 +8,7 @@ import com.calvintd.kade.soccerbase.itemmodel.Team
 import org.jetbrains.anko.db.*
 
 class DatabaseHelper(context: Context) : ManagedSQLiteOpenHelper(context,
-    context.resources.getString(R.string.database_helper_db_name), null, 2) {
+    context.resources.getString(R.string.database_helper_db_name), null, 1) {
     companion object {
         private var instance: DatabaseHelper? = null
 

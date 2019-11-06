@@ -8,7 +8,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
+import com.calvintd.kade.soccerbase.adapter.StandingsAdapter
 import com.calvintd.kade.soccerbase.itemmodel.League
 import com.calvintd.kade.soccerbase.itemmodel.Standings
 import com.calvintd.kade.soccerbase.itemmodel.StandingsResponse
@@ -21,12 +24,14 @@ import org.jetbrains.anko.constraint.layout.ConstraintSetBuilder
 import org.jetbrains.anko.constraint.layout.applyConstraintSet
 import org.jetbrains.anko.constraint.layout.constraintLayout
 import org.jetbrains.anko.constraint.layout.matchConstraint
+import org.jetbrains.anko.recyclerview.v7.recyclerView
 import retrofit2.Response
 
 class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
     private lateinit var progressBar: ProgressBar
-    private lateinit var textView: TextView
-
+    private lateinit var header: TextView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var footer: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,29 +51,67 @@ class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
                 padding = 128
             }.lparams(width = matchParent, height = matchParent)
 
-            textView = textView {
-                id = R.id.tvLeagueStandingsResults
-                padding = 32
-                textSize = 16f
-                visibility = View.GONE
-                gravity = Gravity.CENTER
-            }.lparams(width = matchParent, height = wrapContent)
+            constraintLayout {
+                lparams(width = matchParent, height = wrapContent)
+                padding = 16
 
-            scrollView {
-                // insert table here
+                header = textView {
+                    id = R.id.tvLeagueStandingsHeader
+                    padding = 32
+                    textSize = 16f
+                    visibility = View.GONE
+                    gravity = Gravity.CENTER
+                }.lparams(width = matchConstraint, height = wrapContent)
 
-                constraintLayout {
-                    lparams(width = matchParent, height = matchParent)
+                val scrollView = scrollView {
+                    id = R.id.scvLeagueStandingsScrollView
+                    recyclerView = recyclerView {
+                        id = R.id.rvLeagueStandingsTable
+                        lparams(width = matchParent, height = wrapContent)
+                        layoutManager = LinearLayoutManager(this@LeagueStandingsActivity)
+                        visibility = View.GONE
+                    }
+                }.lparams(width = matchConstraint, height = wrapContent)
 
-                    applyConstraintSet {
-                        val parent = ConstraintSet.PARENT_ID
-                        val start = ConstraintSetBuilder.Side.START
-                        val end = ConstraintSetBuilder.Side.END
-                        val top = ConstraintSetBuilder.Side.TOP
-                        val bottom = ConstraintSetBuilder.Side.BOTTOM
-                        val margin = 16
+                footer = textView {
+                    id = R.id.tvLeagueStandingsFooter
+                    text = resources.getString(R.string.league_standings_note)
+                    padding = 16
+                    textSize = 12f
+                    visibility = View.GONE
+                    gravity = Gravity.START
+                }.lparams(width = matchConstraint, height = wrapContent)
 
-                        
+                applyConstraintSet {
+                    val parent = ConstraintSet.PARENT_ID
+                    val start = ConstraintSetBuilder.Side.START
+                    val end = ConstraintSetBuilder.Side.END
+                    val top = ConstraintSetBuilder.Side.TOP
+                    val bottom = ConstraintSetBuilder.Side.BOTTOM
+
+                    header {
+                        connect (
+                            start to start of parent,
+                            end to end of parent,
+                            top to top of parent
+                        )
+                    }
+
+                    scrollView {
+                        connect (
+                            start to start of parent,
+                            end to end of parent,
+                            top to bottom of header,
+                            bottom to top of footer
+                        )
+                    }
+
+                    footer {
+                        connect (
+                            start to start of parent,
+                            end to end of parent,
+                            bottom to bottom of parent
+                        )
                     }
                 }
             }
@@ -79,12 +122,16 @@ class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
 
     override fun loadStandings(standings: List<Standings>, leagueName: String) {
         runOnUiThread {
+            recyclerView.adapter = StandingsAdapter(standings)
+            recyclerView.adapter!!.notifyDataSetChanged()
             changeUI(true, leagueName)
         }
     }
 
     override fun showNoStandingsFound(leagueName: String) {
         runOnUiThread {
+            recyclerView.adapter = StandingsAdapter(listOf())
+            recyclerView.adapter?.notifyDataSetChanged()
             changeUI(false, leagueName)
         }
     }
@@ -105,11 +152,13 @@ class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
 
     private fun changeUI(hasStandings: Boolean, leagueName: String) {
         progressBar.visibility = View.GONE
-        textView.visibility = View.VISIBLE
+        header.visibility = View.VISIBLE
         if (hasStandings) {
-            textView.text = String.format(resources.getString(R.string.league_standings_display), leagueName)
+            header.text = String.format(resources.getString(R.string.league_standings_display), leagueName)
+            recyclerView.visibility = View.VISIBLE
+            footer.visibility = View.VISIBLE
         } else {
-            textView.text = String.format(resources.getString(R.string.league_standings_not_found), leagueName)
+            header.text = String.format(resources.getString(R.string.league_standings_not_found), leagueName)
         }
     }
 }

@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.calvintd.kade.soccerbase.R
-import com.calvintd.kade.soccerbase.activity.details.ItemDetailsActivity
+import com.calvintd.kade.soccerbase.activity.details.MatchDetailsActivity
 import com.calvintd.kade.soccerbase.adapter.MatchAdapter
 import com.calvintd.kade.soccerbase.database.database
 import com.calvintd.kade.soccerbase.itemmodel.Match
@@ -54,7 +54,7 @@ class FavoriteMatchesActivity : AppCompatActivity(), FavoriteMatchesView {
 
     override fun loadFavoriteMatches(matches: List<Match>) {
         recyclerView.adapter = MatchAdapter(matches) {
-            startActivity<ItemDetailsActivity>(
+            startActivity<MatchDetailsActivity>(
                 "match" to it
             )
         }

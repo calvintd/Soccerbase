@@ -23,8 +23,7 @@ class PlayerAdapter (private val players: List<Player>, private val detailsListe
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(PlayerUI().createView(AnkoContext.Companion.create(parent.context, parent)))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
-        holder.bindItem(players[position], detailsListener)
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bindItem(players[position], detailsListener)
 
     override fun getItemCount(): Int = players.size
 

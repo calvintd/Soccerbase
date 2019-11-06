@@ -115,7 +115,16 @@
 
     <!-- league standings -->
     <item name="pbLeagueStandingsProgressBar" type="id"/>
-    <item name="tvLeagueStandingsResults" type="id"/>
+    <item name="tvLeagueStandingsHeader" type="id"/>
+    <item name="scvLeagueStandingsScrollView" type="id"/>
+    <item name="rvLeagueStandingsTable" type="id"/>
+    <item name="tvLeagueStandingsPosition" type="id"/>
+    <item name="tvLeagueStandingsName" type="id"/>
+    <item name="llLeagueStandingsInfoBoxLayout" type="id"/>
+    <item name="tvLeagueStandingsWDL" type="id"/>
+    <item name="tvLeagueStandingsGoals" type="id"/>
+    <item name="tvLeagueStandingsTotalPoints" type="id"/>
+    <item name="tvLeagueStandingsFooter" type="id"/>
 
     <!-- league description -->
     <item name="ivDescriptionBadge" type="id"/>
