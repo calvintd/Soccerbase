@@ -1,5 +1,6 @@
 package com.calvintd.kade.soccerbase.presenter
 
+import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.Standings
 import com.calvintd.kade.soccerbase.itemmodel.StandingsResponse
 import com.calvintd.kade.soccerbase.repository.StandingsResponseRepository
@@ -13,6 +14,7 @@ import retrofit2.Response
 class LeagueStandingsPresenter (private val view: LeagueStandingsView, private val repository: StandingsResponseRepository,
                                 private val context: CoroutineContextProvider = CoroutineContextProvider()
 ) {
+
     fun loadStandings(leagueId: Int, leagueName: String) {
         val fetchedStandings = CoroutineScope(Dispatchers.IO).async {
             getFetchedStandings(leagueId)
@@ -33,6 +35,10 @@ class LeagueStandingsPresenter (private val view: LeagueStandingsView, private v
 
             repository.getLeagueStandings(leagueId, object:
                 StandingsResponseRepositoryCallback<StandingsResponse> {
+                override fun onStandingsEmptyResponseBody() {
+                    view.onStandingsEmptyResponseBody()
+                }
+
                 override fun onStandingsDataLoaded(data: StandingsResponse?) {
                     response = data
                     view.onStandingsDataLoaded(data)
@@ -41,7 +47,6 @@ class LeagueStandingsPresenter (private val view: LeagueStandingsView, private v
                 override fun onStandingsDataError(response: Response<StandingsResponse>) {
                     view.onStandingsDataError(response)
                 }
-
             })
 
             FetchStandingsCoroutines.getFetchedStandings(response)

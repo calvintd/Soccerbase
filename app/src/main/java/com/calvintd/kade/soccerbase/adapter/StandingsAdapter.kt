@@ -1,5 +1,6 @@
 package com.calvintd.kade.soccerbase.adapter
 
+import android.graphics.Color
 import android.graphics.Typeface
 import android.view.Gravity
 import android.view.View
@@ -40,26 +41,26 @@ class StandingsAdapter (private val standings: List<Standings>) : RecyclerView.A
                 val name = textView {
                     id = R.id.tvLeagueStandingsName
                     padding = 8
-                    textSize = 16f
-                }.lparams(width = wrapContent, height = wrapContent) {
+                    textSize = 14f
+                }.lparams(width = matchConstraint, height = wrapContent) {
                     verticalBias = 0.5f
                 }
 
                 val infoBox = verticalLayout {
                     id = R.id.llLeagueStandingsInfoBoxLayout
                     padding = 8
-                    gravity = Gravity.START
+                    gravity = Gravity.END
 
                     textView {
                         id = R.id.tvLeagueStandingsWDL
-                        textSize = 10f
+                        textSize = 12f
                     }.lparams(width = wrapContent, height = wrapContent)
 
                     textView {
                         id = R.id.tvLeagueStandingsGoals
                         textSize = 10f
                     }.lparams(width = wrapContent, height = wrapContent)
-                }.lparams(width = wrapContent, height = wrapContent)
+                }.lparams(width = matchConstraint, height = wrapContent)
 
                 val totalPoints = textView {
                     id = R.id.tvLeagueStandingsTotalPoints
@@ -89,6 +90,7 @@ class StandingsAdapter (private val standings: List<Standings>) : RecyclerView.A
                     name {
                         connect (
                             start to end of position margin dip(margin),
+                            end to start of infoBox,
                             top to top of parent,
                             bottom to bottom of parent
                         )

@@ -66,6 +66,7 @@
     <string name="players_listing_show_no_players_found">There were no players found of %s.</string>
 
     <!-- league standings -->
+    <string name="league_standings_empty_response_body">Empty response body when fetching data through the API!</string>
     <string name="league_standings_display">Displaying the current season\'s standings for %s:</string>
     <string name="league_standings_not_found">There were no standings table found for this season\'s %s.</string>
     <string name="league_standings_wdl">%1$dW / %2$dD / %3$dL</string>

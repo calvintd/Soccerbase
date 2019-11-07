@@ -1,7 +1,6 @@
 package com.calvintd.kade.soccerbase.activity.league
 
 import android.graphics.Typeface
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Layout.JUSTIFICATION_MODE_INTER_WORD
@@ -92,9 +91,7 @@ class LeagueDescriptionActivity : AppCompatActivity() {
                         .into(it)
                 }
 
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    description.justificationMode = JUSTIFICATION_MODE_INTER_WORD
-                }
+                description.justificationMode = JUSTIFICATION_MODE_INTER_WORD
             }
         }
     }

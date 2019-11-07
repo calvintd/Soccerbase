@@ -1,7 +1,7 @@
 package com.calvintd.kade.soccerbase.activity.details
 
-import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Typeface
+import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -287,6 +287,8 @@ class TeamDetailsActivity : AppCompatActivity(), ItemDetailsView {
                         badge.visibility = View.GONE
                     }
                 }
+
+                description.justificationMode = JUSTIFICATION_MODE_INTER_WORD
             }
         }
     }

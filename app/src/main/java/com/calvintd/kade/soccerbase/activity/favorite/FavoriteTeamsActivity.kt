@@ -12,7 +12,6 @@ import com.calvintd.kade.soccerbase.activity.details.TeamDetailsActivity
 import com.calvintd.kade.soccerbase.activity.listing.PlayerListingActivity
 import com.calvintd.kade.soccerbase.adapter.TeamAdapter
 import com.calvintd.kade.soccerbase.database.database
-import com.calvintd.kade.soccerbase.itemmodel.Match
 import com.calvintd.kade.soccerbase.itemmodel.Team
 import com.calvintd.kade.soccerbase.presenter.FavoriteTeamsPresenter
 import com.calvintd.kade.soccerbase.view.FavoriteTeamsView

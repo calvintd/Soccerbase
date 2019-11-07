@@ -1,10 +1,10 @@
 package com.calvintd.kade.soccerbase.activity.details
 
 import android.graphics.Typeface
+import android.graphics.text.LineBreaker.JUSTIFICATION_MODE_INTER_WORD
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.calvintd.kade.soccerbase.R
@@ -191,6 +191,8 @@ class PlayerDetailsActivity : AppCompatActivity() {
                         thumb.visibility = View.GONE
                     }
                 }
+
+                description.justificationMode = JUSTIFICATION_MODE_INTER_WORD
             }
         }
     }

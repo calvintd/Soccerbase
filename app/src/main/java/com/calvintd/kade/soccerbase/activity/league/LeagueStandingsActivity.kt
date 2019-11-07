@@ -52,7 +52,7 @@ class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
             }.lparams(width = matchParent, height = matchParent)
 
             constraintLayout {
-                lparams(width = matchParent, height = wrapContent)
+                lparams(width = matchParent, height = matchParent)
                 padding = 16
 
                 header = textView {
@@ -67,11 +67,11 @@ class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
                     id = R.id.scvLeagueStandingsScrollView
                     recyclerView = recyclerView {
                         id = R.id.rvLeagueStandingsTable
-                        lparams(width = matchParent, height = wrapContent)
+                        lparams(width = matchParent, height = matchParent)
                         layoutManager = LinearLayoutManager(this@LeagueStandingsActivity)
                         visibility = View.GONE
                     }
-                }.lparams(width = matchConstraint, height = wrapContent)
+                }.lparams(width = matchConstraint, height = matchConstraint)
 
                 footer = textView {
                     id = R.id.tvLeagueStandingsFooter
@@ -140,6 +140,11 @@ class LeagueStandingsActivity : AppCompatActivity(), LeagueStandingsView {
         runOnUiThread {
             toast(String.format(resources.getString(R.string.error_messages_response_code), code.toString(), responseBody.toString()))
         }
+    }
+
+    override fun onStandingsEmptyResponseBody() {
+        progressBar.visibility = View.GONE
+        toast(resources.getString(R.string.league_standings_empty_response_body))
     }
 
     override fun onStandingsDataLoaded(data: StandingsResponse?) {

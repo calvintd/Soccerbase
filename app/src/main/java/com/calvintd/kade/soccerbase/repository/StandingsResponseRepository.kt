@@ -3,16 +3,29 @@ package com.calvintd.kade.soccerbase.repository
 import com.calvintd.kade.soccerbase.api.RetrofitInstance
 import com.calvintd.kade.soccerbase.itemmodel.StandingsResponse
 import com.calvintd.kade.soccerbase.repository.callback.StandingsResponseRepositoryCallback
+import retrofit2.Response
+import java.io.EOFException
 
 class StandingsResponseRepository {
-    suspend fun getLeagueStandings(leagueId: Int, callback: StandingsResponseRepositoryCallback<StandingsResponse>) {
-        val instance = RetrofitInstance.getInstance()
-        val response = instance.getLeagueStandings(leagueId)
+    private lateinit var response: Response<StandingsResponse>
 
-        if (response.isSuccessful) {
-            callback.onStandingsDataLoaded(response.body())
+    suspend fun getLeagueStandings(leagueId: Int, callback: StandingsResponseRepositoryCallback<StandingsResponse>) {
+        var isEmptyResponseBody = false
+        val instance = RetrofitInstance.getInstance()
+        try {
+            response = instance.getLeagueStandings(leagueId)
+        } catch (e: EOFException) {
+            isEmptyResponseBody = true
+        }
+
+        if (isEmptyResponseBody) {
+            callback.onStandingsEmptyResponseBody()
         } else {
-            callback.onStandingsDataError(response)
+            if (response.isSuccessful) {
+                callback.onStandingsDataLoaded(response.body())
+            } else {
+                callback.onStandingsDataError(response)
+            }
         }
     }
 }
